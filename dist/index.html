@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171719">
+  <meta name="description" content="A quiet workspace for your next iPhone prototype. Start with a blank screen and make it yours.">
+  <title>Pocket — iPhone Preview</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="toolbar">
+    <a class="brand" href="./" aria-label="Pocket home"><span class="brand-icon">p</span><strong>pocket</strong><span class="divider"></span><span class="project-name">Untitled prototype</span></a>
+    <span class="saved"><span></span> Saved on this device</span>
+    <button id="present" class="primary" type="button"><span aria-hidden="true">▷</span> Present</button>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar">
+      <div class="panel-heading"><span>PROTOTYPE</span><span class="tag">01</span></div>
+      <h1>A little space.<br>A big idea.</h1>
+      <p class="intro">Your next app starts here.</p>
+      <div class="section-label">SCREENS</div>
+      <button class="screen-row" type="button" aria-pressed="true"><span class="screen-icon"></span><span>Blank screen</span><span class="start-mark">START</span></button>
+      <div class="sidebar-note"><span class="note-icon">↗</span><p>A clean canvas, ready for whatever comes next.</p></div>
+      <div class="sidebar-bottom"><span class="tiny-phone"></span> Made for your next idea.</div>
+    </aside>
+    <main class="canvas" id="canvas">
+      <div class="canvas-heading"><span class="live-dot"></span> LIVE PREVIEW <span class="canvas-rule"></span><span id="canvas-device">iPhone · 393 × 852</span></div>
+      <div class="device-area" id="device-area">
+        <div class="phone-wrap" id="phone-wrap">
+          <div class="phone" id="phone">
+            <span class="hardware mute"></span><span class="hardware volume-up"></span><span class="hardware volume-down"></span><span class="hardware power"></span>
+            <div class="phone-screen" id="phone-screen">
+              <div class="status-bar" id="status-bar"><span id="phone-time">9:41</span><span class="island" id="island"><span></span></span><span class="status-icons"><svg viewBox="0 0 18 13" aria-label="Cellular signal"><rect x="0" y="9" width="3" height="4" rx=".7"/><rect x="5" y="6" width="3" height="7" rx=".7"/><rect x="10" y="3" width="3" height="10" rx=".7"/><rect x="15" width="3" height="13" rx=".7"/></svg><svg viewBox="0 0 18 14" aria-label="Wi-Fi"><path d="M1 4Q9-2 17 4M4 7Q9 3 14 7M7 10Q9 8.5 11 10" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="9" cy="12" r="1.4"/></svg><span class="battery" aria-label="Battery full"><span></span></span></span></div>
+              <div class="home-indicator" id="home-indicator"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="canvas-bottom"><span>Blank screen <span class="muted">/</span> <span class="muted">01</span></span><div class="zoom-controls"><button id="zoom-out" type="button" aria-label="Zoom out">−</button><button id="zoom-label" type="button" title="Reset to fit">Fit</button><button id="zoom-in" type="button" aria-label="Zoom in">+</button></div><span class="keyboard-hint"><kbd>F</kbd> to present</span></div>
+    </main>
+    <aside class="inspector">
+      <div class="inspector-heading">Preview settings <span class="settings-icon">☷</span></div>
+      <section><h2>Device</h2><label for="device">Frame size</label><select id="device"><option value="standard">iPhone · Standard</option><option value="large">iPhone · Large</option><option value="compact">iPhone · Compact</option></select><div class="dimensions"><div><span>W</span><output id="width">393</output></div><span>×</span><div><span>H</span><output id="height">852</output></div></div></section>
+      <section><h2>Appearance</h2><label>Interface</label><div class="segmented"><button id="light" class="active" type="button" aria-pressed="true">☀ <span>Light</span></button><button id="dark" type="button" aria-pressed="false">☾ <span>Dark</span></button></div><label class="color-label" for="background">Screen background</label><div class="color-field"><input id="background" type="color" value="#ffffff" aria-label="Screen background color"><output id="hex">FFFFFF</output><span>100%</span></div></section>
+      <section><h2>Device details</h2><label class="toggle-row" for="status-toggle"><span>Status bar</span><input id="status-toggle" type="checkbox" checked><span class="switch"></span></label><label class="toggle-row" for="island-toggle"><span>Dynamic Island</span><input id="island-toggle" type="checkbox" checked><span class="switch"></span></label><label class="toggle-row" for="home-toggle"><span>Home indicator</span><input id="home-toggle" type="checkbox" checked><span class="switch"></span></label></section>
+      <div class="inspector-tip"><span>✧</span><p>Just the essentials.<br><span>Your canvas is all yours.</span></p></div>
+      <button id="reset" class="reset" type="button">↺ <span>Reset preview</span></button>
+    </aside>
+  </div>
+  <button id="exit-present" class="exit-present" type="button">✕ Exit preview <kbd>Esc</kbd></button>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
