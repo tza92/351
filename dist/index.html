@@ -20,17 +20,24 @@
       transform-origin: top left;
     }
     .screen {
-      position: relative; width: 402px; height: 874px;
+      --safe-top: 62px;
+      --status-height: 54px;
+      --safe-bottom: 34px;
+      position: relative; display: grid;
+      grid-template-rows: var(--safe-top) minmax(0, 1fr) var(--safe-bottom);
+      width: 402px; height: 874px;
       overflow: hidden; border-radius: 52px; background: #fff; color: #111;
     }
+    .safe-area-top, .safe-area-bottom { position: relative; }
+    .app-content { min-height: 0; overflow: auto; }
     .status-bar {
-      position: absolute; inset: 0 0 auto; height: 62px;
+      position: absolute; inset: 0 0 auto; height: var(--status-height);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 29px 0 36px; font-size: 16px; font-weight: 600;
+      padding: 12px 29px 0 36px; font-size: 16px; font-weight: 600;
       letter-spacing: -.3px; user-select: none;
     }
     .island {
-      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
       width: 124px; height: 36px; border-radius: 24px; background: #080808;
     }
     .island::after {
@@ -62,6 +69,7 @@
         <span class="button power" aria-hidden="true"></span>
         <span class="button camera" aria-hidden="true"></span>
         <div class="screen" aria-label="Blank iPhone screen">
+          <div class="safe-area-top">
           <div class="status-bar">
             <span>9:41</span>
             <span class="island" aria-hidden="true"></span>
@@ -71,7 +79,11 @@
               <span class="battery" role="img" aria-label="Battery full"></span>
             </span>
           </div>
-          <div class="home-indicator" aria-hidden="true"></div>
+          </div>
+          <div class="app-content"></div>
+          <div class="safe-area-bottom">
+            <div class="home-indicator" aria-hidden="true"></div>
+          </div>
         </div>
       </div>
     </div>
