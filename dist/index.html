@@ -13,10 +13,12 @@
     .device-space { position: relative; }
     .iphone {
       position: absolute; top: 0; left: 0;
-      width: 422px; height: 894px; padding: 10px;
-      border-radius: 62px; background: #262629;
-      box-shadow: 0 0 0 1px #65656b, inset 0 0 0 2px #4b4b50,
-        inset 0 0 0 4px #101012, 0 24px 65px #0007;
+      width: 430px; height: 900px; padding: 13px 14px;
+      border-radius: 82px;
+      background: linear-gradient(100deg, #535358, #151517 3%, #09090b 50%, #171719 97%, #535358);
+      box-shadow: 0 0 0 1px #222225, inset 0 0 0 1px #77777d,
+        inset 0 0 0 3px #35353a, inset 0 0 0 5px #080809,
+        0 24px 65px #0007;
       transform-origin: top left;
     }
     .screen {
@@ -26,7 +28,7 @@
       position: relative; display: grid;
       grid-template-rows: var(--safe-top) minmax(0, 1fr) var(--safe-bottom);
       width: 402px; height: 874px;
-      overflow: hidden; border-radius: 52px; background: #fff; color: #111;
+      overflow: hidden; border-radius: 68px; background: #fff; color: #111;
     }
     .safe-area-top, .safe-area-bottom { position: relative; }
     .app-content { min-height: 0; overflow: auto; }
@@ -52,11 +54,11 @@
     .battery::after { content: ""; position: absolute; right: -3px; top: 3px; width: 2px; height: 4px; border-radius: 0 2px 2px 0; background: currentColor; opacity: .5; }
     .home-indicator { position: absolute; bottom: 9px; left: 50%; transform: translateX(-50%); width: 140px; height: 5px; border-radius: 4px; background: currentColor; }
     .button { position: absolute; left: -4px; width: 4px; border-radius: 3px; background: linear-gradient(90deg, #1b1b1d, #65656a, #29292c); }
-    .action { top: 106px; height: 26px; }
-    .volume-up { top: 163px; height: 57px; }
-    .volume-down { top: 234px; height: 57px; }
-    .power { left: auto; right: -4px; top: 182px; height: 85px; }
-    .camera { left: auto; right: -3px; top: 538px; height: 48px; width: 3px; }
+    .action { top: 184px; height: 40px; }
+    .volume-up { top: 255px; height: 65px; }
+    .volume-down { top: 339px; height: 65px; }
+    .power { left: auto; right: -4px; top: 278px; height: 104px; }
+    .camera { left: auto; right: -2px; top: 570px; height: 48px; width: 2px; }
   </style>
 </head>
 <body>
@@ -93,10 +95,12 @@
     const space = document.querySelector('.device-space');
     const stage = document.querySelector('.stage');
     function fitPhone() {
-      const scale = Math.max(0.05, Math.min((stage.clientWidth - 40) / 422, (stage.clientHeight - 48) / 894, 1));
+      const width = device.offsetWidth;
+      const height = device.offsetHeight;
+      const scale = Math.max(0.05, Math.min((stage.clientWidth - 40) / width, (stage.clientHeight - 48) / height, 1));
       device.style.transform = `scale(${scale})`;
-      space.style.width = `${422 * scale}px`;
-      space.style.height = `${894 * scale}px`;
+      space.style.width = `${width * scale}px`;
+      space.style.height = `${height * scale}px`;
     }
     new ResizeObserver(fitPhone).observe(stage);
     fitPhone();
