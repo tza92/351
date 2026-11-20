@@ -1,0 +1,379 @@
+@font-face {
+  font-family: "Inter";
+  src: url("fonts/InterVariable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #161618;
+  font-family: "Inter", sans-serif;
+}
+
+.stage {
+  --device-width: 430px;
+  --device-height: 900px;
+  --preview-scale: calc(2 / 3);
+  --page-padding: 24px;
+
+  display: grid;
+  place-items: center;
+  min-width: calc(var(--device-width) * var(--preview-scale) + 2 * var(--page-padding));
+  min-height: 100dvh;
+  padding: var(--page-padding);
+}
+
+/* Reserve the scaled dimensions so centering and scrolling match the drawing. */
+.device-space {
+  position: relative;
+  width: calc(var(--device-width) * var(--preview-scale));
+  height: calc(var(--device-height) * var(--preview-scale));
+}
+
+.iphone {
+  --frame-outline: 1px;
+  --frame-radius: 82px;
+  --bezel-width: 14px;
+
+  position: absolute;
+  inset: 0;
+  width: var(--device-width);
+  height: var(--device-height);
+  padding: var(--bezel-width);
+  border-radius: var(--frame-radius);
+  background: #09090b;
+  box-shadow:
+    0 0 0 var(--frame-outline) #222225,
+    inset 0 0 0 1px #66666c,
+    inset 0 0 0 2px #35353a,
+    inset 0 0 0 4px #171719,
+    0 24px 65px #0007;
+  transform: scale(var(--preview-scale));
+  transform-origin: top left;
+}
+
+.screen {
+  --safe-top: 54px;
+  --status-height: 54px;
+  --safe-bottom: 21px;
+
+  position: relative;
+  display: grid;
+  grid-template-rows: var(--safe-top) minmax(0, 1fr) var(--safe-bottom);
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: calc(var(--frame-radius) - var(--bezel-width));
+  background: #1c1e21;
+  color: #f5f5f5;
+}
+
+.safe-area-top,
+.safe-area-bottom {
+  position: relative;
+}
+
+.safe-area-top {
+  background: #292a2e;
+}
+
+.safe-area-bottom { background: #292a2e; color: #f5f5f5; }
+
+.app-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-frame {
+  display: block;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.status-bar {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--status-height);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.4px;
+  user-select: none;
+}
+
+.status-time {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 144px;
+  height: var(--status-height);
+  padding-top: 12px;
+  line-height: 22px;
+  font-variant-numeric: lining-nums proportional-nums;
+}
+
+.island {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 126px;
+  height: 37px;
+  border-radius: 24px;
+  background: #080808;
+  transform: translateX(-50%);
+}
+
+.island::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 13px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 60% 40%, #111a28, #090d14 45%, #080808 75%);
+  transform: translateY(-50%);
+}
+
+.status-icons {
+  position: absolute;
+  top: 26.5px;
+  right: 39px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 13px;
+}
+
+.status-icons svg {
+  display: block;
+  width: 17px;
+  height: 13px;
+  fill: currentColor;
+}
+
+.status-icons .cellular {
+  width: 18px;
+}
+
+.status-icons .wifi {
+  height: 13.6px;
+}
+
+.battery {
+  position: relative;
+  width: 25px;
+  height: 13px;
+  padding: 1.5px;
+  border: 1px solid #9998;
+  border-radius: 4px;
+}
+
+.battery::before {
+  content: "";
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: currentColor;
+}
+
+.battery::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -3px;
+  width: 2px;
+  height: 4px;
+  border-radius: 0 2px 2px 0;
+  background: currentColor;
+  opacity: .5;
+  transform: translateY(-50%);
+}
+
+.home-indicator {
+  position: absolute;
+  bottom: 9px;
+  left: 50%;
+  width: 140px;
+  height: 5px;
+  border-radius: 4px;
+  background: currentColor;
+  transform: translateX(-50%);
+}
+
+.side-button {
+  --button-width: 3px;
+  --button-light-direction: 90deg;
+
+  /* Attach outside the frame outline, rather than to its inner bevel. */
+  position: absolute;
+  left: calc(-1 * (var(--frame-outline) + var(--button-width)));
+  width: var(--button-width);
+  background: linear-gradient(var(--button-light-direction), #65656b, #45454a 35%, #29292d 75%, #222225);
+  clip-path: polygon(100% 0, 45% 0, 0 1.5px, 0 calc(100% - 1.5px), 45% 100%, 100% 100%);
+}
+
+.side-button--right {
+  --button-light-direction: 270deg;
+
+  right: calc(-1 * (var(--frame-outline) + var(--button-width)));
+  left: auto;
+  clip-path: polygon(0 0, 55% 0, 100% 1.5px, 100% calc(100% - 1.5px), 55% 100%, 0 100%);
+}
+
+.side-button--action {
+  top: 184px;
+  height: 40px;
+}
+
+.side-button--volume-up {
+  top: 255px;
+  height: 65px;
+}
+
+.side-button--volume-down {
+  top: 339px;
+  height: 65px;
+}
+
+.side-button--power {
+  top: 278px;
+  height: 104px;
+}
+
+/* These controls belong to the preview shell, above the embedded app. */
+.preview-controls {
+  flex-shrink: 0;
+}
+
+.preview-controls button {
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 12px;
+  background: #4b4c51;
+  color: #f5f5f5;
+  font: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.preview-controls button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -3px;
+}
+
+.preview-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px;
+  border-bottom: 1px solid #4b4c51;
+  background: #292a2e;
+  box-shadow: 0 6px 16px #0004;
+  touch-action: none;
+  pointer-events: auto;
+}
+
+.preview-toolbar[hidden] {
+  display: none;
+}
+
+.fullscreen-status {
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.fullscreen-status:empty {
+  display: none;
+}
+
+html.is-immersive {
+  overflow: hidden;
+}
+
+html.is-immersive .stage {
+  min-width: 0;
+  padding: 0;
+}
+
+html.is-immersive .device-space {
+  width: 100%;
+  height: 100dvh;
+}
+
+html.is-immersive .iphone {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  transform: none;
+}
+
+html.is-immersive .screen {
+  grid-template-rows: minmax(0, 1fr);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  border-radius: 0;
+  background: #292a2e;
+}
+
+html.is-immersive .side-button,
+html.is-immersive .safe-area-top,
+html.is-immersive .safe-area-bottom {
+  display: none;
+}
+
+/* Show the app directly on phones, including touch devices in landscape. */
+@media (max-width: 767px), (max-height: 500px) and (pointer: coarse) {
+  .stage {
+    min-width: 0;
+    padding: 0;
+  }
+
+  .device-space {
+    width: 100%;
+    height: 100dvh;
+  }
+
+  .iphone {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .screen {
+    grid-template-rows: minmax(0, 1fr);
+    border-radius: 0;
+  }
+
+  .side-button,
+  .safe-area-top,
+  .safe-area-bottom {
+    display: none;
+  }
+}
