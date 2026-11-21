@@ -1,3 +1,3 @@
 # 351
 
-A mobile-style nutrition dashboard with weekly activity and daily macro summaries.
+A concept mobile nutrition app for SFU Dining Commons, created for IAT 351.
