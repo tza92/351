@@ -1,11 +1,27 @@
-const days = document.querySelectorAll('.day');
-
 const optionsButton = document.querySelector('.filter-button');
 const sidebar = document.querySelector('#app-sidebar');
 const fullscreenButton = document.querySelector('.fullscreen-toggle');
 const fullscreenLabel = document.querySelector('.fullscreen-label');
 const fullscreenStatus = document.querySelector('#fullscreen-status');
 let switchingFullscreen = false;
+let closingSidebar = false;
+
+function syncSidebarFrame(open) {
+  if (window.parent === window) return;
+  const origin = location.protocol === 'file:' ? '*' : location.origin;
+  window.parent.postMessage({ type: 'app-sidebar-state', open }, origin);
+}
+
+async function closeSidebar() {
+  if (!sidebar.open || closingSidebar) return;
+  closingSidebar = true;
+  sidebar.classList.add('is-closing');
+  syncSidebarFrame(false);
+  await Promise.all(sidebar.getAnimations({ subtree: true }).map((animation) => animation.finished.catch(() => {})));
+  sidebar.close();
+  sidebar.classList.remove('is-closing');
+  closingSidebar = false;
+}
 
 function fullscreenElement() {
   return document.fullscreenElement || document.webkitFullscreenElement;
@@ -34,17 +50,23 @@ optionsButton.addEventListener('click', () => {
   syncFullscreen();
   sidebar.showModal();
   optionsButton.setAttribute('aria-expanded', 'true');
+  syncSidebarFrame(true);
 });
-document.querySelector('.sidebar-close').addEventListener('click', () => sidebar.close());
+document.querySelector('.sidebar-close').addEventListener('click', closeSidebar);
+sidebar.addEventListener('cancel', (event) => {
+  event.preventDefault();
+  closeSidebar();
+});
 sidebar.addEventListener('close', () => {
   optionsButton.setAttribute('aria-expanded', 'false');
   optionsButton.focus({ preventScroll: true });
+  syncSidebarFrame(false);
 });
 sidebar.addEventListener('click', (event) => {
   if (event.target !== sidebar) return;
   const bounds = sidebar.getBoundingClientRect();
   if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
-    sidebar.close();
+    closeSidebar();
   }
 });
 
@@ -72,25 +94,46 @@ fullscreenButton.addEventListener('click', async () => {
 document.addEventListener('fullscreenchange', syncFullscreen);
 document.addEventListener('webkitfullscreenchange', syncFullscreen);
 syncFullscreen();
-
-days.forEach((day) => {
-  day.addEventListener('click', () => {
-    days.forEach((item) => {
-      item.classList.remove('is-selected');
-      item.setAttribute('aria-pressed', 'false');
-    });
-    day.classList.add('is-selected');
-    day.setAttribute('aria-pressed', 'true');
-  });
-});
+syncSidebarFrame(false);
 
 const moreButton = document.querySelector('.more-button');
-const intakeDetails = document.querySelector('#intake-details');
+const intakeSuggestions = document.querySelector('#intake-suggestions');
+let suggestionsAnimation = null;
+
 moreButton.addEventListener('click', () => {
-  const expanded = moreButton.getAttribute('aria-expanded') === 'true';
-  moreButton.setAttribute('aria-expanded', String(!expanded));
-  intakeDetails.hidden = expanded;
-  moreButton.querySelector('.more-label').textContent = expanded ? 'More' : 'Less';
+  const expanded = moreButton.getAttribute('aria-expanded') !== 'true';
+  const scrollTop = dashboard.scrollTop;
+  const startHeight = intakeSuggestions.getBoundingClientRect().height;
+  const startOpacity = intakeSuggestions.hidden ? 0 : getComputedStyle(intakeSuggestions).opacity;
+  suggestionsAnimation?.cancel();
+  suggestionsAnimation = null;
+
+  moreButton.setAttribute('aria-expanded', String(expanded));
+  moreButton.querySelector('.more-label').textContent = expanded ? 'Less' : 'More';
+  intakeSuggestions.inert = !expanded;
+  intakeSuggestions.hidden = false;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    intakeSuggestions.hidden = !expanded;
+    dashboard.scrollTop = scrollTop;
+    return;
+  }
+
+  const animation = intakeSuggestions.animate([
+    { height: `${startHeight}px`, opacity: startOpacity },
+    { height: expanded ? `${intakeSuggestions.scrollHeight}px` : '0px', opacity: expanded ? 1 : 0 },
+  ], {
+    duration: 240,
+    easing: 'cubic-bezier(0.2, 0, 0, 1)',
+    fill: 'both',
+  });
+  suggestionsAnimation = animation;
+  dashboard.scrollTop = scrollTop;
+  animation.onfinish = () => {
+    intakeSuggestions.hidden = !expanded;
+    animation.cancel();
+    suggestionsAnimation = null;
+  };
 });
 
 // Mouse swipes emulate dragging a touchscreen; native touch scrolling stays native.

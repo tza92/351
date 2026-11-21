@@ -72,7 +72,7 @@ body {
   height: 100%;
   overflow: hidden;
   border-radius: calc(var(--frame-radius) - var(--bezel-width));
-  background: #1c1e21;
+  background: #16171a;
   color: #f5f5f5;
 }
 
@@ -82,10 +82,38 @@ body {
 }
 
 .safe-area-top {
-  background: #292a2e;
+  z-index: 1;
+  background: #27282b;
+  box-shadow: 0 1px 0 #27282b;
 }
 
-.safe-area-bottom { background: #292a2e; color: #f5f5f5; }
+.safe-area-bottom { background: #27282b; color: #f5f5f5; }
+
+/* Continue the drawer through the system bars; dim only its exposed left side. */
+.safe-area-top::after,
+.safe-area-bottom::after {
+  position: absolute;
+  inset: 0;
+  background: #0008;
+  opacity: 0;
+  clip-path: inset(0);
+  pointer-events: none;
+  transition: opacity 220ms ease, clip-path 220ms cubic-bezier(.2, .8, .2, 1);
+  content: "";
+}
+
+.screen.sidebar-open .safe-area-top::after,
+.screen.sidebar-open .safe-area-bottom::after {
+  opacity: 1;
+  clip-path: inset(0 min(334px, calc(100% - 32px)) 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .safe-area-top::after,
+  .safe-area-bottom::after {
+    transition: none;
+  }
+}
 
 .app-content {
   position: relative;
@@ -106,6 +134,7 @@ body {
 
 .status-bar {
   position: absolute;
+  z-index: 1;
   inset: 0 0 auto;
   height: var(--status-height);
   font-size: 17px;
@@ -207,6 +236,7 @@ body {
 
 .home-indicator {
   position: absolute;
+  z-index: 1;
   bottom: 9px;
   left: 50%;
   width: 140px;
