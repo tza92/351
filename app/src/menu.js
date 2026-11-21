@@ -9,9 +9,36 @@
   const notice = document.querySelector('.menu-notice');
   const portionDialog = document.querySelector('#portion-dialog');
   const portionInput = document.querySelector('#portion-input');
+  const quantityInput = document.querySelector('#quantity-input');
   const mealToggle = document.querySelector('.meal-picker-toggle');
   const mealMenu = document.querySelector('#meal-picker-menu');
   const mealOptions = [...mealMenu.querySelectorAll('[data-meal]')];
+  const stationPicker = document.querySelector('.menu-stations');
+  const breakfastStations = [
+    { id: 'rise-and-dine', name: 'Rise and Dine' },
+    { id: 'create', name: 'Create' },
+    { id: 'leaf-market', name: 'Leaf Market' },
+  ];
+  const mainMealStations = [
+    { id: 'global-eats', name: 'Global Eats' },
+    { id: 'sprout', name: 'The Sprout' },
+    { id: 'spoons-and-ladles', name: 'Spoons and Ladles' },
+    { id: 'stacks', name: 'The Stacks' },
+    { id: 'hot-plate', name: 'The Hot Plate (Teppanyaki)' },
+    { id: 'yin-and-yum', name: 'Yin and Yum' },
+    { id: 'fresh-bowl', name: 'Fresh Bowl' },
+    { id: 'nori', name: 'Nori' },
+    { id: 'leaf-market', name: 'Leaf Market' },
+    { id: 'grill-house', name: 'Grill House' },
+    { id: 'create', name: 'Create' },
+    { id: 'al-forno', name: 'Al Forno' },
+    { id: 'sweet-treats', name: 'Sweet Treats' },
+  ];
+  const stationsByMeal = {
+    Breakfast: breakfastStations,
+    Lunch: mainMealStations,
+    Dinner: mainMealStations,
+  };
   let selectedMeal = 'Breakfast';
 
   function closeMealMenu(restoreFocus = false) {
@@ -42,6 +69,8 @@
     list.setAttribute('aria-label', `${selectedMeal} foods`);
     document.title = `${selectedMeal} Menu · Nutrition`;
     closeMealMenu(true);
+    renderStations();
+    filterFoods();
   }));
   mealMenu.addEventListener('keydown', (event) => {
     const index = mealOptions.indexOf(document.activeElement);
@@ -74,8 +103,8 @@
     { name: 'Strawberries', serving: '1 cup' },
     { name: 'Cherry Tomatoes', serving: '½ cup' },
     { name: 'Baby Carrots', serving: '½ cup' },
-  ].map((food, id) => ({ ...food, id, station: 'sprout', quantity: 1, added: 0 }));
-  let station = 'sprout';
+  ].map((food, id) => ({ ...food, id, station: 'leaf-market', quantity: 1, added: 0 }));
+  let station = 'all';
   let editingFood = null;
   let noticeTimeout;
   let lastEditButton;
@@ -143,20 +172,37 @@
     row.className = 'menu-food';
     row.dataset.foodId = food.id;
     row.innerHTML = `
+      <span class="food-thumbnail${food.name === 'Baby Carrots' ? ' food-thumbnail--carrots' : food.name === 'Avocado' ? ' food-thumbnail--avocado' : ''}">
+        <img src="assets/foods/${food.name.toLowerCase().replaceAll(' ', '-')}.jpg" alt="" width="56" height="56">
+      </span>
       <div class="food-details">
         <h3>${food.name}</h3>
-        <button class="food-serving" type="button" data-action="edit" aria-label="Edit serving size for ${food.name}">
-          <span>${food.serving}</span>${icon('edit')}
+      </div>
+      <div class="food-controls">
+        <button class="food-quantity" type="button" data-action="edit" aria-label="Edit ${food.name} quantity, 1 serving" aria-haspopup="dialog" aria-controls="portion-dialog">
+          <span class="food-quantity-value">1</span>${icon('edit')}
         </button>
-      </div>
-      <div class="food-quantity" role="group" aria-label="Quantity for ${food.name}">
-        <button type="button" data-action="decrease" aria-label="Decrease ${food.name} quantity" disabled>${icon('chevron')}</button>
-        <output aria-label="${food.name} quantity">1</output>
-        <button type="button" data-action="increase" aria-label="Increase ${food.name} quantity">${icon('chevron')}</button>
-      </div>
-      <button class="food-add" type="button" data-action="add" aria-label="Add ${food.name}">${icon('plus')}</button>`;
+        <button class="food-add" type="button" data-action="add" aria-label="Add ${food.name}">${icon('plus')}</button>
+      </div>`;
     list.append(row);
   });
+
+  function renderStations() {
+    const stations = [{ id: 'all', name: 'All' }, ...stationsByMeal[selectedMeal]];
+    if (!stations.some((item) => item.id === station)) station = 'all';
+    stationPicker.replaceChildren(...stations.map((item) => {
+      const button = document.createElement('button');
+      button.className = 'station-chip';
+      button.type = 'button';
+      button.dataset.station = item.id;
+      button.setAttribute('aria-pressed', String(item.id === station));
+      button.textContent = item.name;
+      return button;
+    }));
+    stationPicker.setAttribute('aria-label', `${selectedMeal} dining station`);
+    const active = stationPicker.querySelector('[aria-pressed="true"]');
+    stationPicker.scrollLeft = active.offsetLeft - stationPicker.firstElementChild.offsetLeft;
+  }
 
   function filterFoods() {
     const query = search.value.trim().toLocaleLowerCase();
@@ -167,17 +213,71 @@
       if (visible) count++;
     });
     empty.hidden = count > 0;
+    if (count === 0) {
+      const hasStationFoods = foods.some((food) => station === 'all' || food.station === station);
+      empty.textContent = hasStationFoods
+        ? 'No items match your search. Try another search or station.'
+        : `No items listed for ${stationsByMeal[selectedMeal].find((item) => item.id === station).name}.`;
+    }
   }
 
   search.addEventListener('input', filterFoods);
-  document.querySelectorAll('.station-chip').forEach((button) => {
-    button.addEventListener('click', () => {
-      station = button.dataset.station;
-      document.querySelectorAll('.station-chip').forEach((chip) => {
-        chip.setAttribute('aria-pressed', String(chip === button));
-      });
-      filterFoods();
+
+  // Emulate a horizontal swipe with the preview's mouse cursor.
+  let stationSwipe = null;
+  let suppressStationClick = false;
+  stationPicker.addEventListener('pointerdown', (event) => {
+    suppressStationClick = false;
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    stationSwipe = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      scrollLeft: stationPicker.scrollLeft,
+      dragging: false,
+    };
+  });
+  window.addEventListener('pointermove', (event) => {
+    if (!stationSwipe || event.pointerId !== stationSwipe.pointerId) return;
+    const distance = event.clientX - stationSwipe.startX;
+    if (!stationSwipe.dragging) {
+      if (Math.abs(distance) < 6) return;
+      if (Math.abs(event.clientY - stationSwipe.startY) > Math.abs(distance)) {
+        stationSwipe = null;
+        return;
+      }
+      stationSwipe.dragging = true;
+      stationPicker.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault();
+    stationPicker.scrollLeft = stationSwipe.scrollLeft - distance;
+  });
+  function endStationSwipe(event) {
+    if (!stationSwipe || event.pointerId !== stationSwipe.pointerId) return;
+    suppressStationClick = stationSwipe.dragging;
+    stationSwipe = null;
+    if (stationPicker.hasPointerCapture(event.pointerId)) {
+      stationPicker.releasePointerCapture(event.pointerId);
+    }
+  }
+  window.addEventListener('pointerup', endStationSwipe);
+  window.addEventListener('pointercancel', endStationSwipe);
+  stationPicker.addEventListener('lostpointercapture', endStationSwipe);
+  stationPicker.addEventListener('click', (event) => {
+    if (!suppressStationClick || event.detail === 0) return;
+    event.preventDefault();
+    event.stopImmediatePropagation();
+    suppressStationClick = false;
+  }, true);
+
+  stationPicker.addEventListener('click', (event) => {
+    const button = event.target.closest('.station-chip');
+    if (!button) return;
+    station = button.dataset.station;
+    stationPicker.querySelectorAll('.station-chip').forEach((chip) => {
+      chip.setAttribute('aria-pressed', String(chip === button));
     });
+    filterFoods();
   });
 
   list.addEventListener('click', (event) => {
@@ -186,19 +286,15 @@
     const row = button.closest('.menu-food');
     const food = foods[Number(row.dataset.foodId)];
     const action = button.dataset.action;
-    if (action === 'increase' || action === 'decrease') {
-      food.quantity = Math.max(1, Math.min(99, food.quantity + (action === 'increase' ? 1 : -1)));
-      row.querySelector('output').textContent = food.quantity;
-      row.querySelector('[data-action="decrease"]').disabled = food.quantity === 1;
-      row.querySelector('[data-action="increase"]').disabled = food.quantity === 99;
-    } else if (action === 'edit') {
+    if (action === 'edit') {
       editingFood = food;
       lastEditButton = button;
       portionDialog.querySelector('.portion-food-name').textContent = food.name;
       portionInput.value = food.serving;
+      quantityInput.value = food.quantity;
       portionDialog.showModal();
-      portionInput.focus();
-      portionInput.select();
+      quantityInput.focus();
+      quantityInput.select();
     } else if (action === 'add') {
       food.added += food.quantity;
       button.classList.add('has-added');
@@ -219,7 +315,10 @@
       return;
     }
     editingFood.serving = serving;
-    list.children[editingFood.id].querySelector('.food-serving span').textContent = serving;
+    editingFood.quantity = Number(quantityInput.value);
+    const row = list.children[editingFood.id];
+    row.querySelector('.food-quantity-value').textContent = editingFood.quantity;
+    row.querySelector('.food-quantity').setAttribute('aria-label', `Edit ${editingFood.name} quantity, ${editingFood.quantity} ${editingFood.quantity === 1 ? 'serving' : 'servings'}`);
     portionDialog.close();
   });
   portionInput.addEventListener('input', () => portionInput.setCustomValidity(''));
@@ -227,5 +326,6 @@
   portionDialog.addEventListener('close', () => lastEditButton?.focus({ preventScroll: true }));
 
   showPage(location.hash === '#menu' ? 'menu' : 'home');
+  renderStations();
   filterFoods();
 })();

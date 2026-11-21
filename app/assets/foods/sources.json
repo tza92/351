@@ -1,0 +1,28 @@
+{
+  "avocado": {
+    "source": "https://unsplash.com/photos/B_8cCKZO3Fg",
+    "download": "https://images.unsplash.com/photo-1522774354045-e5db7fca06cd?fm=jpg&fit=crop&w=600&h=600&q=85"
+  },
+  "blueberries": {
+    "source": "https://unsplash.com/photos/gBUO7Y0hU0w",
+    "download": "https://images.unsplash.com/photo-1580378403671-9d5dc88b9b1b?fm=jpg&fit=crop&w=192&h=192&q=85"
+  },
+  "banana": {
+    "source": "https://unsplash.com/photos/QIW4IkjxP-w",
+    "download": "https://images.unsplash.com/photo-1593280443077-ae46e0100ad1?fm=jpg&fit=crop&w=600&h=600&q=85"
+  },
+  "strawberries": {
+    "source": "https://unsplash.com/photos/avaP4M1m8pM",
+    "download": "https://images.unsplash.com/photo-1653086419722-5b744608b59e?fm=jpg&fit=crop&w=192&h=192&q=85"
+  },
+  "cherry-tomatoes": {
+    "source": "https://unsplash.com/photos/S9KAAy0qOos",
+    "download": "https://images.unsplash.com/photo-1597664137113-235f4537e35d?fm=jpg&fit=crop&w=192&h=192&q=85"
+  },
+  "baby-carrots": {
+    "source": "https://www.pexels.com/photo/slices-of-carrots-and-celery-in-a-plastic-container-10417353/",
+    "photographer": "Bora C",
+    "download": "https://images.pexels.com/photos/10417353/pexels-photo-10417353.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop",
+    "note": "Framed around the peeled baby carrots using CSS."
+  }
+}

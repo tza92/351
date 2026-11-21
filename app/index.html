@@ -253,13 +253,13 @@
         <section aria-labelledby="menu-section-title">
           <h2 id="menu-section-title">From Today’s Menu</h2>
           <div class="menu-stations" role="group" aria-label="Dining station">
-            <button class="station-chip" type="button" data-station="all" aria-pressed="false">All</button>
-            <button class="station-chip" type="button" data-station="sprout" aria-pressed="true">Sprout</button>
-            <button class="station-chip" type="button" data-station="hot-plate" aria-pressed="false">The Hot Plate</button>
-            <button class="station-chip" type="button" data-station="stacks" aria-pressed="false">The Stacks</button>
+            <button class="station-chip" type="button" data-station="all" aria-pressed="true">All</button>
+            <button class="station-chip" type="button" data-station="rise-and-dine" aria-pressed="false">Rise and Dine</button>
+            <button class="station-chip" type="button" data-station="create" aria-pressed="false">Create</button>
+            <button class="station-chip" type="button" data-station="leaf-market" aria-pressed="false">Leaf Market</button>
           </div>
           <ul class="menu-foods" aria-label="Breakfast foods"></ul>
-          <p class="menu-empty" hidden>No items match your search at this station. Try All or another search.</p>
+          <p class="menu-empty" hidden></p>
         </section>
       </main>
       <p class="menu-notice" role="status" aria-live="polite"></p>
@@ -303,8 +303,10 @@
     </dialog>
     <dialog id="portion-dialog" class="portion-dialog" aria-labelledby="portion-title">
       <form method="dialog">
-        <h2 id="portion-title">Edit serving</h2>
+        <h2 id="portion-title">Edit quantity</h2>
         <p class="portion-food-name"></p>
+        <label for="quantity-input">Quantity</label>
+        <input id="quantity-input" type="number" min="1" max="99" step="1" inputmode="numeric" required>
         <label for="portion-input">Serving size</label>
         <input id="portion-input" type="text" maxlength="60" required>
         <div class="portion-actions">

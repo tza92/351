@@ -75,6 +75,16 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+/* Touch and mouse focus should not leave a browser outline. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Headings receive focus for navigation announcements, not interaction. */
+:is(h1, h2, h3)[tabindex="-1"]:focus {
+  outline: none;
+}
+
 button:disabled {
   opacity: .38;
 }
@@ -1086,9 +1096,7 @@ button:disabled {
   gap: 6px;
   padding: 6px 16px 6px;
   border-radius: 28px 28px 0 0;
-  background: color-mix(in srgb, var(--header) 92%, transparent);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  background: var(--header);
 }
 
 .nav-item {
@@ -1211,9 +1219,11 @@ button:disabled {
 .meal-picker-menu {
   position: absolute;
   z-index: 4;
+  display: grid;
+  gap: 8px;
   top: calc(100% + 8px);
   left: 0;
-  width: 224px;
+  width: 176px;
   padding: 8px;
   border-radius: 20px;
   background: var(--panel);
@@ -1238,6 +1248,10 @@ button:disabled {
   font-weight: 600;
 }
 
+.meal-picker-menu button:focus-visible {
+  outline-offset: -3px;
+}
+
 .meal-picker-menu button[aria-checked="false"] .icon {
   visibility: hidden;
 }
@@ -1250,15 +1264,14 @@ button:disabled {
   height: 40px;
   margin-top: 8px;
   padding: 0 12px;
-  border: 1px solid var(--secondary-container);
+  border: 0;
   border-radius: 14px;
   background: var(--secondary-panel);
   color: var(--muted);
 }
 
-.menu-search:focus-within {
-  outline: 2px solid var(--line);
-  outline-offset: 2px;
+.menu-search:has(input:focus-visible) {
+  background: var(--panel);
 }
 
 .menu-search > svg {
@@ -1310,6 +1323,8 @@ button:disabled {
   margin: 8px calc(-1 * var(--header-inset)) 12px;
   padding: 0 var(--header-inset) 4px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--header-inset);
   scrollbar-width: none;
 }
 
@@ -1326,8 +1341,8 @@ button:disabled {
 }
 
 .station-chip[aria-pressed="true"] {
-  background: var(--icon-surface);
-  color: var(--ink);
+  background: var(--primary);
+  color: var(--on-primary);
   font-weight: 600;
 }
 
@@ -1341,71 +1356,110 @@ button:disabled {
 
 .menu-food {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto 44px;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
   align-items: center;
   gap: 8px;
-  min-height: 72px;
-  padding: 10px 8px 10px 16px;
+  min-height: 80px;
+  padding: 12px 8px 12px 12px;
   border-radius: 16px;
   background: var(--secondary-panel);
+  color: var(--ink);
+}
+
+.food-thumbnail {
+  display: block;
+  width: 56px;
+  height: 56px;
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--icon-surface);
+}
+
+.food-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.food-thumbnail--carrots img {
+  transform: scale(3.5);
+  transform-origin: 50% 73%;
+}
+
+.food-thumbnail--avocado img {
+  transform: scale(1.65);
+  transform-origin: 60% 48%;
 }
 
 .food-details {
   min-width: 0;
+  padding-left: 4px;
 }
 
 .food-details h3 {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 22px;
   overflow-wrap: anywhere;
 }
 
-.food-serving {
+.food-controls {
   display: flex;
   align-items: center;
-  gap: 6px;
-  min-height: 26px;
-  text-align: left;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 18px;
-}
-
-.food-serving .icon {
-  width: 14px;
-  height: 14px;
+  /* The add circle is inset 4px inside its click target. */
+  gap: 4px;
 }
 
 .food-quantity {
   display: flex;
   align-items: center;
-  min-height: 36px;
-  border-radius: 10px;
-  background: var(--icon-surface);
+  justify-content: center;
+  gap: 8px;
+  min-width: 64px;
+  height: 44px;
+  border-radius: 18px;
 }
 
-.food-quantity button {
-  display: grid;
-  place-items: center;
-  width: 24px;
-  height: 44px;
-  border-radius: 10px;
+.food-quantity::before,
+.food-add::before {
+  position: absolute;
+  inset: 4px 0;
+  border-radius: inherit;
+  background: var(--icon-surface);
+  content: "";
+}
+
+.food-quantity::after {
+  inset: 4px 0;
+}
+
+.food-quantity:focus-visible,
+.portion-dialog button:focus-visible {
+  outline: none;
+}
+
+.food-quantity:focus-visible::after,
+.portion-dialog button:focus-visible::after {
+  opacity: .12;
+}
+
+.food-quantity > *,
+.food-add .icon {
+  position: relative;
 }
 
 .food-quantity .icon {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
+  color: var(--muted);
 }
 
-.food-quantity [data-action="decrease"] .icon {
-  transform: rotate(180deg);
-}
-
-.food-quantity output {
+.food-quantity-value {
   min-width: 12px;
   text-align: center;
   font-size: 16px;
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
 }
 
@@ -1417,9 +1471,14 @@ button:disabled {
   border-radius: 50%;
 }
 
+.food-add::before,
+.food-add::after {
+  inset: 4px;
+}
+
 .food-add .icon {
-  width: 30px;
-  height: 30px;
+  width: 24px;
+  height: 24px;
 }
 
 .food-add.has-added {
@@ -1458,7 +1517,7 @@ button:disabled {
 .portion-dialog {
   width: min(340px, calc(100% - 32px));
   padding: 24px;
-  border: 1px solid var(--secondary-container);
+  border: 0;
   border-radius: 24px;
   background: var(--panel);
   color: var(--ink);
@@ -1484,16 +1543,20 @@ button:disabled {
   width: 100%;
   min-height: 44px;
   padding: 10px 12px;
-  border: 1px solid var(--line);
+  border: 0;
+  outline: none;
   border-radius: 10px;
   background: var(--secondary-panel);
   color: var(--ink);
   font: inherit;
 }
 
+.portion-dialog input + label {
+  margin-top: 16px;
+}
+
 .portion-dialog input:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 2px;
+  background: var(--icon-surface);
 }
 
 .portion-actions {

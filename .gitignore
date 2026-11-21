@@ -2,3 +2,4 @@ dist/
 .dev/artifacts/
 *.tar.gz
 backups/
+*.pdf
