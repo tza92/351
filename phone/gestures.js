@@ -1,18 +1,32 @@
 // Shared preview-shell input bridge. No app state or full-screen logic lives here.
 (() => {
+function scrollContainer(element) {
+  let fallback = null;
+  for (let node = element instanceof Element ? element : element?.parentElement; node; node = node.parentElement) {
+    if (!/(auto|scroll)/.test(getComputedStyle(node).overflowY)) continue;
+    fallback ||= node;
+    if (node.scrollHeight > node.clientHeight) return node;
+  }
+  return fallback;
+}
+
 function bindSwipe(target, opening, onChange) {
   let gesture = null;
   let suppressClick = false;
-  function start(point) {
+  function start(point, event) {
     suppressClick = false;
-    gesture = (!opening || point.clientY <= 120)
+    const scroller = opening ? scrollContainer(event.target) : null;
+    const atBottom = scroller && scroller.scrollTop + scroller.clientHeight >= scroller.scrollHeight - 2;
+    gesture = (!opening || atBottom)
       ? { x: point.clientX, y: point.clientY, distance: 0 } : null;
   }
   function move(point, event) {
     if (!gesture) return;
     const dy = point.clientY - gesture.y;
     const distance = opening ? -dy : dy;
-    if (distance > 8 && distance > Math.abs(point.clientX - gesture.x)) {
+    // At the bottom, cancel the first upward movement before Safari claims it.
+    // The separate 40px completion threshold still filters out small movements.
+    if (distance > 0 && distance > Math.abs(point.clientX - gesture.x)) {
       gesture.distance = distance;
       if (event.cancelable) event.preventDefault();
     } else {
@@ -27,7 +41,7 @@ function bindSwipe(target, opening, onChange) {
     gesture = null;
   }
   target.addEventListener('touchstart', (event) => {
-    if (event.touches.length === 1) start(event.touches[0]);
+    if (event.touches.length === 1) start(event.touches[0], event);
     else gesture = null;
   }, { capture: true, passive: true });
   target.addEventListener('touchmove', (event) => {
@@ -37,7 +51,7 @@ function bindSwipe(target, opening, onChange) {
   target.addEventListener('touchend', finish, true);
   target.addEventListener('touchcancel', () => { gesture = null; }, true);
   target.addEventListener('pointerdown', (event) => {
-    if (event.pointerType === 'mouse' && event.button === 0) start(event);
+    if (event.pointerType === 'mouse' && event.button === 0) start(event, event);
   }, true);
   target.addEventListener('pointermove', (event) => {
     if (event.pointerType === 'mouse') move(event, event);
@@ -45,7 +59,11 @@ function bindSwipe(target, opening, onChange) {
   target.addEventListener('pointerup', (event) => {
     if (event.pointerType === 'mouse') finish();
   }, true);
-  target.addEventListener('pointercancel', () => { gesture = null; }, true);
+  // Touch browsers cancel pointer events when panning starts; touch events
+  // still carry the overscroll gesture until touchend or touchcancel.
+  target.addEventListener('pointercancel', (event) => {
+    if (event.pointerType === 'mouse') gesture = null;
+  }, true);
   target.addEventListener('click', (event) => {
     if (!suppressClick || event.detail === 0) return;
     event.preventDefault();

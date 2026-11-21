@@ -256,7 +256,7 @@ body {
   height: 104px;
 }
 
-/* These controls belong to the preview shell, above the embedded app. */
+/* These controls belong to the preview shell, below the embedded app. */
 .preview-controls {
   flex-shrink: 0;
 }
@@ -286,9 +286,9 @@ body {
   gap: 8px;
   width: 100%;
   padding: 12px;
-  border-bottom: 1px solid #4b4c51;
+  border-top: 1px solid #4b4c51;
   background: #292a2e;
-  box-shadow: 0 6px 16px #0004;
+  box-shadow: 0 -6px 16px #0004;
   touch-action: none;
   pointer-events: auto;
 }
