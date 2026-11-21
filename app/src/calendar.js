@@ -187,25 +187,27 @@
   function bindHorizontalSwipe(target, onSwipe, canStart = () => true) {
     let gesture = null;
     let suppressClick = false;
+    const scroller = target.closest('.calendar-dropdown') || dashboard;
     target.addEventListener('pointerdown', (event) => {
       suppressClick = false;
       if (event.button !== 0 || !event.isPrimary || !canStart(event)) return;
-      gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false };
+      gesture = { id: event.pointerId, x: event.clientX, y: event.clientY, scrollTop: scroller.scrollTop, axis: null };
     });
     window.addEventListener('pointermove', (event) => {
       if (!gesture || event.pointerId !== gesture.id) return;
       const dx = event.clientX - gesture.x;
       const dy = event.clientY - gesture.y;
-      if (!gesture.dragging) {
-        if (Math.abs(dy) > 8 && Math.abs(dy) >= Math.abs(dx)) {
-          gesture = null;
-          return;
-        }
-        if (Math.abs(dx) < 8 || Math.abs(dx) <= Math.abs(dy) * 1.2) return;
-        gesture.dragging = true;
+      if (!gesture.axis) {
+        const horizontal = Math.abs(dx);
+        const vertical = Math.abs(dy);
+        // Ignore an initial wobble; require clearer intent before scrolling vertically.
+        if (horizontal >= 12 && horizontal > vertical) gesture.axis = 'horizontal';
+        else if (vertical >= 20 && vertical > horizontal * 1.5) gesture.axis = 'vertical';
+        else return;
         target.setPointerCapture(event.pointerId);
       }
       if (event.cancelable) event.preventDefault();
+      if (gesture.axis === 'vertical') scroller.scrollTop = gesture.scrollTop - dy;
     });
     window.addEventListener('pointerup', (event) => {
       if (!gesture || event.pointerId !== gesture.id) return;
@@ -213,8 +215,8 @@
       gesture = null;
       const dx = event.clientX - finished.x;
       const dy = event.clientY - finished.y;
-      suppressClick = finished.dragging;
-      if (finished.dragging && Math.abs(dx) >= 40 && Math.abs(dx) > Math.abs(dy) * 1.2) onSwipe(dx < 0 ? 1 : -1);
+      suppressClick = Boolean(finished.axis) || Math.max(Math.abs(dx), Math.abs(dy)) >= 8;
+      if (finished.axis === 'horizontal' && Math.abs(dx) >= 28) onSwipe(dx < 0 ? 1 : -1);
       if (target.hasPointerCapture(event.pointerId)) target.releasePointerCapture(event.pointerId);
     });
     window.addEventListener('pointercancel', (event) => {

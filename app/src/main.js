@@ -1,4 +1,5 @@
 const optionsButton = document.querySelector('.filter-button');
+let activeOptionsButton = optionsButton;
 const sidebar = document.querySelector('#app-sidebar');
 const fullscreenButton = document.querySelector('.fullscreen-toggle');
 const fullscreenLabel = document.querySelector('.fullscreen-label');
@@ -46,20 +47,21 @@ function syncFullscreen() {
       : '';
 }
 
-optionsButton.addEventListener('click', () => {
+document.querySelectorAll('.filter-button').forEach((button) => button.addEventListener('click', () => {
+  activeOptionsButton = button;
   syncFullscreen();
   sidebar.showModal();
-  optionsButton.setAttribute('aria-expanded', 'true');
+  button.setAttribute('aria-expanded', 'true');
   syncSidebarFrame(true);
-});
+}));
 document.querySelector('.sidebar-close').addEventListener('click', closeSidebar);
 sidebar.addEventListener('cancel', (event) => {
   event.preventDefault();
   closeSidebar();
 });
 sidebar.addEventListener('close', () => {
-  optionsButton.setAttribute('aria-expanded', 'false');
-  optionsButton.focus({ preventScroll: true });
+  activeOptionsButton.setAttribute('aria-expanded', 'false');
+  activeOptionsButton.focus({ preventScroll: true });
   syncSidebarFrame(false);
 });
 sidebar.addEventListener('click', (event) => {

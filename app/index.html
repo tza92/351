@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="src/styles.css">
     <script src="src/main.js" defer></script>
     <script src="src/calendar.js" defer></script>
+    <script src="src/menu.js" defer></script>
   </head>
   <body>
     <!-- Google Material Symbols Outlined (Apache 2.0). -->
@@ -53,18 +54,18 @@
             <div class="calendar-days" role="grid" aria-labelledby="calendar-month"></div>
           </div>
           <div class="calendar-footer">
-            <div class="calendar-today-actions">
-              <button class="calendar-today" type="button">Today</button>
-              <button class="calendar-jump" type="button" aria-label="Show today in calendar" title="Show today in calendar">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
-              </button>
-            </div>
             <div class="calendar-filters" role="group" aria-label="Calendar filters">
               <button class="calendar-filter calendar-filter-completed" type="button" aria-label="Completed" aria-pressed="true" title="Completed">
                 <svg class="icon" aria-hidden="true"><use href="#check"/></svg>
               </button>
               <button class="calendar-filter calendar-filter-incomplete" type="button" aria-label="Not completed" aria-pressed="true" title="Not completed">
                 <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/></svg>
+              </button>
+            </div>
+            <div class="calendar-today-actions">
+              <button class="calendar-today" type="button">Today</button>
+              <button class="calendar-jump" type="button" aria-label="Show today in calendar" title="Show today in calendar">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
               </button>
             </div>
           </div>
@@ -224,12 +225,50 @@
           </button>
         </section>
       </main>
+      <main class="menu-content" aria-labelledby="menu-title" hidden>
+        <header class="menu-header">
+          <div class="title-row">
+            <div class="meal-picker">
+              <h1 id="menu-title" tabindex="-1">
+                <button class="meal-picker-toggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="meal-picker-menu">
+                  <span class="meal-picker-label">Breakfast Menu</span>
+                  <svg class="icon title-chevron" aria-hidden="true"><use href="#expand-more"/></svg>
+                </button>
+              </h1>
+              <div id="meal-picker-menu" class="meal-picker-menu" role="menu" aria-label="Choose meal" hidden>
+                <button type="button" data-meal="Breakfast" role="menuitemradio" aria-checked="true" tabindex="-1"><span>Breakfast</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+                <button type="button" data-meal="Lunch" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Lunch</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+                <button type="button" data-meal="Dinner" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Dinner</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+              </div>
+            </div>
+            <button class="filter-button" type="button" aria-label="App options" aria-haspopup="dialog" aria-expanded="false" aria-controls="app-sidebar">
+              <svg class="menu-lines" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5H21" vector-effect="non-scaling-stroke"/><path d="M9 16.5H21" stroke-width="2.1" vector-effect="non-scaling-stroke"/></svg>
+            </button>
+          </div>
+          <label class="menu-search">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg>
+            <input id="menu-search" type="search" placeholder="Search dining menu" aria-label="Search dining menu" autocomplete="off">
+          </label>
+        </header>
+        <section aria-labelledby="menu-section-title">
+          <h2 id="menu-section-title">From Today’s Menu</h2>
+          <div class="menu-stations" role="group" aria-label="Dining station">
+            <button class="station-chip" type="button" data-station="all" aria-pressed="false">All</button>
+            <button class="station-chip" type="button" data-station="sprout" aria-pressed="true">Sprout</button>
+            <button class="station-chip" type="button" data-station="hot-plate" aria-pressed="false">The Hot Plate</button>
+            <button class="station-chip" type="button" data-station="stacks" aria-pressed="false">The Stacks</button>
+          </div>
+          <ul class="menu-foods" aria-label="Breakfast foods"></ul>
+          <p class="menu-empty" hidden>No items match your search at this station. Try All or another search.</p>
+        </section>
+      </main>
+      <p class="menu-notice" role="status" aria-live="polite"></p>
       <nav class="bottom-nav" aria-label="Main navigation">
-        <button class="nav-item is-active" type="button" aria-current="page">
+        <button class="nav-item is-active" type="button" data-page="home" aria-current="page">
           <svg class="icon" aria-hidden="true"><use class="icon-regular" href="#home"/><use class="icon-selected" href="#home-selected"/></svg>
           <span>Home</span>
         </button>
-        <button class="nav-item" type="button">
+        <button class="nav-item" type="button" data-page="menu">
           <svg class="icon" aria-hidden="true"><use href="#menu"/></svg>
           <span>Menu</span>
         </button>
@@ -249,8 +288,8 @@
     </div>
     <dialog id="app-sidebar" class="app-sidebar" aria-labelledby="sidebar-title">
       <div class="sidebar-heading">
-        <h2 id="sidebar-title">App options</h2>
-        <button class="sidebar-close" type="button" aria-label="Close app options" autofocus>
+        <h2 id="sidebar-title" tabindex="-1" autofocus>App options</h2>
+        <button class="sidebar-close" type="button" aria-label="Close app options">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg>
         </button>
       </div>
@@ -261,6 +300,18 @@
         </button>
         <p id="fullscreen-status" class="fullscreen-status" role="status"></p>
       </div>
+    </dialog>
+    <dialog id="portion-dialog" class="portion-dialog" aria-labelledby="portion-title">
+      <form method="dialog">
+        <h2 id="portion-title">Edit serving</h2>
+        <p class="portion-food-name"></p>
+        <label for="portion-input">Serving size</label>
+        <input id="portion-input" type="text" maxlength="60" required>
+        <div class="portion-actions">
+          <button class="portion-cancel" type="button">Cancel</button>
+          <button class="portion-save" type="submit">Save</button>
+        </div>
+      </form>
     </dialog>
   </body>
 </html>
