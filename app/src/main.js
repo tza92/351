@@ -1,5 +1,78 @@
 const days = document.querySelectorAll('.day');
 
+const optionsButton = document.querySelector('.filter-button');
+const sidebar = document.querySelector('#app-sidebar');
+const fullscreenButton = document.querySelector('.fullscreen-toggle');
+const fullscreenLabel = document.querySelector('.fullscreen-label');
+const fullscreenStatus = document.querySelector('#fullscreen-status');
+let switchingFullscreen = false;
+
+function fullscreenElement() {
+  return document.fullscreenElement || document.webkitFullscreenElement;
+}
+
+function supportsFullscreen() {
+  return document.documentElement.requestFullscreen
+    ? document.fullscreenEnabled !== false
+    : Boolean(document.documentElement.webkitRequestFullscreen) && document.webkitFullscreenEnabled !== false;
+}
+
+function syncFullscreen() {
+  const active = Boolean(fullscreenElement());
+  const standalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+  fullscreenLabel.textContent = active ? 'Exit full screen' : 'Full screen';
+  fullscreenButton.setAttribute('aria-pressed', String(active));
+  fullscreenButton.disabled = switchingFullscreen || (!active && (!supportsFullscreen() || standalone));
+  fullscreenStatus.textContent = standalone
+    ? 'Already running as a Home Screen app.'
+    : !active && !supportsFullscreen()
+      ? 'Full screen is unavailable in this browser. On iPhone, use Safari\u2019s Share menu, choose Add to Home Screen, and enable Open as Web App.'
+      : '';
+}
+
+optionsButton.addEventListener('click', () => {
+  syncFullscreen();
+  sidebar.showModal();
+  optionsButton.setAttribute('aria-expanded', 'true');
+});
+document.querySelector('.sidebar-close').addEventListener('click', () => sidebar.close());
+sidebar.addEventListener('close', () => {
+  optionsButton.setAttribute('aria-expanded', 'false');
+  optionsButton.focus({ preventScroll: true });
+});
+sidebar.addEventListener('click', (event) => {
+  if (event.target !== sidebar) return;
+  const bounds = sidebar.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+    sidebar.close();
+  }
+});
+
+fullscreenButton.addEventListener('click', async () => {
+  if (switchingFullscreen) return;
+  switchingFullscreen = true;
+  fullscreenButton.disabled = true;
+  let failed = false;
+  try {
+    if (fullscreenElement()) {
+      const exit = document.exitFullscreen || document.webkitExitFullscreen;
+      await exit.call(document);
+    } else {
+      const request = document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen;
+      await request.call(document.documentElement);
+    }
+  } catch {
+    failed = true;
+  } finally {
+    switchingFullscreen = false;
+    syncFullscreen();
+    if (failed) fullscreenStatus.textContent = 'Could not change full screen. Try again or use your browser\u2019s full-screen control.';
+  }
+});
+document.addEventListener('fullscreenchange', syncFullscreen);
+document.addEventListener('webkitfullscreenchange', syncFullscreen);
+syncFullscreen();
+
 days.forEach((day) => {
   day.addEventListener('click', () => {
     days.forEach((item) => {

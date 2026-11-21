@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#161618">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <title>iPhone 17 Preview</title>
     <link rel="preload" href="phone/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="stylesheet" href="phone/styles.css">
-    <script src="phone/gestures.js" defer></script>
-    <script src="phone/main.js" defer></script>
   </head>
   <body>
     <main class="stage" aria-label="iPhone 17 preview">
@@ -27,14 +26,7 @@
               </div>
             </div>
             <div class="app-content">
-              <iframe class="app-frame" src="app/index.html" title="App preview"></iframe>
-              <div class="preview-controls">
-                <div id="preview-toolbar" class="preview-toolbar" role="region" aria-label="Preview controls" hidden>
-                  <button class="fullscreen-toggle" type="button" aria-pressed="false">Full screen</button>
-                  <button class="toolbar-close" type="button">Hide</button>
-                  <p class="fullscreen-status" role="status"></p>
-                </div>
-              </div>
+              <iframe class="app-frame" src="app/index.html" allow="fullscreen" title="App preview"></iframe>
             </div>
             <div class="safe-area-bottom">
               <div class="home-indicator" aria-hidden="true"></div>
