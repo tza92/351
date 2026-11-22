@@ -24,5 +24,17 @@
     "photographer": "Bora C",
     "download": "https://images.pexels.com/photos/10417353/pexels-photo-10417353.jpeg?auto=compress&cs=tinysrgb&w=600&h=600&fit=crop",
     "note": "Framed around the peeled baby carrots using CSS."
+  },
+  "scrambled-eggs": {
+    "source": "https://images.unsplash.com/photo-1583552336796-531290f1fe2a",
+    "download": "https://images.unsplash.com/photo-1583552336796-531290f1fe2a?fm=jpg&fit=crop&w=240&h=240&q=85"
+  },
+  "blueberry-muffin": {
+    "source": "https://unsplash.com/photos/LMVyTSnPheo",
+    "download": "https://images.unsplash.com/photo-1637087788517-c63086ec5b7e?fm=jpg&fit=crop&w=240&h=240&q=85"
+  },
+  "apple": {
+    "source": "https://unsplash.com/photos/gO4SLAaeP_k",
+    "download": "https://images.unsplash.com/photo-1554374814-6f1baaa46062?fm=jpg&fit=crop&w=240&h=240&q=85"
   }
 }

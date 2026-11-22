@@ -54,6 +54,8 @@
   }
 
   function renderWeek() {
+    app.dataset.selectedDate = key(selected);
+    app.dataset.today = key(today);
     renderWeekLabel();
     const start = startOfWeek(selected);
     weekDays.forEach((button, index) => {
@@ -133,6 +135,7 @@
     month = new Date(date.getFullYear(), date.getMonth(), 1, 12);
     renderWeek();
     closeCalendar(restoreFocus);
+    document.dispatchEvent(new CustomEvent('nutrition:datechange', { detail: { date: key(selected) } }));
   }
 
   trigger.addEventListener('click', () => {
