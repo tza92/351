@@ -35,6 +35,17 @@ body {
   margin: 0;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 h2, h3, p {
   margin: 0;
 }
@@ -1346,6 +1357,13 @@ button:disabled {
   gap: 12px;
 }
 
+.menu-cycle-note {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 18px;
+}
+
 .menu-calendar-toggle {
   display: grid;
   flex-shrink: 0;
@@ -1360,11 +1378,7 @@ button:disabled {
 .menu-calendar-toggle svg {
   width: 22px;
   height: 22px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  fill: currentColor;
 }
 
 .menu-date-picker .calendar-dropdown {
@@ -1680,7 +1694,7 @@ button:disabled {
 
 .menu-food {
   display: grid;
-  grid-template-columns: 56px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
   gap: 8px;
   min-height: 80px;
@@ -1692,6 +1706,17 @@ button:disabled {
 
 .menu-station-content > .menu-food-list .menu-food {
   background: var(--secondary-panel);
+}
+
+.food-info {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  border-radius: 8px;
+  text-align: left;
+  cursor: pointer;
 }
 
 .food-thumbnail {
@@ -1740,6 +1765,7 @@ button:disabled {
 }
 
 .food-name {
+  display: block;
   margin: 0;
   font-size: 16px;
   font-weight: 600;
@@ -1748,6 +1774,7 @@ button:disabled {
 }
 
 .food-serving {
+  display: block;
   margin-top: 3px;
   color: var(--muted);
   font-size: 12px;
@@ -1766,9 +1793,10 @@ button:disabled {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  min-width: 64px;
+  gap: 6px;
+  min-width: 0;
   height: 44px;
+  padding: 0 10px;
   border-radius: 18px;
 }
 
@@ -1896,6 +1924,176 @@ button:disabled {
 
 .menu-notice:empty {
   display: none;
+}
+
+.nutrition-dialog {
+  width: min(440px, calc(100% - 24px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border: 0;
+  border-radius: 24px;
+  background: var(--panel);
+  color: var(--ink);
+  font-family: inherit;
+}
+
+.nutrition-dialog::backdrop {
+  background: #0009;
+}
+
+.nutrition-heading {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 16px 12px 12px 20px;
+  border-bottom: 1px solid var(--icon-surface);
+  background: var(--panel);
+}
+
+.nutrition-heading h2 {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 0;
+  overflow-wrap: anywhere;
+  font-size: 20px;
+  line-height: 26px;
+}
+
+.nutrition-close {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.nutrition-close svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.nutrition-content {
+  padding: 20px;
+  user-select: text;
+}
+
+.nutrition-label {
+  padding: 12px;
+  border: 1px solid #202124;
+  background: #fff;
+  color: #151515;
+}
+
+.nutrition-label h3 {
+  padding-bottom: 4px;
+  border-bottom: 1px solid currentColor;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 32px;
+  letter-spacing: -1px;
+}
+
+.nutrition-per-serving {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.nutrition-serving {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 0 8px;
+  border-bottom: 8px solid currentColor;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.nutrition-serving strong {
+  text-align: right;
+}
+
+.nutrition-calories {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 4px solid currentColor;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.nutrition-calories span {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 36px;
+}
+
+.nutrition-calories .nutrition-unavailable {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.nutrition-table tr + tr {
+  border-top: 1px solid #777;
+}
+
+.nutrition-table th {
+  padding: 6px 8px 6px 0;
+  font-weight: 600;
+  text-align: left;
+}
+
+.nutrition-table td {
+  padding: 6px 0;
+  text-align: right;
+}
+
+.nutrition-ingredients,
+.nutrition-allergens {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 22px;
+  overflow-wrap: anywhere;
+}
+
+.nutrition-ingredients h3,
+.nutrition-allergens h3 {
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.nutrition-note,
+.nutrition-source {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.nutrition-source a {
+  color: inherit;
+  text-underline-offset: 3px;
 }
 
 .portion-dialog {

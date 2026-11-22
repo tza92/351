@@ -9,6 +9,8 @@
   const notice = document.querySelector('.menu-notice');
   const backToTop = document.querySelector('.menu-back-to-top');
   const portionDialog = document.querySelector('#portion-dialog');
+  const nutritionDialog = document.querySelector('#nutrition-dialog');
+  let lastNutritionButton;
   const portionInput = document.querySelector('#portion-input');
   const quantityInput = document.querySelector('#quantity-input');
   const mealToggle = document.querySelector('.meal-picker-toggle');
@@ -193,10 +195,13 @@
 
   function updateFoods() {
     const data = window.nutritionMenus[selectedMeal];
-    const menu = data?.days[selectedDate];
+    const resolved = window.resolveNutritionMenu(selectedMeal, selectedDate);
+    const menu = resolved.menu;
     const [year, month, day] = selectedDate.split('-').map(Number);
     const dateLabel = dateFormat.format(new Date(year, month - 1, day, 12));
     menuDate.textContent = dateLabel;
+    document.querySelector('.menu-cycle-note').textContent = resolved.cycleWeek
+      ? `${resolved.projected && menu ? 'Expected menu · ' : ''}Week ${resolved.cycleWeek} of 4` : '';
     sectionTitle.textContent = selectedDate === app.dataset.today ? 'From Today’s Menu' : 'From the Menu';
     foods = [];
     for (const [stationId, entries] of Object.entries(menu?.stations || {})) {
@@ -205,7 +210,10 @@
         if (!foodState.has(key)) {
           const details = data.catalog[entry.food];
           const photo = window.nutritionFoodPhotos?.[details.sourceName] || {};
-          foodState.set(key, { ...details, ...photo, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, quantity: 1, added: 0 });
+          const sourceDate = menu.stationSourceDates?.[stationId] || menu.sourceDate || selectedDate;
+          const nutritionKey = JSON.stringify([sourceDate, selectedMeal, stationId, entry.food, entry.serving]);
+          const nutritionId = entry.nutritionId || window.nutritionFacts?.bindings[nutritionKey];
+          foodState.set(key, { ...details, ...photo, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, nutrition: window.nutritionFacts?.records[nutritionId], source: menu.stationSources?.[stationId] || menu.source, quantity: 1, added: 0 });
         }
         const food = foodState.get(key);
         food.id = foods.length;
@@ -225,18 +233,76 @@
     return String(value).replace(/[&<>"']/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
   }
 
-  function createFoodRow(food, headingLevel = 4) {
+  function openNutrition(food, button) {
+    const facts = food.nutrition;
+    lastNutritionButton = button;
+    nutritionDialog.querySelector('#nutrition-title').textContent = food.name;
+    const content = nutritionDialog.querySelector('.nutrition-content');
+    if (!facts) {
+      content.innerHTML = '<p class="nutrition-note">Nutrition information is unavailable for this menu item.</p>';
+    } else {
+      const available = (value) => value !== null && value !== undefined && String(value).trim() !== '' && !/^[-–—]$/.test(String(value).trim());
+      const nutrientRows = facts.nutrients.filter(([name]) => name !== 'Calories').map(([name, value, unit]) => {
+        const label = name.replace(/\s+\((?:g|mg|IU|RE)\)$/, '');
+        const amount = available(value) ? `${value}${unit ? ` ${unit}` : ''}` : 'Unavailable';
+        return `<tr><th scope="row">${escapeHtml(label)}</th><td>${escapeHtml(amount)}</td></tr>`;
+      }).join('');
+      const placeholder = facts.calories === 0 && /chef.?s special/i.test(facts.name);
+      content.innerHTML = `
+        <section class="nutrition-label" aria-label="Nutrition facts per published serving">
+          <h3>Nutrition Facts</h3>
+          <p class="nutrition-per-serving">Per published serving</p>
+          <p class="nutrition-serving"><span>Serving size</span><strong>${escapeHtml(facts.portion)}</strong></p>
+          <p class="nutrition-calories"><strong>Calories</strong><span${available(facts.calories) ? '' : ' class="nutrition-unavailable"'}>${available(facts.calories) ? escapeHtml(facts.calories) : 'Unavailable'}</span></p>
+          <table class="nutrition-table"><caption class="sr-only">Nutrients per published serving</caption><tbody>${nutrientRows || '<tr><td>Nutrition information unavailable.</td></tr>'}</tbody></table>
+        </section>
+        ${placeholder ? '<p class="nutrition-note">This is a generic menu entry. Its published zero values may be placeholders.</p>' : ''}
+        <section class="nutrition-ingredients"><h3>Ingredients</h3><p>${escapeHtml(facts.ingredients || 'Unavailable')}</p></section>
+        ${facts.allergens.length ? `<section class="nutrition-allergens"><h3>Contains</h3><p>${escapeHtml(facts.allergens.join(', '))}</p></section>` : ''}
+        <p class="nutrition-source">Published by <a href="${escapeHtml(food.source)}" target="_blank" rel="noopener noreferrer">SFU Dining Commons<span class="sr-only"> (opens in a new tab)</span></a>.</p>`;
+    }
+    nutritionDialog.showModal();
+    nutritionDialog.scrollTop = 0;
+    nutritionDialog.querySelector('#nutrition-title').focus({ preventScroll: true });
+  }
+
+  nutritionDialog.querySelector('.nutrition-close').addEventListener('click', () => nutritionDialog.close());
+  nutritionDialog.addEventListener('keydown', (event) => {
+    if (event.key !== 'Tab') return;
+    const controls = [...nutritionDialog.querySelectorAll('button:not([disabled]), a[href]')];
+    const first = controls[0];
+    const last = controls.at(-1);
+    if (event.shiftKey && (document.activeElement === first || document.activeElement === nutritionDialog.querySelector('#nutrition-title'))) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+  nutritionDialog.addEventListener('click', (event) => {
+    if (event.target !== nutritionDialog) return;
+    const bounds = nutritionDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) nutritionDialog.close();
+  });
+  nutritionDialog.addEventListener('close', () => {
+    if (lastNutritionButton?.isConnected) lastNutritionButton.focus({ preventScroll: true });
+  });
+
+  function createFoodRow(food) {
     const row = document.createElement('li');
     row.className = 'menu-food';
     row.dataset.foodId = food.id;
     row.innerHTML = `
-      <span class="food-thumbnail${food.image ? '' : ' food-thumbnail--placeholder'}"${food.image ? ` style="--food-image-scale: ${food.imageScale || 1}; --food-image-position: ${food.imagePosition || '50% 50%'}"` : ''}>
-        ${food.image ? `<img src="assets/foods/${food.image}" alt="" width="56" height="56" loading="lazy" decoding="async">` : icon(food.category === 'Smoothies' ? 'drink' : food.category === 'Bakery' ? 'cookie' : 'plate')}
-      </span>
-      <div class="food-details">
-        <h${headingLevel} class="food-name">${escapeHtml(food.name)}</h${headingLevel}>
-        <p class="food-serving">${escapeHtml(food.serving)}</p>
-      </div>
+      <button class="food-info" type="button" data-action="nutrition" aria-label="Nutrition facts for ${escapeHtml(food.name)}" aria-haspopup="dialog" aria-controls="nutrition-dialog">
+        <span class="food-thumbnail${food.image ? '' : ' food-thumbnail--placeholder'}"${food.image ? ` style="--food-image-scale: ${food.imageScale || 1}; --food-image-position: ${food.imagePosition || '50% 50%'}"` : ''}>
+          ${food.image ? `<img src="assets/foods/${food.image}" alt="" width="56" height="56" loading="lazy" decoding="async">` : icon(food.category === 'Smoothies' ? 'drink' : food.category === 'Bakery' ? 'cookie' : 'plate')}
+        </span>
+        <span class="food-details">
+          <span class="food-name">${escapeHtml(food.name)}</span>
+          <span class="food-serving">${escapeHtml(food.serving)}</span>
+        </span>
+      </button>
       <div class="food-controls">
         <button class="food-quantity" type="button" data-action="edit" aria-label="Edit ${escapeHtml(food.name)} quantity, ${food.quantity} ${food.quantity === 1 ? 'serving' : 'servings'}" aria-haspopup="dialog" aria-controls="portion-dialog">
           <span class="food-quantity-value">${food.quantity}</span>${icon('edit')}
@@ -246,10 +312,10 @@
     return row;
   }
 
-  function createFoodList(items, headingLevel = 4) {
+  function createFoodList(items) {
     const rows = document.createElement('ul');
     rows.className = 'menu-food-list';
-    items.forEach((food) => rows.append(createFoodRow(food, headingLevel)));
+    items.forEach((food) => rows.append(createFoodRow(food)));
     return rows;
   }
 
@@ -445,7 +511,7 @@
         title.className = 'menu-ingredients-heading';
         title.textContent = `${builder.name} - pick your ingredients`;
         section.setAttribute('aria-labelledby', title.id);
-        section.append(title, createFoodList(ingredients, 5));
+        section.append(title, createFoodList(ingredients));
         content.append(section);
       }
       group.append(content);
@@ -544,7 +610,9 @@
     }
     const row = button.closest('.menu-food');
     const food = foods[Number(row.dataset.foodId)];
-    if (action === 'edit') {
+    if (action === 'nutrition') {
+      openNutrition(food, button);
+    } else if (action === 'edit') {
       editingFood = food;
       lastEditButton = button;
       portionDialog.querySelector('.portion-food-name').textContent = food.name;
