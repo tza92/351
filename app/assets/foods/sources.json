@@ -17,7 +17,10 @@
   },
   "cherry-tomatoes": {
     "source": "https://unsplash.com/photos/S9KAAy0qOos",
-    "download": "https://images.unsplash.com/photo-1597664137113-235f4537e35d?fm=jpg&fit=crop&w=192&h=192&q=85"
+    "download": "https://images.unsplash.com/photo-1597664137113-235f4537e35d?fm=jpg&fit=crop&w=192&h=192&q=85",
+    "menuItems": [
+      "Grape Tomatoes"
+    ]
   },
   "baby-carrots": {
     "source": "https://www.pexels.com/photo/slices-of-carrots-and-celery-in-a-plastic-container-10417353/",
@@ -27,14 +30,2071 @@
   },
   "scrambled-eggs": {
     "source": "https://images.unsplash.com/photo-1583552336796-531290f1fe2a",
-    "download": "https://images.unsplash.com/photo-1583552336796-531290f1fe2a?fm=jpg&fit=crop&w=240&h=240&q=85"
+    "download": "https://images.unsplash.com/photo-1583552336796-531290f1fe2a?fm=jpg&fit=crop&w=600&h=600&q=85",
+    "imageScale": 1.5,
+    "imagePosition": "50% 43%",
+    "menuItems": [
+      "Scrambled Eggs"
+    ]
   },
   "blueberry-muffin": {
     "source": "https://unsplash.com/photos/LMVyTSnPheo",
-    "download": "https://images.unsplash.com/photo-1637087788517-c63086ec5b7e?fm=jpg&fit=crop&w=240&h=240&q=85"
+    "download": "https://images.unsplash.com/photo-1637087788517-c63086ec5b7e?fm=jpg&fit=crop&w=600&h=600&q=85",
+    "imageScale": 1.85,
+    "imagePosition": "55% 92%",
+    "menuItems": [
+      "Blueberry Muffins"
+    ]
   },
   "apple": {
     "source": "https://unsplash.com/photos/gO4SLAaeP_k",
-    "download": "https://images.unsplash.com/photo-1554374814-6f1baaa46062?fm=jpg&fit=crop&w=240&h=240&q=85"
+    "download": "https://images.unsplash.com/photo-1554374814-6f1baaa46062?fm=jpg&fit=crop&w=600&h=600&q=85&crop=right",
+    "imageScale": 2.2,
+    "imagePosition": "60% 34%",
+    "menuItems": [
+      "Fresh Apple"
+    ]
+  },
+  "waffle": {
+    "source": "https://www.pexels.com/photo/crispy-belgian-waffle-on-a-white-plate-36999577/",
+    "download": "https://images.pexels.com/photos/36999577/pexels-photo-36999577.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.25,
+    "imagePosition": "50% 50%",
+    "menuItems": [
+      "Waffles"
+    ]
+  },
+  "vanilla-yogurt": {
+    "source": "https://www.pexels.com/photo/white-ceramic-bowl-filled-with-yogurt-10809259/",
+    "download": "https://images.pexels.com/photos/10809259/pexels-photo-10809259.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.65,
+    "imagePosition": "50% 90%",
+    "menuItems": [
+      "Vanilla Yogurt"
+    ]
+  },
+  "white-rice": {
+    "source": "https://www.pexels.com/photo/a-white-rice-on-a-stainless-bowl-8956718/",
+    "download": "https://images.pexels.com/photos/8956718/pexels-photo-8956718.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.12,
+    "imagePosition": "50% 48%",
+    "menuItems": [
+      "Jasmine Rice",
+      "Fluffy Rice"
+    ]
+  },
+  "plain-granola": {
+    "source": "https://www.pexels.com/photo/delicious-homemade-granola-in-white-bowl-31024450/",
+    "download": "https://images.pexels.com/photos/31024450/pexels-photo-31024450.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.55,
+    "imagePosition": "50% 48%",
+    "menuItems": [
+      "Plain Granola"
+    ]
+  },
+  "sliced-mushrooms": {
+    "source": "https://www.pexels.com/photo/close-up-of-sliced-mushrooms-for-cooking-38802717/",
+    "download": "https://images.pexels.com/photos/38802717/pexels-photo-38802717.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "menuItems": [
+      "Sliced Fresh Mushrooms"
+    ]
+  },
+  "cubed-watermelon": {
+    "source": "https://www.pexels.com/photo/fresh-watermelon-cubes-on-floral-plate-37046795/",
+    "download": "https://images.pexels.com/photos/37046795/pexels-photo-37046795.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.12,
+    "imagePosition": "50% 48%",
+    "menuItems": [
+      "Fresh Cubed Watermelon"
+    ]
+  },
+  "cubed-pineapple": {
+    "source": "https://www.pexels.com/photo/bowl-of-fresh-sliced-pineapple-on-table-4195528/",
+    "download": "https://images.pexels.com/photos/4195528/pexels-photo-4195528.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.25,
+    "imagePosition": "50% 52%",
+    "menuItems": [
+      "Fresh Cubed Pineapple"
+    ]
+  },
+  "butter-chicken": {
+    "source": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398",
+    "download": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?fm=jpg&fit=crop&w=600&h=600&q=85",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "menuItems": [
+      "Butter Chicken"
+    ]
+  },
+  "orange": {
+    "source": "https://www.pexels.com/photo/close-up-of-a-partially-peeled-orange-on-wooden-table-35819725/",
+    "download": "https://images.pexels.com/photos/35819725/pexels-photo-35819725.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.08,
+    "imagePosition": "50% 50%",
+    "menuItems": [
+      "Fresh Orange"
+    ]
+  },
+  "baby-spinach": {
+    "source": "https://www.pexels.com/photo/green-leaves-in-white-ceramic-bowl-1751149/",
+    "download": "https://images.pexels.com/photos/1751149/pexels-photo-1751149.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2,
+    "imagePosition": "50% 30%",
+    "menuItems": [
+      "Baby Spinach"
+    ]
+  },
+  "spaghetti": {
+    "source": "https://www.pexels.com/photo/person-lifting-cooked-spaghetti-out-of-a-pot-in-a-kitchen-12673686/",
+    "download": "https://images.pexels.com/photos/12673686/pexels-photo-12673686.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.5,
+    "imagePosition": "52% 68%",
+    "menuItems": [
+      "Spaghetti"
+    ]
+  },
+  "fried-egg": {
+    "menuItems": [
+      "Fresh Cooked Eggs"
+    ],
+    "source": "https://www.pexels.com/photo/perfectly-fried-egg-on-nonstick-pan-37157400/",
+    "download": "https://images.pexels.com/photos/37157400/pexels-photo-37157400.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "raspberry-danish": {
+    "menuItems": [
+      "Raspberry Danish"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-shot-of-a-pastry-on-a-ceramic-plate-8480687/",
+    "download": "https://images.pexels.com/photos/8480687/pexels-photo-8480687.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2,
+    "imagePosition": "50% 70%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "red-onion": {
+    "menuItems": [
+      "Diced Fresh Red Onions"
+    ],
+    "source": "https://www.pexels.com/photo/finely-diced-red-onion-on-cutting-board-37292883/",
+    "download": "https://images.pexels.com/photos/37292883/pexels-photo-37292883.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.5,
+    "imagePosition": "52% 40%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "parsley": {
+    "menuItems": [
+      "Fresh Chopped Parsley"
+    ],
+    "source": "https://www.pexels.com/photo/photo-of-parsley-on-wooden-chopping-board-4113925/",
+    "download": "https://images.pexels.com/photos/4113925/pexels-photo-4113925.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.4,
+    "imagePosition": "52% 38%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "tomatoes-diced": {
+    "menuItems": [
+      "Diced Tomatoes"
+    ],
+    "source": "https://www.pexels.com/photo/freshly-chopped-tomatoes-in-a-bowl-39798145/",
+    "download": "https://images.pexels.com/photos/39798145/pexels-photo-39798145.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.4,
+    "imagePosition": "85% 60%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "red-peppers": {
+    "menuItems": [
+      "Diced Red Peppers"
+    ],
+    "source": "https://www.pexels.com/photo/dice-vegetables-128391/",
+    "download": "https://images.pexels.com/photos/128391/pexels-photo-128391.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 5,
+    "imagePosition": "8% 64%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "sunflower-seeds": {
+    "menuItems": [
+      "Unsalted Sunflower Seeds",
+      "Salted Sunflower Seeds"
+    ],
+    "source": "https://www.pexels.com/photo/top-view-of-peeled-sunflower-seeds-5988203/",
+    "download": "https://images.pexels.com/photos/5988203/pexels-photo-5988203.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "golden-raisins": {
+    "menuItems": [
+      "Golden Raisins"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-of-dried-golden-raisins-fruit-background-31508567/",
+    "download": "https://images.pexels.com/photos/31508567/pexels-photo-31508567.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "honey": {
+    "menuItems": [
+      "Honey, 14 g, CDN"
+    ],
+    "source": "https://www.pexels.com/photo/a-person-scooping-honey-with-a-spoon-10881470/",
+    "download": "https://images.pexels.com/photos/10881470/pexels-photo-10881470.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.8,
+    "imagePosition": "51% 80%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "mango-smoothie": {
+    "menuItems": [
+      "Mango Smoothie"
+    ],
+    "source": "https://www.pexels.com/photo/a-glass-of-mango-juice-with-a-spoon-and-a-piece-of-fruit-17612822/",
+    "download": "https://images.pexels.com/photos/17612822/pexels-photo-17612822.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.7,
+    "imagePosition": "50% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "berry-smoothie": {
+    "menuItems": [
+      "Mixed Berry Smoothie"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-photo-of-a-fruit-shake-11020888/",
+    "download": "https://images.pexels.com/photos/11020888/pexels-photo-11020888.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.65,
+    "imagePosition": "50% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "strawberry-yogurt": {
+    "menuItems": [
+      "Strawberry Yogurt"
+    ],
+    "source": "https://www.pexels.com/photo/yogurt-with-strawberries-23332774/",
+    "download": "https://images.pexels.com/photos/23332774/pexels-photo-23332774.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2,
+    "imagePosition": "54% 62%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "bruschetta": {
+    "menuItems": [
+      "Bruschetta"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-photo-of-a-bruschetta-7432986/",
+    "download": "https://images.pexels.com/photos/7432986/pexels-photo-7432986.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "potato-wedges": {
+    "menuItems": [
+      "Savoury Herb Potato Wedges"
+    ],
+    "source": "https://www.pexels.com/photo/roasted-potato-wedges-with-herbs-on-baking-tray-38950968/",
+    "download": "https://images.pexels.com/photos/38950968/pexels-photo-38950968.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "bacon": {
+    "menuItems": [
+      "Bacon",
+      "Applewood Smoked Bacon"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-photo-of-cooked-bacon-4110370/",
+    "download": "https://images.pexels.com/photos/4110370/pexels-photo-4110370.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "french-toast": {
+    "menuItems": [
+      "French Toast"
+    ],
+    "source": "https://www.pexels.com/photo/delicious-french-toast-and-coffee-breakfast-scene-34604284/",
+    "download": "https://images.pexels.com/photos/34604284/pexels-photo-34604284.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.2,
+    "imagePosition": "62% 62%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "breakfast-burrito": {
+    "menuItems": [
+      "Breakfast Burrito",
+      "Scrambled Egg Burritos",
+      "Egg White, Peppers and Cheddar Cheese Breakfast Burrito"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-of-freshly-prepared-breakfast-burrito-40747413/",
+    "download": "https://images.pexels.com/photos/40747413/pexels-photo-40747413.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.25,
+    "imagePosition": "60% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "blueberry-danish": {
+    "menuItems": [
+      "Blueberry Danish"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-of-blueberry-danish-pastry-with-powdered-sugar-37347559/",
+    "download": "https://images.pexels.com/photos/37347559/pexels-photo-37347559.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.2,
+    "imagePosition": "50% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "brioche-bun": {
+    "menuItems": [
+      "Brioche Bun"
+    ],
+    "source": "https://www.pexels.com/photo/a-freshly-baked-breads-on-a-stainless-tray-8508106/",
+    "download": "https://images.pexels.com/photos/8508106/pexels-photo-8508106.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.3,
+    "imagePosition": "36% 53%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "apple-muffin": {
+    "menuItems": [
+      "Apple Cinnamon Muffin"
+    ],
+    "source": "https://www.pexels.com/photo/sweet-homemade-baked-muffins-with-apples-6625815/",
+    "download": "https://images.pexels.com/photos/6625815/pexels-photo-6625815.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.3,
+    "imagePosition": "52% 73%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "banana-muffin": {
+    "menuItems": [
+      "Banana Muffins"
+    ],
+    "source": "https://www.pexels.com/photo/banana-muffins-and-fresh-bananas-on-wooden-background-16248206/",
+    "download": "https://images.pexels.com/photos/16248206/pexels-photo-16248206.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.4,
+    "imagePosition": "25% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "chocolate-muffin": {
+    "menuItems": [
+      "Chocolate Chunk Muffin"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-photo-of-chocolate-muffin-4051547/",
+    "download": "https://images.pexels.com/photos/4051547/pexels-photo-4051547.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2,
+    "imagePosition": "55% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "spinach-quiche": {
+    "menuItems": [
+      "Spinach, Feta and Tomato Quiiche",
+      "Country Quiche - Spinach and Feta"
+    ],
+    "source": "https://www.pexels.com/photo/delicious-homemade-spinach-quiche-slice-29538421/",
+    "download": "https://images.pexels.com/photos/29538421/pexels-photo-29538421.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.9,
+    "imagePosition": "55% 29%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "frittata": {
+    "menuItems": [
+      "Breakfaste Frittata with Mozzarella"
+    ],
+    "source": "https://www.pexels.com/photo/a-close-up-shot-of-a-frittata-in-a-skillet-5639255/",
+    "download": "https://images.pexels.com/photos/5639255/pexels-photo-5639255.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.3,
+    "imagePosition": "50% 62%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "quesadilla": {
+    "menuItems": [
+      "Mexican Breakfast Quesadilla"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-photo-of-delicious-quesadilla-on-a-plate-5848713/",
+    "download": "https://images.pexels.com/photos/5848713/pexels-photo-5848713.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.5,
+    "imagePosition": "48% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "berry-bread-pudding": {
+    "menuItems": [
+      "4-Berry Bread Pudding"
+    ],
+    "source": "https://www.pexels.com/photo/delicious-homemade-bread-pudding-with-fresh-berries-41063199/",
+    "download": "https://images.pexels.com/photos/41063199/pexels-photo-41063199.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "breakfast-potatoes": {
+    "menuItems": [
+      "Home Fries",
+      "Country Style Breakfast Potatoes",
+      "Boston Brown Potatoes",
+      "Home Fries and Herbs"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-of-seasoned-roasted-potatoes-38702060/",
+    "download": "https://images.pexels.com/photos/38702060/pexels-photo-38702060.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "pancakes": {
+    "menuItems": [
+      "Pancakes"
+    ],
+    "source": "https://www.pexels.com/photo/a-stack-of-pancakes-7144306/",
+    "download": "https://images.pexels.com/photos/7144306/pexels-photo-7144306.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.7,
+    "imagePosition": "45% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "chocolate-chip-pancakes": {
+    "menuItems": [
+      "Chocolate Chip Pancakes"
+    ],
+    "source": "https://www.pexels.com/photo/fluffy-pancakes-with-chocolate-chips-on-plate-30427225/",
+    "download": "https://images.pexels.com/photos/30427225/pexels-photo-30427225.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 3.5,
+    "imagePosition": "52% 100%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "potato-puffs": {
+    "menuItems": [
+      "Potato Puffs"
+    ],
+    "source": "https://www.pexels.com/photo/tater-tots-served-in-bowl-with-glass-of-beer-9295687/",
+    "download": "https://images.pexels.com/photos/9295687/pexels-photo-9295687.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 3.3,
+    "imagePosition": "45% 94%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "scallion-pancakes": {
+    "menuItems": [
+      "Korean Scallion Pancakes - Pa Jun (With Dipping Sauce)"
+    ],
+    "source": "https://www.pexels.com/photo/fritters-with-sesame-sauce-13887556/",
+    "download": "https://images.pexels.com/photos/13887556/pexels-photo-13887556.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.6,
+    "imagePosition": "45% 48%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "omelette": {
+    "menuItems": [
+      "Omelette Station"
+    ],
+    "source": "https://www.pexels.com/photo/a-plate-with-an-omelet-and-a-fork-on-it-27442281/",
+    "download": "https://images.pexels.com/photos/27442281/pexels-photo-27442281.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.5,
+    "imagePosition": "55% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "apple-danish": {
+    "menuItems": [
+      "Apple Streusel Danish"
+    ],
+    "source": "https://www.pexels.com/photo/delicious-homemade-apple-cinnamon-pastries-40326781/",
+    "download": "https://images.pexels.com/photos/40326781/pexels-photo-40326781.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.2,
+    "imagePosition": "65% 30%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "blueberry-muffin-bread": {
+    "source": "https://sallysbakingaddiction.com/blueberry-muffin-bread/",
+    "menuItems": [
+      "Blueberry Muffin Bread"
+    ],
+    "download": "https://sallysbakingaddiction.com/wp-content/uploads/2019/02/blueberry-muffin-bread-6.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "plant-based-sausage": {
+    "source": "https://chefani.com/vegan-breakfast-sausage-patties/",
+    "menuItems": [
+      "Plant Based Sausage Patty"
+    ],
+    "download": "https://chefani.com/wp-content/uploads/2019/10/MG_4471-1024x683.jpg",
+    "imageScale": 1.75,
+    "imagePosition": "58% 100%",
+    "photographer": "Chef Ani",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "turkey-sausage": {
+    "source": "https://www.aroundmyfamilytable.com/homemade-turkey-breakfast-sausage/",
+    "menuItems": [
+      "Turkey Breakfast Sausage",
+      "Turkey Sausage"
+    ],
+    "download": "https://www.aroundmyfamilytable.com/wp-content/uploads/2015/08/breakfast-turkey-sausage-3.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "43% 70%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "cantaloupe-cubes": {
+    "source": "https://diabetesfoodhub.org/recipes/cantaloupe-cubes",
+    "menuItems": [
+      "Fresh Cubed Cantaloupe"
+    ],
+    "download": "https://diabetesfoodhub.org/sites/foodhub/files/styles/recipe_hero_banner_720w/public/2026-04/dfh-113-cantaloupe-cubes.jpg?h=8105cc0a&itok=9duqwbIq",
+    "imageScale": 1.25,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "southwestern-breakfast-bake": {
+    "source": "https://www.mrfood.com/Eggs/Southwestern-Breakfast-Bake",
+    "menuItems": [
+      "Southwestern Fiesta Breakfast Bake"
+    ],
+    "download": "https://irepo.primecp.com/2015/06/224539/Southwestern-Breakfast-Bake_ExtraLarge1000_ID-1044119.jpg?v=1044119",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "cherry-danish": {
+    "source": "https://www.daisybrand.com/recipes/cherry-danish-597/",
+    "menuItems": [
+      "Cherry Danish",
+      "Cinnamon Bun Cherry Danish"
+    ],
+    "download": "https://www.daisybrand.com/wp-content/uploads/2019/12/CHERRY-DANISH-770x628_2506.jpg",
+    "imageScale": 1.9,
+    "imagePosition": "45% 62%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "carrot-muffin": {
+    "source": "https://www.kingarthurbaking.com/recipes/carrot-muffins-recipe",
+    "menuItems": [
+      "Carrot Muffins"
+    ],
+    "download": "https://www.kingarthurbaking.com/sites/default/files/2019-08/carrot-muffins.jpg",
+    "imageScale": 2.2,
+    "imagePosition": "35% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "spanish-quiche": {
+    "source": "https://www.bbcgoodfood.com/recipes/roasted-tomato-basil-parmesan-quiche",
+    "menuItems": [
+      "Spanish Style Quiche"
+    ],
+    "download": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/recipe-image-legacy-id-327537_12-3817f6c.jpg?resize=440%2C230",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "diced-chicken": {
+    "source": "https://theairfryerkitchen.com/air-fryer-chicken-bites-no-breading/",
+    "menuItems": [
+      "Diced Chicken"
+    ],
+    "download": "https://theairfryerkitchen.com/wp-content/uploads/2025/03/Air-Fried-Chicken-Bites.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "45% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "bran-muffin": {
+    "source": "https://sallysbakingaddiction.com/bran-muffins/",
+    "menuItems": [
+      "Basic Whole Wheat Muffin",
+      "Muffin, Raisin Bran Glory, I/W, T&S, 50 g, Frozen, CDN"
+    ],
+    "download": "https://sallysbakingaddiction.com/wp-content/uploads/2023/01/healthy-bran-muffins-4.jpg",
+    "imageScale": 2,
+    "imagePosition": "50% 36%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "cheddar-shredded": {
+    "source": "https://commons.wikimedia.org/wiki/File:Grated_cheese_(331496238).jpg",
+    "menuItems": [
+      "Shredded Cheddar Cheese"
+    ],
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2b/Grated_cheese_%28331496238%29.jpg/1280px-Grated_cheese_%28331496238%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail",
+    "imageScale": 2.8,
+    "imagePosition": "50% 55%",
+    "photographer": "Mack Male from Edmonton, AB, Canada",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "license": "CC BY-SA/2.0",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "breakfast-ham": {
+    "source": "https://commons.wikimedia.org/wiki/File:Glazed_and_sliced_ham.jpg",
+    "menuItems": [
+      "Breakfast Ham"
+    ],
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Glazed_and_sliced_ham.jpg/1280px-Glazed_and_sliced_ham.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail",
+    "imageScale": 1.4,
+    "imagePosition": "61% 43%",
+    "photographer": "Michael Coté from Austin, Texas, Texas",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "license": "CC BY/2.0",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "bologna": {
+    "source": "https://commons.wikimedia.org/wiki/File:Bologna_lunch_meat_style_sausage.JPG",
+    "menuItems": [
+      "Bologna"
+    ],
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Bologna_lunch_meat_style_sausage.JPG/1280px-Bologna_lunch_meat_style_sausage.JPG?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "photographer": "Glane23",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "license": "CC BY-SA/3.0",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "dried-cranberries": {
+    "menuItems": [
+      "Cranberries"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Dried_Cranberries_(49164715502).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Dried_Cranberries_%2849164715502%29.jpg/960px-Dried_Cranberries_%2849164715502%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Alabama Extension",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.5,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "turkey-bacon": {
+    "menuItems": [
+      "Turkey Bacon"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Three_strips_of_cooked_turkey_bacon.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cc/Three_strips_of_cooked_turkey_bacon.jpg/960px-Three_strips_of_cooked_turkey_bacon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Kevin Payravi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "pork-sausage": {
+    "menuItems": [
+      "Pork Breakfast Sausage",
+      "Maple Pork Breakfast Sausage"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:-2019-11-04_Cooked_pork_chipolata_sausage,_Sheringham.JPG",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ae/-2019-11-04_Cooked_pork_chipolata_sausage%2C_Sheringham.JPG/960px--2019-11-04_Cooked_pork_chipolata_sausage%2C_Sheringham.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Kolforn (Kolforn)\nI'd appreciate if you could mail me (Kolforn@gmail.com) if you want to use this picture out of the Wikimedia project scope.\n\n\n\n This file is licensed under the Creative Commons Attribution-Share Alike 4.0 International license.\nYou are free:\nto share – to copy, distribute and transmit the work\nto remix – to adapt the work\nUnder the following conditions:\nattribution – You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.\nshare alike – If you remix, transform, or build upon the material, you must distribute your contributions under the same or compatible license as the original.https://creativecommons.org/licenses/by-sa/4.0CC BY-SA 4.0 Creative Commons Attribution-Share Alike 4.0 truetrue",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lemon-danish": {
+    "menuItems": [
+      "Lemon Danish"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Lemon_danish.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Lemon_danish.jpg/960px-Lemon_danish.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Hannah Clover",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "imageScale": 1.15,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "vegetarian-strata": {
+    "source": "https://commons.wikimedia.org/wiki/File:Mushroom_and_spinach_strata_(43178443861).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/93/Mushroom_and_spinach_strata_%2843178443861%29.jpg/960px-Mushroom_and_spinach_strata_%2843178443861%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Joey Doll",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "menuItems": [
+      "Vegetarian Strata"
+    ],
+    "imageScale": 1.5,
+    "imagePosition": "50% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "peameal-bacon": {
+    "menuItems": [
+      "Peameal Bacon"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Peameal_bacon_in_a_pan.JPG",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cf/Peameal_bacon_in_a_pan.JPG/960px-Peameal_bacon_in_a_pan.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Kelapstick",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "pork-sausage-patty": {
+    "menuItems": [
+      "Pork Sausage Patty"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Full_breakfast_with_Fried_egg,_Pork_patty,_Bacon,_Pork_sausage,_Roasted_tomato,_Hash_brown_and_Mushrooms.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Full_breakfast_with_Fried_egg%2C_Pork_patty%2C_Bacon%2C_Pork_sausage%2C_Roasted_tomato%2C_Hash_brown_and_Mushrooms.jpg/960px-Full_breakfast_with_Fried_egg%2C_Pork_patty%2C_Bacon%2C_Pork_sausage%2C_Roasted_tomato%2C_Hash_brown_and_Mushrooms.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Ceeseven",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 3,
+    "imagePosition": "15% 78%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "raisin-french-toast": {
+    "menuItems": [
+      "Cinnamon Raisin French Toast with Syrup"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Vegan_Cinnamon_Raisin_French_Toast_with_Caramelized_Apples_(4976062012).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b6/Vegan_Cinnamon_Raisin_French_Toast_with_Caramelized_Apples_%284976062012%29.jpg/960px-Vegan_Cinnamon_Raisin_French_Toast_with_Caramelized_Apples_%284976062012%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Vegan Feast Catering",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "hash-brown-triangle": {
+    "menuItems": [
+      "Hash Brown Patty-Triangle"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Full_breakfast_with_Fried_egg,_Pork_patty,_Bacon,_Pork_sausage,_Roasted_tomato,_Hash_brown_and_Mushrooms.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Full_breakfast_with_Fried_egg%2C_Pork_patty%2C_Bacon%2C_Pork_sausage%2C_Roasted_tomato%2C_Hash_brown_and_Mushrooms.jpg/960px-Full_breakfast_with_Fried_egg%2C_Pork_patty%2C_Bacon%2C_Pork_sausage%2C_Roasted_tomato%2C_Hash_brown_and_Mushrooms.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Ceeseven",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 3,
+    "imagePosition": "84% 25%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "beef-sausage": {
+    "source": "https://www.themidwestkitchenblog.com/beef-breakfast-sausage-patties/",
+    "menuItems": [
+      "Breakfast Beef Sausage"
+    ],
+    "download": "https://www.themidwestkitchenblog.com/wp-content/uploads/2023/01/cropped-beef-sausage-patties-683x1024-1.webp",
+    "imageScale": 2.2,
+    "imagePosition": "50% 48%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "shredded-hash-browns": {
+    "source": "https://www.everydayfamilycooking.com/hash-browns/",
+    "menuItems": [
+      "Shredded Hash Brown Potatoes"
+    ],
+    "download": "https://www.everydayfamilycooking.com/wp-content/uploads/2024/06/Hashbrown-Recipe-7.jpg",
+    "imageScale": 1.45,
+    "imagePosition": "50% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "oatmeal": {
+    "source": "https://www.vegrecipesofindia.com/oats-porridge-recipe/",
+    "download": "https://www.vegrecipesofindia.com/wp-content/uploads/2015/05/oats-porridge-recipe-1a-500x500.jpg",
+    "menuItems": [
+      "Oatmeal"
+    ],
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "sweet-potato-tofu": {
+    "source": "https://www.bmc.org/recipes/tofu-scramble",
+    "download": "https://www.bmc.org/sites/default/files/Screen%20Shot%202021-10-08%20at%2012.35.25%20PM.png",
+    "menuItems": [
+      "Southern Sweet Potato and Scramble Tofu"
+    ],
+    "imageScale": 1.8,
+    "imagePosition": "50% 56%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "mozzarella-shredded": {
+    "source": "https://www.pexels.com/photo/bowls-with-various-ingredients-on-kitchen-table-4724585/",
+    "download": "https://images.pexels.com/photos/4724585/pexels-photo-4724585.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=900&h=900",
+    "menuItems": [
+      "Shredded Mozzarella Cheese"
+    ],
+    "imageScale": 5,
+    "imagePosition": "3% 100%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "enchilada-breakfast-casserole": {
+    "source": "https://www.pillsbury.com/recipes/make-ahead-enchilada-breakfast-casserole/99b1a963-efce-4e6e-8e10-d299efa5d295",
+    "download": "https://mojo.generalmills.com/api/public/content/BdZjcTcLRUCAhZ9Ja_B2rw_gmi_hi_res_jpeg.jpeg?v=0b602bc8&t=466b54bb264e48b199fc8e83ef1136b4",
+    "menuItems": [
+      "Enchilada Breakfast Casserole"
+    ],
+    "imageScale": 1.15,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "waffle-syrup": {
+    "menuItems": [
+      "Waffles with Maple Syrup"
+    ],
+    "source": "https://commons.wikimedia.org/wiki/File:Waffle_with_maple_syrup_-_San_Francisco,_CA.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/Waffle_with_maple_syrup_-_San_Francisco%2C_CA.jpg/960px-Waffle_with_maple_syrup_-_San_Francisco%2C_CA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "photographer": "Daderot",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.6,
+    "imagePosition": "48% 80%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "chocolate-danish": {
+    "source": "https://www.pexels.com/photo/close-up-of-freshly-baked-chocolate-croissants-31688615/",
+    "download": "https://images.pexels.com/photos/31688615/pexels-photo-31688615.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "menuItems": [
+      "Mini Chocolate Danish"
+    ],
+    "imageScale": 1.8,
+    "imagePosition": "66% 60%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "monte-cristo": {
+    "source": "https://commons.wikimedia.org/wiki/File:Grilled_cheese_sandwich.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Grilled_cheese_sandwich.jpg/250px-Grilled_cheese_sandwich.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Monte Cristo with Cheese and Tomato"
+    ],
+    "photographer": "Maggie Hoffman",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.05,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "tofu-scramble": {
+    "source": "https://commons.wikimedia.org/wiki/File:Tofu_Scrambler.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d4/Tofu_Scrambler.jpg/960px-Tofu_Scrambler.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Southwestern Tofu Scramble"
+    ],
+    "photographer": "Bart Everson",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 2.4,
+    "imagePosition": "24% 48%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "cubed-honeydew": {
+    "source": "https://www.squaremeals.org/Portals/8/files/NSLP/NSLW/2022/NSLW%202022%20Recipe%20Book.pdf",
+    "download": "https://www.squaremeals.org/Portals/8/files/NSLP/NSLW/2022/NSLW%202022%20Recipe%20Book.pdf",
+    "menuItems": [
+      "Fresh Cubed Honeydew"
+    ],
+    "imageScale": 1.3,
+    "imagePosition": "50% 57%",
+    "note": "Original photograph extracted unchanged from the linked public recipe PDF. Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "bean-hash": {
+    "source": "https://members.masteringdiabetes.org/wp-content/uploads/2023/06/mwl-meal-plan-week-005.pdf",
+    "download": "https://members.masteringdiabetes.org/wp-content/uploads/2023/06/mwl-meal-plan-week-005.pdf",
+    "menuItems": [
+      "Corned Bean Hash"
+    ],
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Original photograph extracted unchanged from the linked public recipe PDF. Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "canadian-breakfast": {
+    "source": "https://www.pexels.com/photo/plate-of-english-breakfast-19552394/",
+    "menuItems": [
+      "Canadian Breakfast with Sausage"
+    ],
+    "download": "https://images.pexels.com/photos/19552394/pexels-photo-19552394.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.25,
+    "imagePosition": "50% 65%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "mcfraser-sandwich": {
+    "source": "https://www.pexels.com/photo/bacon-sandwich-on-plate-139746/",
+    "menuItems": [
+      "McFraser Breakfast Sandwich"
+    ],
+    "download": "https://images.pexels.com/photos/139746/pexels-photo-139746.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.05,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sliced-tomato": {
+    "source": "https://commons.wikimedia.org/wiki/File:A_sliced_tomato_on_a_saucer.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/A_sliced_tomato_on_a_saucer.jpg/960px-A_sliced_tomato_on_a_saucer.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Side of Sliced Tomato"
+    ],
+    "photographer": "Olgatladi2020",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-leaf-lettuce": {
+    "source": "https://commons.wikimedia.org/wiki/File:Fresh_Green_Lettuce_Leaves_on_a_Plate.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/44/Fresh_Green_Lettuce_Leaves_on_a_Plate.jpg/960px-Fresh_Green_Lettuce_Leaves_on_a_Plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Leaf Lettuce",
+      "Chopped Romaine",
+      "Shredded Lettuce"
+    ],
+    "photographer": "Uthman salma",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.7,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-cucumber-slices": {
+    "source": "https://commons.wikimedia.org/wiki/File:Cucumber_Slices_(Alabama_Extension).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/Cucumber_Slices_%28Alabama_Extension%29.jpg/960px-Cucumber_Slices_%28Alabama_Extension%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sliced Fresh Cucumbers"
+    ],
+    "photographer": "Alabama Extension",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-deli-roast-beef": {
+    "source": "https://commons.wikimedia.org/wiki/File:Roast_topside_of_beef.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/Roast_topside_of_beef.jpg/960px-Roast_topside_of_beef.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Deli Roast Beef"
+    ],
+    "photographer": "Acabashi",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.7,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-hummus": {
+    "source": "https://commons.wikimedia.org/wiki/File:Lebanese_style_hummus.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/bf/Lebanese_style_hummus.jpg/960px-Lebanese_style_hummus.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Hummus"
+    ],
+    "photographer": "Beyrouthhh at English Wikipedia",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-mayonnaise": {
+    "source": "https://commons.wikimedia.org/wiki/File:Mayonnaise_(1).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Mayonnaise_%281%29.jpg/960px-Mayonnaise_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Light Type Mayonnaise"
+    ],
+    "photographer": "jules",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.5,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-deli-turkey": {
+    "source": "https://commons.wikimedia.org/wiki/File:Cooked_turkey_breast_-_November_2023_-_Sarah_Stierch.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/Cooked_turkey_breast_-_November_2023_-_Sarah_Stierch.jpg/960px-Cooked_turkey_breast_-_November_2023_-_Sarah_Stierch.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sliced Deli Turkey"
+    ],
+    "photographer": "Missvain",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "imageScale": 1.8,
+    "imagePosition": "50% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-deli-ham": {
+    "source": "https://commons.wikimedia.org/wiki/File:Sliced_cooked_ham.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3e/Sliced_cooked_ham.jpg/960px-Sliced_cooked_ham.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Smoked Deli Ham"
+    ],
+    "photographer": "Anna.Massini",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-cheddar-slices": {
+    "source": "https://commons.wikimedia.org/wiki/File:White_cheddar_cheese_sliced_CNE.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/White_cheddar_cheese_sliced_CNE.jpg/960px-White_cheddar_cheese_sliced_CNE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Cheddar Cheese Slices, Mild"
+    ],
+    "photographer": "CNEcija12345",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 2.1,
+    "imagePosition": "44% 68%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-white-bread": {
+    "source": "https://commons.wikimedia.org/wiki/File:Slice_of_bread_in_bowl.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/Slice_of_bread_in_bowl.jpg/960px-Slice_of_bread_in_bowl.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sliced White Bread"
+    ],
+    "photographer": "Kansattica",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-whole-wheat-bread": {
+    "source": "https://commons.wikimedia.org/wiki/File:Vegan_no-knead_whole_wheat_bread_loaf,_sliced,_September_2010.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Vegan_no-knead_whole_wheat_bread_loaf%2C_sliced%2C_September_2010.jpg/960px-Vegan_no-knead_whole_wheat_bread_loaf%2C_sliced%2C_September_2010.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Homemade Whole Wheat Bread"
+    ],
+    "photographer": "Veganbaking.net",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "imageScale": 1.7,
+    "imagePosition": "50% 75%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sourdough-bread": {
+    "source": "https://commons.wikimedia.org/wiki/File:Slices_of_sourdough_bread.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Slices_of_sourdough_bread.jpg/960px-Slices_of_sourdough_bread.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sourdough Bread, Pre-Sliced"
+    ],
+    "photographer": "Angel Ganev",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.4,
+    "imagePosition": "50% 75%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-flour-tortilla": {
+    "source": "https://commons.wikimedia.org/wiki/File:Corn_tortilla,_medium_flour_tortilla,_and_folded_large_flour_tortilla.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/Corn_tortilla%2C_medium_flour_tortilla%2C_and_folded_large_flour_tortilla.jpg/960px-Corn_tortilla%2C_medium_flour_tortilla%2C_and_folded_large_flour_tortilla.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Flour Tortilla Wrap, 10\""
+    ],
+    "photographer": "Vigilantcosmicpenguin",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
+    "imageScale": 1.8,
+    "imagePosition": "60% 75%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-aloo-gobi": {
+    "source": "https://commons.wikimedia.org/wiki/File:Aloo_gobi.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c8/Aloo_gobi.jpg/960px-Aloo_gobi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Aloo Gobi (RD)"
+    ],
+    "photographer": "",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-kadhi": {
+    "source": "https://commons.wikimedia.org/wiki/File:Kadhi_1.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/Kadhi_1.jpg/960px-Kadhi_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Kadhi"
+    ],
+    "photographer": "Gaurav Dhwaj Khadka",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.15,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-black-bean-soup": {
+    "source": "https://commons.wikimedia.org/wiki/File:Black_Bean_Soup_(140491813).jpeg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/38/Black_Bean_Soup_%28140491813%29.jpeg/960px-Black_Bean_Soup_%28140491813%29.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Black Bean Soup"
+    ],
+    "photographer": "J Doll",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "imageScale": 1.6,
+    "imagePosition": "80% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-corn": {
+    "source": "https://commons.wikimedia.org/wiki/File:HK_food_yellow_%E7%8E%89%E7%B1%B3%E7%B2%92_cooked_Maize_kernel_June_2019_SSG_02.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/HK_food_yellow_%E7%8E%89%E7%B1%B3%E7%B2%92_cooked_Maize_kernel_June_2019_SSG_02.jpg/960px-HK_food_yellow_%E7%8E%89%E7%B1%B3%E7%B2%92_cooked_Maize_kernel_June_2019_SSG_02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Corn",
+      "Whole Kernel Corn"
+    ],
+    "photographer": "BNALEC83",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sliced-beets": {
+    "source": "https://commons.wikimedia.org/wiki/File:Round_textured_slices_of_beetroot_(40640184925).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e5/Round_textured_slices_of_beetroot_%2840640184925%29.jpg/960px-Round_textured_slices_of_beetroot_%2840640184925%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sliced Beets"
+    ],
+    "photographer": "Rawpixel Ltd",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-boiled-egg": {
+    "source": "https://commons.wikimedia.org/wiki/File:Hard_boiled_egg_2.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/52/Hard_boiled_egg_2.jpg/960px-Hard_boiled_egg_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Chopped Hard Cooked Egg"
+    ],
+    "photographer": "3steph14",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 2,
+    "imagePosition": "27% 77%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-croutons": {
+    "source": "https://commons.wikimedia.org/wiki/File:13-09-01-kochtreffen-wien-Bi-frie-004.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/13-09-01-kochtreffen-wien-Bi-frie-004.jpg/960px-13-09-01-kochtreffen-wien-Bi-frie-004.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Seasoned Croutons"
+    ],
+    "photographer": "Bi-frie (talk)",
+    "license": "CC BY 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
+    "imageScale": 1.5,
+    "imagePosition": "50% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-celery-alt": {
+    "source": "https://commons.wikimedia.org/wiki/File:Chopped_Celery.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/59/Chopped_Celery.jpg/960px-Chopped_Celery.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Diced Fresh Celery"
+    ],
+    "photographer": "Alabama Extension",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-samosa": {
+    "source": "https://commons.wikimedia.org/wiki/File:Vegetable_Samosa,_Black_Pinky,_Paris_14_February_2017.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2f/Vegetable_Samosa%2C_Black_Pinky%2C_Paris_14_February_2017.jpg/960px-Vegetable_Samosa%2C_Black_Pinky%2C_Paris_14_February_2017.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Vegetable Samosa"
+    ],
+    "photographer": "Guilhem Vellut from Paris, France",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.6,
+    "imagePosition": "30% 38%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-mustard": {
+    "source": "https://commons.wikimedia.org/wiki/File:Senf-Variationen.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/92/Senf-Variationen.jpg/960px-Senf-Variationen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Mustard"
+    ],
+    "photographer": "Rainer Zenz",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "imageScale": 4,
+    "imagePosition": "12% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chickpeas": {
+    "source": "https://commons.wikimedia.org/wiki/File:Chickpeas_-_The_Coconut_Island_2025-10-05.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/20/Chickpeas_-_The_Coconut_Island_2025-10-05.jpg/960px-Chickpeas_-_The_Coconut_Island_2025-10-05.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Chickpeas"
+    ],
+    "photographer": "Andy Li",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-green-pepper-strips": {
+    "source": "https://commons.wikimedia.org/wiki/File:1296Green_bell_peppers_slices_Food_ingredients_04.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/99/1296Green_bell_peppers_slices_Food_ingredients_04.jpg/960px-1296Green_bell_peppers_slices_Food_ingredients_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Julienne Slice Green Peppers"
+    ],
+    "photographer": "Judgefloro",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.7,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-red-pepper-strips": {
+    "source": "https://commons.wikimedia.org/wiki/File:Sliced_Red_onion,_sweet_pepper_and_cucumber_in_a_plate.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Sliced_Red_onion%2C_sweet_pepper_and_cucumber_in_a_plate.jpg/960px-Sliced_Red_onion%2C_sweet_pepper_and_cucumber_in_a_plate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Julienne Slice Red Peppers"
+    ],
+    "photographer": "Sm faysal",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 3.2,
+    "imagePosition": "8% 48%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-julienne-carrots": {
+    "source": "https://commons.wikimedia.org/wiki/File:Carrots_Julienne.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/Carrots_Julienne.jpg/960px-Carrots_Julienne.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Fresh Julienne Sliced Carrots"
+    ],
+    "photographer": "frank wouters from antwerpen, belgium",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-shredded-cabbage": {
+    "source": "https://commons.wikimedia.org/wiki/File:Shredded_Cabbage_(Side_Dish)_in_Taiwan.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c5/Shredded_Cabbage_%28Side_Dish%29_in_Taiwan.jpg/960px-Shredded_Cabbage_%28Side_Dish%29_in_Taiwan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sliced Fresh Green Cabbage",
+      "Sliced Fresh Nappa Cabbage"
+    ],
+    "photographer": "Ralff Nestor Nacor",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.25,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-bean-sprouts": {
+    "source": "https://commons.wikimedia.org/wiki/File:White_bean_sprout.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/White_bean_sprout.jpg/960px-White_bean_sprout.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Bean Sprouts"
+    ],
+    "photographer": "စာကလေး SarKaLay",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.25,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-fried-onions": {
+    "source": "https://commons.wikimedia.org/wiki/File:R%C3%B6stzwiebeln.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/R%C3%B6stzwiebeln.jpg/960px-R%C3%B6stzwiebeln.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Crispy Onion Strings"
+    ],
+    "photographer": "Daniel Naber",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "imageScale": 1.7,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-cilantro": {
+    "source": "https://commons.wikimedia.org/wiki/File:Coriander_Leaves.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c2/Coriander_Leaves.jpg/960px-Coriander_Leaves.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Fresh Chopped Cilantro"
+    ],
+    "photographer": "Rupeshm364",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.7,
+    "imagePosition": "50% 40%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sesame-seeds": {
+    "source": "https://commons.wikimedia.org/wiki/File:Sa_white_sesame_seeds.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/69/Sa_white_sesame_seeds.jpg/960px-Sa_white_sesame_seeds.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sesame Seeds"
+    ],
+    "photographer": "Sanjay ach",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chorizo-pizza": {
+    "source": "https://commons.wikimedia.org/wiki/File:Pizza_calabresa_argentina_(con_longaniza_calabresa_o_chorizo_picante).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Pizza_calabresa_argentina_%28con_longaniza_calabresa_o_chorizo_picante%29.jpg/960px-Pizza_calabresa_argentina_%28con_longaniza_calabresa_o_chorizo_picante%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Crispy Chorizo Pizza"
+    ],
+    "photographer": "Horacio Cambeiro",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-taco-pizza": {
+    "source": "https://commons.wikimedia.org/wiki/File:Taco_pizza_from_Mabe%27s_Pizza_in_Decorah,_IA.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ea/Taco_pizza_from_Mabe%27s_Pizza_in_Decorah%2C_IA.jpg/960px-Taco_pizza_from_Mabe%27s_Pizza_in_Decorah%2C_IA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Mexican Taco Pizza"
+    ],
+    "photographer": "Ser Amantio di Nicolao",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-croissant": {
+    "source": "https://commons.wikimedia.org/wiki/File:Croissant_in_coffee_shop.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/54/Croissant_in_coffee_shop.jpg/960px-Croissant_in_coffee_shop.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Small Croissant"
+    ],
+    "photographer": "Geoffreyrabbit",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 2.1,
+    "imagePosition": "43% 51%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-blueberry-cheesecake": {
+    "source": "https://commons.wikimedia.org/wiki/File:Cheesecake_with_blueberry_topping.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/da/Cheesecake_with_blueberry_topping.jpg/960px-Cheesecake_with_blueberry_topping.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Cheesecake (Blueberry)"
+    ],
+    "photographer": "Chris Gladis",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.2,
+    "imagePosition": "50% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-fruit-salad": {
+    "source": "https://commons.wikimedia.org/wiki/File:Fruit_Salad_Bowl.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Fruit_Salad_Bowl.jpg/960px-Fruit_Salad_Bowl.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Deluxe Fruit Salad"
+    ],
+    "photographer": "Barkathnisa Ashaqilahi",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-green-onion": {
+    "source": "https://commons.wikimedia.org/wiki/File:Chopped_scallions_2014-09-26.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4f/Chopped_scallions_2014-09-26.jpg/960px-Chopped_scallions_2014-09-26.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Fresh Chiffonade Cut Green Onions"
+    ],
+    "photographer": "褒忠國中 雲端網",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-carrot-coins": {
+    "source": "https://commons.wikimedia.org/wiki/File:Preparing_and_slicing_carrots.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3c/Preparing_and_slicing_carrots.jpg/960px-Preparing_and_slicing_carrots.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Sliced Carrots (Frozen)"
+    ],
+    "photographer": "W.carter",
+    "license": "CC0",
+    "licenseUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "imageScale": 2.5,
+    "imagePosition": "26% 24%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-seafood-casserole": {
+    "source": "https://commons.wikimedia.org/wiki/File:Seafood_Casserole_with_Rice_and_Greens_-_The_Landing,_Marblehead_(43155317844).jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Seafood_Casserole_with_Rice_and_Greens_-_The_Landing%2C_Marblehead_%2843155317844%29.jpg/960px-Seafood_Casserole_with_Rice_and_Greens_-_The_Landing%2C_Marblehead_%2843155317844%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Seafood Casserole"
+    ],
+    "photographer": "Haydn Blackey from Cardiff, Wales",
+    "license": "CC BY-SA 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "imageScale": 2.8,
+    "imagePosition": "50% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-coconut-pudding": {
+    "source": "https://commons.wikimedia.org/wiki/File:Coconut_Milk_Pudding_in_Young_Coconut.JPG",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/88/Coconut_Milk_Pudding_in_Young_Coconut.JPG/960px-Coconut_Milk_Pudding_in_Young_Coconut.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Coconut Cream Pudding"
+    ],
+    "photographer": "Ceeseven",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "imageScale": 1.8,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-mozzarella-slices": {
+    "source": "https://commons.wikimedia.org/wiki/File:Caprese-1.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Caprese-1.jpg/960px-Caprese-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Mozzarella Cheese Slices"
+    ],
+    "photographer": "Rainer Zenz",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "imageScale": 3.5,
+    "imagePosition": "45% 70%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-california-roll": {
+    "source": "https://commons.wikimedia.org/wiki/File:California_roll_sushi,_September_2008.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2e/California_roll_sushi%2C_September_2008.jpg/250px-California_roll_sushi%2C_September_2008.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "California Roll Sushi"
+    ],
+    "photographer": "www.bluewaikiki.com",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0",
+    "imageScale": 1.25,
+    "imagePosition": "50% 56%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chicken-noodle-soup": {
+    "source": "https://commons.wikimedia.org/wiki/File:Chicken_Noodle_Soup_US.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Chicken_Noodle_Soup_US.jpg/250px-Chicken_Noodle_Soup_US.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Chicken Noodle Soup"
+    ],
+    "photographer": "Nichijyou123",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "imageScale": 1.15,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-yellow-rice": {
+    "menuItems": [
+      "Yellow Basmati Rice"
+    ],
+    "source": "https://www.pexels.com/photo/yellow-rice-in-stainless-steel-container-4994140/",
+    "download": "https://images.pexels.com/photos/4994140/pexels-photo-4994140.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.8,
+    "imagePosition": "43% 72%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-naan": {
+    "menuItems": [
+      "Naan Bread"
+    ],
+    "source": "https://www.pexels.com/photo/bread-on-the-table-6183640/",
+    "download": "https://images.pexels.com/photos/6183640/pexels-photo-6183640.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.7,
+    "imagePosition": "36% 40%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-buttered-peas": {
+    "menuItems": [
+      "Buttered Peas"
+    ],
+    "source": "https://www.pexels.com/photo/green-peas-on-white-ceramic-bowl-768089/",
+    "download": "https://images.pexels.com/photos/768089/pexels-photo-768089.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2,
+    "imagePosition": "45% 20%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chickpea-curry": {
+    "menuItems": [
+      "Butter Chickpea & Vegetable Curry"
+    ],
+    "source": "https://www.pexels.com/photo/bowl-of-delicious-stewed-chickpeas-with-onion-4149256/",
+    "download": "https://images.pexels.com/photos/4149256/pexels-photo-4149256.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.4,
+    "imagePosition": "50% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chow-mein": {
+    "menuItems": [
+      "Cantonese Style Chow Mein Noodles"
+    ],
+    "source": "https://www.pexels.com/photo/hot-chow-mein-noodles-in-white-ceramic-plate-7138913/",
+    "download": "https://images.pexels.com/photos/7138913/pexels-photo-7138913.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.4,
+    "imagePosition": "50% 65%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-beef-strips": {
+    "menuItems": [
+      "Asian Beef Strips"
+    ],
+    "source": "https://www.pexels.com/photo/sizzling-beef-stir-fry-with-vegetables-in-pan-34429558/",
+    "download": "https://images.pexels.com/photos/34429558/pexels-photo-34429558.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.5,
+    "imagePosition": "50% 60%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-seasoned-tofu": {
+    "menuItems": [
+      "Seasoned Tofu"
+    ],
+    "source": "https://www.pexels.com/photo/a-close-up-shot-of-cooked-tofu-6120243/",
+    "download": "https://images.pexels.com/photos/6120243/pexels-photo-6120243.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.3,
+    "imagePosition": "50% 60%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chipotle-chicken": {
+    "menuItems": [
+      "Marinated Chipotle Chicken Breast"
+    ],
+    "source": "https://www.pexels.com/photo/a-pan-with-chicken-breast-8250430/",
+    "download": "https://images.pexels.com/photos/8250430/pexels-photo-8250430.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.8,
+    "imagePosition": "55% 68%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chili-con-carne": {
+    "menuItems": [
+      "Chili Con Carne"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-of-meat-dish-bowl-6358974/",
+    "download": "https://images.pexels.com/photos/6358974/pexels-photo-6358974.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1.9,
+    "imagePosition": "64% 48%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-edamame": {
+    "menuItems": [
+      "Sea Salt Edamame"
+    ],
+    "source": "https://www.pexels.com/photo/green-beans-in-colander-3298686/",
+    "download": "https://images.pexels.com/photos/3298686/pexels-photo-3298686.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sweet-potato-fries": {
+    "menuItems": [
+      "Baked Sweet Potato Fries"
+    ],
+    "source": "https://www.pexels.com/photo/sweet-potatoes-and-sauce-15801062/",
+    "download": "https://images.pexels.com/photos/15801062/pexels-photo-15801062.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 2.1,
+    "imagePosition": "47% 59%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sesame-soba": {
+    "menuItems": [
+      "Sesame Soba Noodles"
+    ],
+    "source": "https://www.pexels.com/photo/close-up-photo-of-noodle-dish-with-sesame-seeds-4518705/",
+    "download": "https://images.pexels.com/photos/4518705/pexels-photo-4518705.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chipotle-aioli": {
+    "source": "https://www.loveandlemons.com/chipotle-sauce/",
+    "menuItems": [
+      "Chipotle Aioli"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/03/chipotle-sauce.jpg",
+    "imageScale": 2.3,
+    "imagePosition": "48% 78%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sriracha-mayonnaise": {
+    "source": "https://www.loveandlemons.com/spicy-mayo/",
+    "menuItems": [
+      "Sriracha Mayonnaise"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/01/spicy-mayo-recipe.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "47% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sour-cream": {
+    "source": "https://www.loveandlemons.com/vegan-sour-cream/",
+    "menuItems": [
+      "Sour Cream",
+      "Sour Cream, 14%, 43 ml, CDN"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/06/vegan-sour-cream-1.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "50% 72%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-ranch-dressing": {
+    "source": "https://www.loveandlemons.com/ranch-dressing/",
+    "menuItems": [
+      "CW Ranch Salad Dressing"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2024/09/homemade-ranch-dressing.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "50% 65%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-caesar-dressing": {
+    "source": "https://www.loveandlemons.com/caesar-dressing/",
+    "menuItems": [
+      "Caesar Salad Dressing"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2024/12/caesar-dressing-recipe-opengraph.jpg",
+    "imageScale": 1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-balsamic-dressing": {
+    "source": "https://www.loveandlemons.com/balsamic-vinaigrette/",
+    "menuItems": [
+      "Balsamic Salad Dressing"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/11/balsamic-vinaigrette-1.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "53% 65%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-italian-dressing": {
+    "source": "https://www.loveandlemons.com/italian-dressing/",
+    "menuItems": [
+      "Golden Italian Dressing"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2020/08/italian-dressing-recipe.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "46% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-barbecue-sauce": {
+    "source": "https://www.loveandlemons.com/bbq-sauce/",
+    "menuItems": [
+      "BBQ Sauce"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/05/bbq-sauce.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-pico-de-gallo": {
+    "source": "https://www.loveandlemons.com/pico-de-gallo/",
+    "menuItems": [
+      "Pico de Gallo"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2024/04/what-is-pico-de-gallo.jpg",
+    "imageScale": 1.15,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-corn-salsa": {
+    "source": "https://www.loveandlemons.com/corn-salsa/",
+    "menuItems": [
+      "Roasted Corn Salsa"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2019/08/corn-salsa-social.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-salsa": {
+    "source": "https://www.loveandlemons.com/homemade-salsa-recipe/",
+    "menuItems": [
+      "Mild Chunky Salsa",
+      "Salsa Sauce"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2020/09/homemade-salsa-social.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-guacamole": {
+    "source": "https://www.loveandlemons.com/guacamole/",
+    "menuItems": [
+      "Guacamole"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2018/07/IMG_13035-2-flat.jpg",
+    "imageScale": 3.7,
+    "imagePosition": "32% 28%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-pickled-red-onions": {
+    "source": "https://www.loveandlemons.com/pickled-red-onions/",
+    "menuItems": [
+      "Pickled Red Onion"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/09/pickled-red-onions.jpg",
+    "imageScale": 2.3,
+    "imagePosition": "32% 73%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-pickled-jalapenos": {
+    "source": "https://www.loveandlemons.com/pickled-jalapenos/",
+    "menuItems": [
+      "Sliced Pickled Jalapeno Peppers"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/06/pickled-jalapenos.jpg",
+    "imageScale": 2.1,
+    "imagePosition": "55% 77%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-brown-rice": {
+    "source": "https://www.loveandlemons.com/how-to-cook-brown-rice/",
+    "menuItems": [
+      "Cilantro Lime Brown Rice"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2020/01/brown-rice.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 65%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-mushroom-soup": {
+    "source": "https://www.loveandlemons.com/cream-of-mushroom-soup/",
+    "menuItems": [
+      "Cream of Mushroom Soup"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2024/12/mushroom-soup-opengraph.jpg",
+    "imageScale": 1.9,
+    "imagePosition": "72% 70%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegetarian-chili": {
+    "source": "https://www.loveandlemons.com/vegetarian-chili-recipe/",
+    "menuItems": [
+      "Three Bean and Vegetable Chili"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/10/vegetarian-chili.jpg",
+    "imageScale": 2.1,
+    "imagePosition": "60% 70%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-barbecue-tofu": {
+    "source": "https://www.loveandlemons.com/bbq-tofu/",
+    "menuItems": [
+      "Smoked BBQ Tofu"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/05/bbq-tofu-1.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegetable-sushi": {
+    "source": "https://www.loveandlemons.com/vegan-sushi/",
+    "menuItems": [
+      "Sushi Roll Vegetarian"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/01/vegan-sushi-1.jpg",
+    "imageScale": 2.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-egg-salad-sandwich": {
+    "source": "https://www.loveandlemons.com/egg-salad/",
+    "menuItems": [
+      "Egg Salad Sandwich"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2025/04/291_LL_EggSalad_16512_social.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-crispy-chickpeas": {
+    "source": "https://www.loveandlemons.com/roasted-chickpeas/",
+    "menuItems": [
+      "Crispy Chickpeas"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/02/IMG_16074.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "50% 63%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegan-cheese": {
+    "source": "https://www.noracooks.com/vegan-cheddar-cheese/",
+    "menuItems": [
+      "Chao Cheese"
+    ],
+    "download": "https://www.noracooks.com/wp-content/uploads/2020/05/square-500x500.jpg",
+    "imageScale": 2.1,
+    "imagePosition": "72% 63%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-meatball-sub": {
+    "source": "https://www.spendwithpennies.com/meatball-sub/",
+    "menuItems": [
+      "Meatball Sub on Hot Dog Roll"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2018/10/SpendWithPennies-Meatball-Sub-26-500x500.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 65%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegetarian-meatballs": {
+    "source": "https://www.loveandlemons.com/vegan-meatballs/",
+    "menuItems": [
+      "Meatball Station"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/02/vegan-meatballs-1.jpg",
+    "imageScale": 2,
+    "imagePosition": "76% 40%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegan-italian-sausage": {
+    "source": "https://www.giallozafferano.com/recipes/vegan-sausages.html",
+    "menuItems": [
+      "Plant Based Italian Inspired Sausage"
+    ],
+    "download": "https://www.giallozafferano.com/images/351-35187/vegan-sausages_650x433_wm.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "48% 62%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-shrimp-chowder": {
+    "source": "https://www.theseasonedmom.com/shrimp-soup/",
+    "menuItems": [
+      "Shrimp and Bacon Chowder"
+    ],
+    "download": "https://www.theseasonedmom.com/wp-content/uploads/2024/12/shrimp-soup-22.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-carrot-salad": {
+    "source": "https://www.loveandlemons.com/carrot-salad/",
+    "menuItems": [
+      "Moroccan Carrot Salad"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/03/carrot-salad-1.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-cucumber-salad": {
+    "source": "https://www.loveandlemons.com/cucumber-salad/",
+    "menuItems": [
+      "Caribbean Marinated Cucumber Salad"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/05/cucumber-salad-1.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chickpea-potato-salad": {
+    "source": "https://easyindiancookbook.com/chana-chaat/",
+    "menuItems": [
+      "Indian Style Chickpea & Potato Salad"
+    ],
+    "download": "https://easyindiancookbook.com/wp-content/uploads/2024/06/FACE-Chana-Chaat.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-oatmeal-raisin-cookie": {
+    "source": "https://sallysbakingaddiction.com/soft-chewy-oatmeal-raisin-cookies/",
+    "menuItems": [
+      "Oatmeal Raisin Cookies"
+    ],
+    "download": "https://sallysbakingaddiction.com/wp-content/uploads/2014/07/oatmeal-raisin-cookies-3-600x600.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-bok-choy": {
+    "source": "https://www.loveandlemons.com/bok-choy/",
+    "menuItems": [
+      "Sesame Bok Choy"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2022/05/bok-choy-1.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegetable-sandwich": {
+    "source": "https://www.loveandlemons.com/vegan-sandwich/",
+    "menuItems": [
+      "Vegetable Sandwich"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/09/vegan-sandwiches-1.jpg",
+    "imageScale": 2,
+    "imagePosition": "43% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chili-oil": {
+    "source": "https://thewoksoflife.com/how-to-make-chili-oil/",
+    "menuItems": [
+      "Chili Oil"
+    ],
+    "download": "https://thewoksoflife.com/wp-content/uploads/2020/07/chili-oil-recipe-18-500x500.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 52%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-fish-cakes": {
+    "source": "https://www.recipetineats.com/fish-cakes/",
+    "menuItems": [
+      "Cod Fish Cakes"
+    ],
+    "download": "https://www.recipetineats.com/tachyon/2021/07/Fish-Cakes_96.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "45% 32%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sweet-chili-chicken": {
+    "source": "https://www.recipetineats.com/sweet-and-sour-chicken/",
+    "menuItems": [
+      "Sweet Chili Chicken Stir-Fry"
+    ],
+    "download": "https://www.recipetineats.com/tachyon/2016/09/Sweet-and-Sour-Chicken-Stir-Fry-8.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-tomato-pasta-salad": {
+    "source": "https://www.loveandlemons.com/pasta-salad/",
+    "menuItems": [
+      "Tomato Basil Pasta Salad"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/05/pasta-salad.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-roasted-cauliflower": {
+    "source": "https://www.loveandlemons.com/roasted-cauliflower/",
+    "menuItems": [
+      "Turmeric Roasted Cauliflower"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2026/08/roasted-cauliflower-1.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-herb-aioli": {
+    "source": "https://www.spendwithpennies.com/aioli/",
+    "menuItems": [
+      "Herb Aioli"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2024/06/1200-Homemade-Garlic-Aioli-2-SpendWithPennies-2.jpg",
+    "imageScale": 1.15,
+    "imagePosition": "50% 58%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-sriracha-sauce": {
+    "source": "https://www.chilipeppermadness.com/chili-pepper-recipes/hot-sauces/homemade-sriracha-hot-sauce-recipe/",
+    "menuItems": [
+      "Sriracha Hot Sauce"
+    ],
+    "download": "https://www.chilipeppermadness.com/wp-content/uploads/2018/03/Homemade-Sriracha-Hot-Sauce-Recipe4.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "55% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-chocolate-chia-parfait": {
+    "menuItems": [
+      "Chocolate Chia Parfait"
+    ],
+    "source": "https://minimalistbaker.com/overnight-chocolate-chia-seed-pudding/",
+    "download": "https://minimalistbaker.com/wp-content/uploads/2015/03/EASY-6-ingredient-Chocolate-Chia-Seed-Pudding-vegan-glutenfree-chocolate.jpg",
+    "imageScale": 1.9,
+    "imagePosition": "77% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vegan-chicken-stir-fry": {
+    "menuItems": [
+      "Plant Based Fried Chicken and Broccoli Stir Fry"
+    ],
+    "source": "https://static1.squarespace.com/static/61bbfd926bdbc704aabc18e9/t/6566707304d4bc1ad185cfd3/1701212300531/7CulinaryKeysEbookLR.pdf",
+    "download": "https://static1.squarespace.com/static/61bbfd926bdbc704aabc18e9/t/6566707304d4bc1ad185cfd3/1701212300531/7CulinaryKeysEbookLR.pdf",
+    "photographer": "Chef Mark Reinfeld",
+    "note": "Original photograph extracted unchanged from page 41 of the public recipe booklet. Representative real photograph; framed with CSS for the menu thumbnail.",
+    "imageScale": 1,
+    "imagePosition": "50% 50%"
+  },
+  "lunch-teriyaki-sauce": {
+    "source": "https://www.budgetbytes.com/easy-homemade-teriyaki-sauce-or-marinade/",
+    "download": "https://www.budgetbytes.com/wp-content/uploads/2018/07/Teriyaki_Sauce_V2.jpg",
+    "menuItems": [
+      "Teriyaki Sauce",
+      "Ultimate Honey Garlic Sauce"
+    ],
+    "imageScale": 1.4,
+    "imagePosition": "50% 47%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-white-onions": {
+    "source": "https://www.pexels.com/photo/close-up-of-slicing-onion-with-knife-in-kitchen-36895441/",
+    "download": "https://images.pexels.com/photos/36895441/pexels-photo-36895441.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "menuItems": [
+      "Sliced Yellow Onions"
+    ],
+    "imageScale": 1.6,
+    "imagePosition": "55% 53%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-red-onion-slices": {
+    "source": "https://www.pexels.com/photo/sliced-red-onions-on-brown-wooden-chopping-board-12181050/",
+    "download": "https://images.pexels.com/photos/12181050/pexels-photo-12181050.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "menuItems": [
+      "Sliced Red Onions",
+      "Shaved Fresh Red Onions"
+    ],
+    "imageScale": 1.5,
+    "imagePosition": "50% 55%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-black-olives": {
+    "source": "https://www.pexels.com/photo/black-olives-in-white-ceramic-bowl-13551218/",
+    "download": "https://images.pexels.com/photos/13551218/pexels-photo-13551218.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "menuItems": [
+      "Sliced Black Olives"
+    ],
+    "imageScale": 1.4,
+    "imagePosition": "50% 45%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-cheese-pizza": {
+    "source": "https://www.pexels.com/photo/hand-holding-a-slice-of-cheese-pizza-11596070/",
+    "download": "https://images.pexels.com/photos/11596070/pexels-photo-11596070.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "menuItems": [
+      "Cheese Pizza"
+    ],
+    "imageScale": 1.8,
+    "imagePosition": "52% 29%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-vanilla-scoop": {
+    "source": "https://www.pexels.com/photo/woman-hand-holding-ice-cream-22845433/",
+    "download": "https://images.pexels.com/photos/22845433/pexels-photo-22845433.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
+    "menuItems": [
+      "Ice Cream Scoop"
+    ],
+    "imageScale": 2.2,
+    "imagePosition": "50% 15%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-raw-bok-choy": {
+    "source": "https://www.loveandlemons.com/bok-choy/",
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2022/05/cooking-bok-choy.jpg",
+    "menuItems": [
+      "Fresh Quartered Bok Choy"
+    ],
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
+  },
+  "lunch-japchae": {
+    "source": "https://commons.wikimedia.org/wiki/File:Korean_mixed_vegetarian_noodle.jpg",
+    "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/65/Korean_mixed_vegetarian_noodle.jpg/960px-Korean_mixed_vegetarian_noodle.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "menuItems": [
+      "Korean Japchae Salad"
+    ],
+    "photographer": "Joe Mabel",
+    "license": "CC BY-SA 3.0",
+    "licenseUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%",
+    "note": "Representative real photograph; framed with CSS for the menu thumbnail."
   }
 }

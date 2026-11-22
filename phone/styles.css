@@ -87,6 +87,16 @@ body {
   box-shadow: 0 1px 0 #27282b;
 }
 
+.screen.is-menu .safe-area-top {
+  background: #16171a;
+  box-shadow: 0 1px 0 #16171a;
+}
+
+.screen.is-menu.sidebar-open .safe-area-top {
+  background: linear-gradient(to right, #16171a calc(100% - min(334px, calc(100% - 32px))), #27282b 0);
+  box-shadow: none;
+}
+
 .safe-area-bottom {
   z-index: 1;
   /* Overlap the iframe edge so preview scaling cannot expose a hairline. */

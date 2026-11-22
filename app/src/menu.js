@@ -113,6 +113,12 @@
   let noticeTimeout;
   let lastEditButton;
   let currentPage;
+  function syncFramePage() {
+    if (window.parent === window) return;
+    const origin = location.protocol === 'file:' ? '*' : location.origin;
+    window.parent.postMessage({ type: 'app-page-state', page: currentPage }, origin);
+  }
+  window.addEventListener('load', syncFramePage);
   let pageAnimations = [];
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -146,9 +152,6 @@
     cancelPageAnimations();
     closeMealMenu();
     const menu = page === 'menu';
-    if (menu && document.querySelector('#calendar-dropdown').hidden === false) {
-      document.querySelector('.today-title').click();
-    }
     homeHeader.hidden = menu;
     homeContent.hidden = menu;
     menuContent.hidden = !menu;
@@ -170,6 +173,7 @@
       ], { duration: 120, easing: 'ease-out' }));
     }
     currentPage = page;
+    syncFramePage();
     syncBackToTop();
   }
 
@@ -199,13 +203,18 @@
       entries.forEach((entry) => {
         const key = `${selectedDate}:${selectedMeal}:${stationId}:${entry.food}:${entry.serving}`;
         if (!foodState.has(key)) {
-          foodState.set(key, { ...data.catalog[entry.food], category: entry.category || data.catalog[entry.food].category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, quantity: 1, added: 0 });
+          const details = data.catalog[entry.food];
+          const photo = window.nutritionFoodPhotos?.[details.sourceName] || {};
+          foodState.set(key, { ...details, ...photo, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, quantity: 1, added: 0 });
         }
         const food = foodState.get(key);
         food.id = foods.length;
         foods.push(food);
       });
     }
+    const availableMeats = new Set(foods.flatMap((food) => food.meats).filter((meat) => menuFilters.diet !== 'vegan' && (menuFilters.diet !== 'halal' || meat !== 'pork')));
+    menuFilters.meats = menuFilters.meats.filter((meat) => meat === 'any-meat' ? menuFilters.diet === 'any' && availableMeats.size > 0 : availableMeats.has(meat));
+    syncFilterButton();
     clearTimeout(noticeTimeout);
     notice.textContent = '';
     menuContent.scrollTop = 0;
@@ -221,8 +230,8 @@
     row.className = 'menu-food';
     row.dataset.foodId = food.id;
     row.innerHTML = `
-      <span class="food-thumbnail${food.image ? '' : ' food-thumbnail--placeholder'}">
-        ${food.image ? `<img src="assets/foods/${food.image}" alt="" width="56" height="56">` : icon(food.category === 'Smoothies' ? 'drink' : food.category === 'Bakery' ? 'cookie' : 'plate')}
+      <span class="food-thumbnail${food.image ? '' : ' food-thumbnail--placeholder'}"${food.image ? ` style="--food-image-scale: ${food.imageScale || 1}; --food-image-position: ${food.imagePosition || '50% 50%'}"` : ''}>
+        ${food.image ? `<img src="assets/foods/${food.image}" alt="" width="56" height="56" loading="lazy" decoding="async">` : icon(food.category === 'Smoothies' ? 'drink' : food.category === 'Bakery' ? 'cookie' : 'plate')}
       </span>
       <div class="food-details">
         <h${headingLevel} class="food-name">${escapeHtml(food.name)}</h${headingLevel}>
@@ -299,12 +308,12 @@
     filterButton.setAttribute('aria-haspopup', 'dialog');
     filterButton.setAttribute('aria-controls', 'menu-filter-dialog');
     filterButton.innerHTML = `${icon('tune')}<span class="menu-filter-count" aria-hidden="true" hidden></span>`;
-    buttons.splice(1, 0, filterButton);
+    buttons.unshift(filterButton);
     stationPicker.replaceChildren(...buttons);
     syncFilterButton();
     stationPicker.setAttribute('aria-label', `${selectedMeal} stations and filters`);
     const active = stationPicker.querySelector('[aria-pressed="true"]');
-    stationPicker.scrollLeft = active.offsetLeft - stationPicker.firstElementChild.offsetLeft;
+    stationPicker.scrollLeft = station === 'all' ? 0 : active.offsetLeft - stationPicker.firstElementChild.offsetLeft;
   }
 
   function filterCount() {
@@ -323,7 +332,17 @@
   }
 
   function syncMeatOptions() {
-    const vegan = filterForm.elements['menu-diet'].value === 'vegan';
+    const diet = filterForm.elements['menu-diet'].value;
+    const vegan = diet === 'vegan';
+    const availableMeats = new Set(foods.flatMap((food) => food.meats));
+    const matchingMeats = new Set([...availableMeats].filter((meat) => !vegan && (diet !== 'halal' || meat !== 'pork')));
+    filterForm.querySelectorAll('[name="menu-meat"]').forEach((input) => {
+      const available = input.value === 'any-meat' ? availableMeats.size > 0 : availableMeats.has(input.value);
+      const matching = input.value === 'any-meat' ? matchingMeats.size > 0 : matchingMeats.has(input.value);
+      input.closest('label').hidden = !available;
+      input.disabled = vegan || !matching || (diet === 'halal' && input.value === 'any-meat');
+      if (input.disabled) input.checked = false;
+    });
     filterForm.querySelector('.menu-meat-options').disabled = vegan;
     if (vegan) filterForm.querySelectorAll('[name="menu-meat"]').forEach((input) => { input.checked = false; });
   }

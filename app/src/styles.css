@@ -1335,6 +1335,86 @@ button:disabled {
   line-height: 20px;
 }
 
+.menu-date-picker {
+  position: relative;
+}
+
+.menu-date-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.menu-calendar-toggle {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--secondary-panel);
+  color: var(--ink);
+}
+
+.menu-calendar-toggle svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.menu-date-picker .calendar-dropdown {
+  z-index: 4;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  margin-left: auto;
+}
+
+.is-menu-calendar .calendar-footer {
+  justify-content: flex-end;
+}
+
+.is-menu-calendar .calendar-filters {
+  display: none;
+}
+
+.is-menu-calendar .calendar-next:disabled {
+  opacity: .4;
+}
+
+.is-menu-calendar .calendar-date {
+  border-radius: 6px;
+  background: none;
+  box-shadow: none;
+  color: var(--ink);
+}
+
+.is-menu-calendar .calendar-date.is-selected {
+  color: var(--primary);
+  font-weight: 650;
+}
+
+.is-menu-calendar .calendar-date[aria-current="date"] {
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.is-menu-calendar .calendar-date.is-selected[aria-current="date"] {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.is-menu-calendar .calendar-date.is-outside-menu-week {
+  color: var(--muted);
+  opacity: .4;
+  font-weight: 400;
+}
+
 .station-chip {
   flex-shrink: 0;
   min-height: 36px;
@@ -1489,8 +1569,12 @@ button:disabled {
   opacity: .4;
 }
 
-.menu-filter-hint,
-.menu-filter-note {
+.menu-meat-options:not(:disabled) .menu-filter-chip:has(input:disabled) {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.menu-filter-hint {
   color: var(--muted);
   font-size: 13px;
   line-height: 20px;
@@ -1624,6 +1708,9 @@ button:disabled {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--food-image-position, 50% 50%);
+  transform: scale(var(--food-image-scale, 1));
+  transform-origin: var(--food-image-position, 50% 50%);
 }
 
 .food-thumbnail--placeholder {

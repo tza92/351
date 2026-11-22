@@ -1,6 +1,10 @@
 (() => {
   const trigger = document.querySelector('.today-title');
   const dropdown = document.querySelector('#calendar-dropdown');
+  const homeCalendarHost = dropdown.parentElement;
+  const menuTrigger = document.querySelector('.menu-calendar-toggle');
+  const triggers = [trigger, menuTrigger];
+  let activeTrigger = trigger;
   const grid = document.querySelector('.calendar-days');
   const monthHeading = document.querySelector('#calendar-month');
   const previous = document.querySelector('.calendar-previous');
@@ -15,6 +19,7 @@
   const weekRange = document.querySelector('.week-label-range');
   // Keep the prototype's Wednesday and completed Tuesday consistent.
   const today = new Date(2026, 10, 18, 12);
+  const menuWeekEnd = addDays(startOfWeek(today), 6);
   const completed = new Set(['2026-11-17']);
   let selected = new Date(today);
   let month = new Date(today.getFullYear(), today.getMonth(), 1, 12);
@@ -51,6 +56,7 @@
     weekRange.textContent = range;
     trigger.classList.toggle('is-history', !currentWeek);
     trigger.setAttribute('aria-label', `Choose date, ${fullDate.format(selected)} selected`);
+    menuTrigger.setAttribute('aria-label', `Choose menu date, ${fullDate.format(selected)} selected`);
   }
 
   function renderWeek() {
@@ -80,6 +86,9 @@
   }
 
   function renderCalendar(focusDate = selected) {
+    const menuCalendar = activeTrigger === menuTrigger;
+    if (menuCalendar && focusDate > menuWeekEnd) focusDate = menuWeekEnd;
+    next.disabled = menuCalendar && month >= new Date(today.getFullYear(), today.getMonth(), 1, 12);
     grid.getAnimations().forEach((animation) => animation.cancel());
     document.querySelector('.calendar-today').classList.toggle('is-current', key(selected) === key(today));
     monthHeading.textContent = monthName.format(month);
@@ -91,16 +100,16 @@
       const row = document.createElement('div');
       row.className = 'calendar-row';
       row.setAttribute('role', 'row');
-      row.classList.toggle('is-selected-week', key(addDays(first, rowIndex * 7)) === key(startOfWeek(selected)));
+      row.classList.toggle('is-selected-week', !menuCalendar && key(addDays(first, rowIndex * 7)) === key(startOfWeek(selected)));
       for (let column = 0; column < 7; column++) {
         const date = addDays(first, rowIndex * 7 + column);
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
-        const isComplete = completed.has(key(date));
+        const isComplete = !menuCalendar && completed.has(key(date));
         cell.classList.toggle('is-complete', isComplete);
-        cell.classList.toggle('is-future', date > today);
+        cell.classList.toggle('is-future', !menuCalendar && date > today);
         const filter = isComplete ? completedFilter : incompleteFilter;
-        cell.classList.toggle('is-filtered', (isComplete || date < today) && filter.getAttribute('aria-pressed') === 'false');
+        cell.classList.toggle('is-filtered', !menuCalendar && (isComplete || date < today) && filter.getAttribute('aria-pressed') === 'false');
         cell.setAttribute('role', 'gridcell');
         cell.setAttribute('aria-selected', String(key(date) === key(selected)));
         const button = document.createElement('button');
@@ -109,11 +118,13 @@
         button.textContent = date.getDate();
         button.dataset.date = key(date);
         button.tabIndex = key(date) === focusKey ? 0 : -1;
-        const state = isComplete ? ', completed' : date > today ? ', upcoming' : date < today ? ', not completed' : '';
+        const state = menuCalendar ? '' : isComplete ? ', completed' : date > today ? ', upcoming' : date < today ? ', not completed' : '';
         button.setAttribute('aria-label', `${fullDate.format(date)}${state}`);
         if (key(date) === key(today)) button.setAttribute('aria-current', 'date');
         button.classList.toggle('is-selected', key(date) === key(selected));
-        button.classList.toggle('is-future', date > today);
+        button.classList.toggle('is-future', !menuCalendar && date > today);
+        button.classList.toggle('is-outside-menu-week', menuCalendar && date > menuWeekEnd);
+        button.disabled = menuCalendar && date > menuWeekEnd;
         button.classList.toggle('is-outside-month', date.getMonth() !== month.getMonth());
         cell.append(button);
         row.append(cell);
@@ -125,12 +136,13 @@
 
   function closeCalendar(restoreFocus = false) {
     dropdown.hidden = true;
-    trigger.setAttribute('aria-expanded', 'false');
+    triggers.forEach((button) => button.setAttribute('aria-expanded', 'false'));
     document.querySelector('.today-header').classList.remove('calendar-open');
-    if (restoreFocus) trigger.focus({ preventScroll: true });
+    if (restoreFocus) activeTrigger.focus({ preventScroll: true });
   }
 
   function selectDate(date, restoreFocus = true) {
+    if (!dropdown.hidden && activeTrigger === menuTrigger && date > menuWeekEnd) return;
     selected = date;
     month = new Date(date.getFullYear(), date.getMonth(), 1, 12);
     renderWeek();
@@ -138,15 +150,23 @@
     document.dispatchEvent(new CustomEvent('nutrition:datechange', { detail: { date: key(selected) } }));
   }
 
-  trigger.addEventListener('click', () => {
-    if (!dropdown.hidden) return closeCalendar(true);
-    month = new Date(selected.getFullYear(), selected.getMonth(), 1, 12);
+  triggers.forEach((button) => button.addEventListener('click', () => {
+    if (!dropdown.hidden && activeTrigger === button) return closeCalendar(true);
+    closeCalendar();
+    activeTrigger = button;
+    dropdown.classList.toggle('is-menu-calendar', button === menuTrigger);
+    dropdown.setAttribute('aria-label', button === menuTrigger ? 'Choose menu date' : 'Choose date');
+    const host = button === menuTrigger ? document.querySelector('.menu-date-picker') : homeCalendarHost;
+    host.append(dropdown);
+    const calendarDate = button === menuTrigger && selected > menuWeekEnd ? menuWeekEnd : selected;
+    month = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1, 12);
     renderCalendar();
     dropdown.hidden = false;
-    trigger.setAttribute('aria-expanded', 'true');
-    document.querySelector('.today-header').classList.add('calendar-open');
+    button.setAttribute('aria-expanded', 'true');
+    document.querySelector('.today-header').classList.toggle('calendar-open', button === trigger);
     grid.querySelector('[tabindex="0"]').focus({ preventScroll: true });
-  });
+  }));
+  window.addEventListener('hashchange', () => closeCalendar());
 
   function slideIn(elements, direction) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -160,6 +180,7 @@
   }
 
   function changeMonth(direction) {
+    if (activeTrigger === menuTrigger && direction > 0 && next.disabled) return;
     month = new Date(month.getFullYear(), month.getMonth() + direction, 1, 12);
     renderCalendar();
     slideIn([grid], direction);
@@ -254,6 +275,7 @@
       target = new Date(date.getFullYear(), date.getMonth() + direction, Math.min(date.getDate(), lastDay), 12);
     } else return;
     event.preventDefault();
+    if (activeTrigger === menuTrigger && target > menuWeekEnd) target = menuWeekEnd;
     const oldMonth = month.getFullYear() * 12 + month.getMonth();
     month = new Date(target.getFullYear(), target.getMonth(), 1, 12);
     renderCalendar(target);
@@ -262,7 +284,7 @@
     grid.querySelector(`[data-date="${key(target)}"]`).focus({ preventScroll: true });
   });
   document.addEventListener('click', (event) => {
-    if (!dropdown.hidden && !dropdown.contains(event.target) && !trigger.contains(event.target)) closeCalendar();
+    if (!dropdown.hidden && !dropdown.contains(event.target) && !triggers.some((button) => button.contains(event.target))) closeCalendar();
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !dropdown.hidden) {
@@ -273,7 +295,7 @@
   dropdown.addEventListener('keydown', (event) => {
     if (event.key !== 'Tab') return;
     setTimeout(() => {
-      if (!dropdown.contains(document.activeElement) && !trigger.contains(document.activeElement)) closeCalendar();
+      if (!dropdown.contains(document.activeElement) && !activeTrigger.contains(document.activeElement)) closeCalendar();
     }, 0);
   });
 
