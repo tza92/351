@@ -96,7 +96,7 @@ body {
 
 .screen.sidebar-open .safe-area-top,
 .screen.sidebar-open .safe-area-bottom {
-  background: linear-gradient(to left, var(--drawer-surface, #27282b) var(--drawer-width, 0px), var(--system-bar-surface) 0);
+  background: linear-gradient(to left, var(--drawer-surface, #27282b) var(--drawer-visible-width, 0px), var(--system-bar-surface) 0);
   box-shadow: none;
 }
 
@@ -126,8 +126,9 @@ body {
 .screen.sidebar-open .safe-area-top::after,
 .screen.sidebar-open .safe-area-bottom::after {
   background: var(--drawer-backdrop, #0008);
-  opacity: 1;
-  clip-path: inset(0 var(--drawer-width, 0px) 0 0);
+  opacity: var(--drawer-opacity, 1);
+  clip-path: inset(0 var(--drawer-visible-width, 0px) 0 0);
+  transition: none;
 }
 
 .screen.modal-open .safe-area-top::after,

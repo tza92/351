@@ -25,6 +25,7 @@ const fullscreenLabel = document.querySelector('.fullscreen-label');
 const fullscreenStatus = document.querySelector('#fullscreen-status');
 let switchingFullscreen = false;
 let closingSidebar = false;
+let sidebarFrameAnimation;
 
 function syncSidebarFrame(open) {
   if (window.parent === window) return;
@@ -32,19 +33,33 @@ function syncSidebarFrame(open) {
   const styles = open ? getComputedStyle(sidebar) : null;
   const width = styles ? parseFloat(styles.width) : null;
   const surface = styles?.backgroundColor || null;
-  const backdrop = open ? getComputedStyle(sidebar, '::backdrop').backgroundColor : null;
-  window.parent.postMessage({ type: 'app-sidebar-state', open, width, surface, backdrop }, origin);
+  const backdropStyles = open ? getComputedStyle(sidebar, '::backdrop') : null;
+  const backdrop = backdropStyles?.backgroundColor || null;
+  const visibleWidth = open ? Math.max(0, Math.min(width, window.innerWidth - sidebar.getBoundingClientRect().left)) : 0;
+  const opacity = open ? Number(backdropStyles.opacity) : 0;
+  window.parent.postMessage({ type: 'app-sidebar-state', open, width, visibleWidth, surface, backdrop, opacity }, origin);
+}
+
+function syncSidebarAnimation() {
+  cancelAnimationFrame(sidebarFrameAnimation);
+  function tick() {
+    syncSidebarFrame(sidebar.open);
+    if (sidebar.open && sidebar.getAnimations().some((animation) => animation.playState === 'running')) {
+      sidebarFrameAnimation = requestAnimationFrame(tick);
+    }
+  }
+  tick();
 }
 
 window.addEventListener('resize', () => {
-  if (sidebar.open) syncSidebarFrame(!closingSidebar);
+  if (sidebar.open) syncSidebarAnimation();
 });
 
 async function closeSidebar() {
   if (!sidebar.open || closingSidebar) return;
   closingSidebar = true;
   sidebar.classList.add('is-closing');
-  syncSidebarFrame(false);
+  syncSidebarAnimation();
   await Promise.all(sidebar.getAnimations({ subtree: true }).map((animation) => animation.finished.catch(() => {})));
   sidebar.close();
   sidebar.classList.remove('is-closing');
@@ -79,7 +94,7 @@ document.querySelectorAll('.filter-button').forEach((button) => button.addEventL
   syncFullscreen();
   sidebar.showModal();
   button.setAttribute('aria-expanded', 'true');
-  syncSidebarFrame(true);
+  syncSidebarAnimation();
 }));
 document.querySelector('.sidebar-close').addEventListener('click', closeSidebar);
 sidebar.addEventListener('cancel', (event) => {

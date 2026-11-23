@@ -37,12 +37,12 @@ vm.runInNewContext(parent, {
 let dialogs = [];
 const app = vm.createContext({
   document: { querySelectorAll: () => dialogs },
-  window: { parent: { postMessage(data, target) {
+  window: { innerWidth: 430, parent: { postMessage(data, target) {
     assert.equal(target, origin);
     listeners.message({ source: frame.contentWindow, origin, data });
   } } },
   location: { protocol: 'http:', origin },
-  getComputedStyle: (dialog, pseudo) => pseudo ? { backgroundColor: dialog.backdrop } : dialog.styles,
+  getComputedStyle: (dialog, pseudo) => pseudo ? { backgroundColor: dialog.backdrop, opacity: dialog.opacity ?? '1' } : dialog.styles,
 });
 const start = main.indexOf('function syncModalFrame()');
 const end = main.indexOf('\n}', start) + 2;
@@ -94,6 +94,8 @@ assert.ok(styles.includes('background: var(--modal-backdrop, #0008)'));
 const drawer = {
   styles: { width: '310px', backgroundColor: 'rgb(40, 50, 60)' },
   backdrop: 'rgba(0, 0, 0, 0.7)',
+  left: 120,
+  getBoundingClientRect() { return { left: this.left }; },
 };
 app.sidebar = drawer;
 const drawerStart = main.indexOf('function syncSidebarFrame(');
@@ -105,6 +107,12 @@ assert.ok(classes.has('sidebar-open'));
 assert.equal(properties.get('--drawer-width'), '310px');
 assert.equal(properties.get('--drawer-surface'), drawer.styles.backgroundColor);
 assert.equal(properties.get('--drawer-backdrop'), drawer.backdrop);
+assert.equal(properties.get('--drawer-visible-width'), '310px');
+drawer.left = 300;
+drawer.opacity = '0.4';
+app.syncSidebarFrame(true);
+assert.equal(properties.get('--drawer-visible-width'), '130px');
+assert.equal(properties.get('--drawer-opacity'), '0.4');
 drawer.styles.width = '280px';
 drawer.styles.backgroundColor = 'rgb(70, 80, 90)';
 app.syncSidebarFrame(true);
@@ -112,7 +120,7 @@ assert.equal(properties.get('--drawer-width'), '280px');
 assert.equal(properties.get('--drawer-surface'), 'rgb(70, 80, 90)');
 app.syncSidebarFrame(false);
 assert.equal(classes.has('sidebar-open'), false);
-assert.ok(styles.includes('clip-path: inset(0 var(--drawer-width, 0px) 0 0)'));
+assert.ok(styles.includes('clip-path: inset(0 var(--drawer-visible-width, 0px) 0 0)'));
 frameListeners.load();
 assert.equal(properties.size, 0);
 console.log('Dialog frame checks passed: sheets, colours, stacked dialogs, drawer resizing, dismissal, and reload cleanup.');

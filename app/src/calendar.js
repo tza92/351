@@ -89,6 +89,8 @@
   }
 
   function renderCalendar(focusDate = selected) {
+    const currentMonth = month.getFullYear() === today.getFullYear() && month.getMonth() === today.getMonth();
+    document.querySelector('.calendar-jump').disabled = currentMonth;
     const menuCalendar = activeTrigger === menuTrigger;
     if (menuCalendar && focusDate > menuWeekEnd) focusDate = menuWeekEnd;
     next.disabled = menuCalendar && month >= new Date(today.getFullYear(), today.getMonth(), 1, 12);

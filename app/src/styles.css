@@ -375,8 +375,13 @@ button:disabled {
 }
 
 .calendar-today.is-current {
-  background: color-mix(in srgb, var(--icon-surface) 45%, var(--panel));
-  color: var(--muted);
+  background: var(--icon-surface);
+  color: var(--ink);
+  opacity: .42;
+}
+
+.calendar-jump:disabled {
+  opacity: .42;
 }
 
 .calendar-footer {

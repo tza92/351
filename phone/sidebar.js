@@ -31,9 +31,15 @@ window.addEventListener('message', (event) => {
   if (event.data?.type !== 'app-sidebar-state') return;
   if (typeof event.data.open !== 'boolean') return;
   if (event.data.open) {
-    const { width, surface, backdrop } = event.data;
+    const { width, visibleWidth, surface, backdrop, opacity } = event.data;
     if (typeof width === 'number' && Number.isFinite(width) && width > 0) {
       previewScreen.style.setProperty('--drawer-width', `${width}px`);
+    }
+    if (typeof visibleWidth === 'number' && Number.isFinite(visibleWidth) && visibleWidth >= 0) {
+      previewScreen.style.setProperty('--drawer-visible-width', `${visibleWidth}px`);
+    }
+    if (typeof opacity === 'number' && Number.isFinite(opacity)) {
+      previewScreen.style.setProperty('--drawer-opacity', String(Math.max(0, Math.min(1, opacity))));
     }
     if (typeof surface === 'string' && CSS.supports('color', surface)) {
       previewScreen.style.setProperty('--drawer-surface', surface);
@@ -50,5 +56,5 @@ appFrame.addEventListener('load', () => {
   delete previewScreen.dataset.sheetSurface;
   previewScreen.style.removeProperty('--sheet-surface');
   previewScreen.style.removeProperty('--modal-backdrop');
-  ['--drawer-width', '--drawer-surface', '--drawer-backdrop'].forEach((name) => previewScreen.style.removeProperty(name));
+  ['--drawer-width', '--drawer-visible-width', '--drawer-opacity', '--drawer-surface', '--drawer-backdrop'].forEach((name) => previewScreen.style.removeProperty(name));
 });
