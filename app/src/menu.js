@@ -219,10 +219,6 @@
     button.addEventListener('click', () => { location.hash = button.dataset.page; });
   });
   document.querySelector('.intake .text-link').addEventListener('click', () => { location.hash = 'menu'; });
-  document.querySelector('.add-button').addEventListener('click', () => {
-    location.hash = 'menu';
-    search.focus({ preventScroll: true });
-  });
   window.addEventListener('hashchange', () => showPage(location.hash === '#menu' ? 'menu' : 'home', true));
 
   function icon(name) {

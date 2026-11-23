@@ -125,6 +125,12 @@ body {
   clip-path: inset(0 min(334px, calc(100% - 32px)) 0 0);
 }
 
+.screen.modal-open .safe-area-top::after,
+.screen.modal-open .safe-area-bottom::after {
+  opacity: 1;
+  clip-path: inset(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .safe-area-top::after,
   .safe-area-bottom::after {

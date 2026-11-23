@@ -3,7 +3,9 @@
   const dropdown = document.querySelector('#calendar-dropdown');
   const homeCalendarHost = dropdown.parentElement;
   const menuTrigger = document.querySelector('.menu-calendar-toggle');
-  const triggers = [trigger, menuTrigger];
+  const trayTrigger = document.querySelector('.add-tray-date');
+  const calendarModal = document.querySelector('#calendar-modal');
+  const triggers = [trigger, menuTrigger, trayTrigger];
   let activeTrigger = trigger;
   const grid = document.querySelector('.calendar-days');
   const monthHeading = document.querySelector('#calendar-month');
@@ -57,6 +59,7 @@
     trigger.classList.toggle('is-history', !currentWeek);
     trigger.setAttribute('aria-label', `Choose date, ${fullDate.format(selected)} selected`);
     menuTrigger.setAttribute('aria-label', `Choose menu date, ${fullDate.format(selected)} selected`);
+    trayTrigger.setAttribute('aria-label', `Choose date to add to, ${fullDate.format(selected)} selected`);
   }
 
   function renderWeek() {
@@ -93,10 +96,13 @@
     document.querySelector('.calendar-today').classList.toggle('is-current', key(selected) === key(today));
     monthHeading.textContent = monthName.format(month);
     const first = startOfWeek(month);
+    const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0, 12).getDate();
+    const leadingDays = (month.getDay() + 6) % 7;
+    const weekCount = Math.ceil((leadingDays + daysInMonth) / 7);
     const rows = document.createDocumentFragment();
     let focusKey = key(focusDate);
     if (focusDate.getFullYear() !== month.getFullYear() || focusDate.getMonth() !== month.getMonth()) focusKey = key(month);
-    for (let rowIndex = 0; rowIndex < 6; rowIndex++) {
+    for (let rowIndex = 0; rowIndex < weekCount; rowIndex++) {
       const row = document.createElement('div');
       row.className = 'calendar-row';
       row.setAttribute('role', 'row');
@@ -136,9 +142,10 @@
 
   function closeCalendar(restoreFocus = false) {
     dropdown.hidden = true;
+    if (calendarModal.open) calendarModal.close();
     triggers.forEach((button) => button.setAttribute('aria-expanded', 'false'));
     document.querySelector('.today-header').classList.remove('calendar-open');
-    if (restoreFocus) activeTrigger.focus({ preventScroll: true });
+    if (restoreFocus && activeTrigger !== trayTrigger) activeTrigger.focus({ preventScroll: true });
   }
 
   function selectDate(date, restoreFocus = true) {
@@ -150,23 +157,87 @@
     document.dispatchEvent(new CustomEvent('nutrition:datechange', { detail: { date: key(selected) } }));
   }
 
-  triggers.forEach((button) => button.addEventListener('click', () => {
+  function openCalendar(button) {
     if (!dropdown.hidden && activeTrigger === button) return closeCalendar(true);
     closeCalendar();
     activeTrigger = button;
     dropdown.classList.toggle('is-menu-calendar', button === menuTrigger);
+    dropdown.classList.toggle('is-tray-calendar', button === trayTrigger);
+    dropdown.setAttribute('role', button === trayTrigger ? 'group' : 'dialog');
     dropdown.setAttribute('aria-label', button === menuTrigger ? 'Choose menu date' : 'Choose date');
-    const host = button === menuTrigger ? document.querySelector('.menu-date-picker') : homeCalendarHost;
+    const host = button === trayTrigger ? calendarModal
+      : button === menuTrigger ? document.querySelector('.menu-date-picker') : homeCalendarHost;
     host.append(dropdown);
     const calendarDate = button === menuTrigger && selected > menuWeekEnd ? menuWeekEnd : selected;
     month = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1, 12);
     renderCalendar();
     dropdown.hidden = false;
+    if (button === trayTrigger) calendarModal.showModal();
     button.setAttribute('aria-expanded', 'true');
     document.querySelector('.today-header').classList.toggle('calendar-open', button === trigger);
     grid.querySelector('[tabindex="0"]').focus({ preventScroll: true });
-  }));
+  }
+  [trigger, menuTrigger].forEach((button) => button.addEventListener('click', () => openCalendar(button)));
+  document.addEventListener('nutrition:opencalendar', () => openCalendar(trayTrigger));
   window.addEventListener('hashchange', () => closeCalendar());
+  let dismissWithoutTray = false;
+  calendarModal.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeCalendar();
+  });
+  calendarModal.addEventListener('close', () => {
+    calendarModal.style.removeProperty('transform');
+    dropdown.hidden = true;
+    trayTrigger.setAttribute('aria-expanded', 'false');
+    document.dispatchEvent(new CustomEvent('nutrition:calendarclose', { detail: { reopenTray: !dismissWithoutTray } }));
+    dismissWithoutTray = false;
+  });
+  calendarModal.addEventListener('click', (event) => {
+    if (event.target !== calendarModal) return;
+    const bounds = calendarModal.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right
+      || event.clientY < bounds.top || event.clientY > bounds.bottom) {
+      dismissWithoutTray = true;
+      closeCalendar();
+    }
+  });
+  const pullHandle = calendarModal.querySelector('.calendar-pull-handle');
+  let calendarPull = null;
+  let suppressPullClick = false;
+  pullHandle.addEventListener('click', (event) => {
+    if (!suppressPullClick || event.detail === 0) {
+      dismissWithoutTray = true;
+      closeCalendar();
+    }
+    suppressPullClick = false;
+  });
+  pullHandle.addEventListener('pointerdown', (event) => {
+    if (event.button !== 0 || !event.isPrimary) return;
+    suppressPullClick = false;
+    calendarPull = { id: event.pointerId, y: event.clientY };
+    calendarModal.getAnimations().forEach((animation) => animation.cancel());
+    pullHandle.setPointerCapture(event.pointerId);
+  });
+  pullHandle.addEventListener('pointermove', (event) => {
+    if (calendarPull?.id !== event.pointerId) return;
+    const distance = Math.max(0, event.clientY - calendarPull.y);
+    if (Math.abs(event.clientY - calendarPull.y) > 6) suppressPullClick = true;
+    calendarModal.style.transform = `translateY(${distance}px)`;
+  });
+  pullHandle.addEventListener('pointerup', (event) => {
+    if (calendarPull?.id !== event.pointerId) return;
+    const distance = event.clientY - calendarPull.y;
+    calendarPull = null;
+    calendarModal.style.removeProperty('transform');
+    if (distance > 48) {
+      dismissWithoutTray = true;
+      closeCalendar();
+    }
+  });
+  pullHandle.addEventListener('pointercancel', () => {
+    calendarPull = null;
+    calendarModal.style.removeProperty('transform');
+  });
 
   function slideIn(elements, direction) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -284,7 +355,7 @@
     grid.querySelector(`[data-date="${key(target)}"]`).focus({ preventScroll: true });
   });
   document.addEventListener('click', (event) => {
-    if (!dropdown.hidden && !dropdown.contains(event.target) && !triggers.some((button) => button.contains(event.target))) closeCalendar();
+    if (!dropdown.hidden && !calendarModal.open && !dropdown.contains(event.target) && !triggers.some((button) => button.contains(event.target))) closeCalendar();
   });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !dropdown.hidden) {
@@ -293,7 +364,7 @@
     }
   });
   dropdown.addEventListener('keydown', (event) => {
-    if (event.key !== 'Tab') return;
+    if (event.key !== 'Tab' || calendarModal.open) return;
     setTimeout(() => {
       if (!dropdown.contains(document.activeElement) && !activeTrigger.contains(document.activeElement)) closeCalendar();
     }, 0);

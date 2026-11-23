@@ -11,9 +11,15 @@ window.addEventListener('message', (event) => {
     }
     return;
   }
+  if (event.data?.type === 'app-modal-state') {
+    if (typeof event.data.open === 'boolean') {
+      previewScreen.classList.toggle('modal-open', event.data.open);
+    }
+    return;
+  }
   if (event.data?.type !== 'app-sidebar-state') return;
   if (typeof event.data.open !== 'boolean') return;
   previewScreen.classList.toggle('sidebar-open', event.data.open);
 });
 
-appFrame.addEventListener('load', () => previewScreen.classList.remove('sidebar-open'));
+appFrame.addEventListener('load', () => previewScreen.classList.remove('sidebar-open', 'modal-open'));

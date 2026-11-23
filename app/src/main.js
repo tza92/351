@@ -1,4 +1,18 @@
 const optionsButton = document.querySelector('.filter-button');
+function syncModalFrame() {
+  if (window.parent === window) return;
+  const origin = location.protocol === 'file:' ? '*' : location.origin;
+  const open = Boolean(document.querySelector('dialog[open]:not(#app-sidebar)'));
+  window.parent.postMessage({ type: 'app-modal-state', open }, origin);
+}
+
+new MutationObserver(syncModalFrame).observe(document.body, {
+  subtree: true,
+  attributes: true,
+  attributeFilter: ['open'],
+});
+window.addEventListener('load', syncModalFrame);
+
 let activeOptionsButton = optionsButton;
 const sidebar = document.querySelector('#app-sidebar');
 const fullscreenButton = document.querySelector('.fullscreen-toggle');
