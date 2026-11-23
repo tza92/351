@@ -4746,5 +4746,465 @@ window.nutritionFoodPhotos = {
     "image": "lunch-rotating-grain-salad.jpg",
     "imageScale": 1.5,
     "imagePosition": "50% 45%"
+  },
+  "Egg and Cheddar English Muffin": {
+    "image": "menu-extra-egg-muffin.jpg",
+    "imageScale": 1.9,
+    "imagePosition": "50% 52%"
+  },
+  "Scrambled Egg Patty": {
+    "image": "menu-extra-egg-muffin.jpg",
+    "imageScale": 1.9,
+    "imagePosition": "50% 52%"
+  },
+  "Arabic Stew with Green Beans": {
+    "image": "menu-extra-green-bean-stew.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%"
+  },
+  "Beef Barley Soup": {
+    "image": "menu-extra-beef-barley-soup.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%"
+  },
+  "Beef Vegetable Soup": {
+    "image": "menu-extra-beef-vegetable-soup.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Winter Vegetable and Beef Soup": {
+    "image": "menu-extra-beef-vegetable-soup.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Beef Taco El Grande": {
+    "image": "menu-extra-beef-taco.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%"
+  },
+  "Brown Rice and Carrot Soup": {
+    "image": "menu-extra-rice-vegetable-soup.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 55%"
+  },
+  "Chinese Spicy Garlic Eggplant": {
+    "image": "menu-extra-garlic-eggplant.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "50% 50%"
+  },
+  "Clam Chowder": {
+    "image": "menu-extra-clam-chowder.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%"
+  },
+  "Corn Chowder": {
+    "image": "menu-extra-corn-chowder.jpg",
+    "imageScale": 2.2,
+    "imagePosition": "15% 15%"
+  },
+  "Grilled Corn Soup": {
+    "image": "menu-extra-corn-chowder.jpg",
+    "imageScale": 2.2,
+    "imagePosition": "15% 15%"
+  },
+  "Corn Tortilla Wrap, 6\" White": {
+    "image": "menu-extra-corn-tortilla.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%"
+  },
+  "Italian Sausage with Peppers": {
+    "image": "menu-extra-sausage-peppers.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%"
+  },
+  "Kimchi": {
+    "image": "menu-extra-kimchi.jpg",
+    "imageScale": 2,
+    "imagePosition": "50% 45%"
+  },
+  "Matar Pilaf": {
+    "image": "menu-extra-matar-pilaf.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 60%"
+  },
+  "Mexican Inspired Meatball Soup": {
+    "image": "menu-extra-mexican-meatball-soup.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Pesto Chicken Breast": {
+    "image": "menu-extra-pesto-chicken.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Pulled Pork Grilled Cheese": {
+    "image": "menu-extra-pulled-pork-grilled-cheese.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Roast Fennel": {
+    "image": "menu-extra-roast-fennel.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%"
+  },
+  "Roasted Eggplant Slices": {
+    "image": "menu-extra-eggplant-slices.jpg",
+    "imageScale": 1.9,
+    "imagePosition": "50% 50%"
+  },
+  "Sauteed Zucchini and Yellow Squash": {
+    "image": "menu-extra-sauteed-squash.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Cheesy Street Corn Flat Bread": {
+    "image": "menu-extra-corn-flatbread.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%"
+  },
+  "Braised Korean Inspired Potatoes": {
+    "image": "menu-extra-korean-potatoes.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 55%"
+  },
+  "Korean Inspired Bibimbap Bowl with Seasoned Tofu": {
+    "image": "menu-extra-tofu-bibimbap.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Pickled Radish": {
+    "image": "menu-extra-pickled-radish.jpg",
+    "imageScale": 3.2,
+    "imagePosition": "15% 61%"
+  },
+  "Pineapple Slices": {
+    "image": "menu-extra-pineapple-slice.jpg",
+    "imageScale": 3,
+    "imagePosition": "75% 2%"
+  },
+  "Pulled BBQ Jackfruit Bowl": {
+    "image": "menu-extra-jackfruit-bowl.jpg",
+    "imageScale": 2.1,
+    "imagePosition": "65% 56%"
+  },
+  "Root Vegetable Stew": {
+    "image": "menu-extra-root-stew.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Rigatoni and White Beans with Italian Sausage Sauce": {
+    "image": "menu-extra-sausage-pasta.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Thai Sweet Chili Sauce": {
+    "image": "menu-extra-sweet-chili.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%"
+  },
+  "Jollof Rice": {
+    "image": "menu-extra-jollof-rice.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "50% 55%"
+  },
+  "Smoked Bacon Creamy Mac and Cheese": {
+    "image": "menu-extra-bacon-mac.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Candied Applewood Bacon": {
+    "image": "bacon.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%"
+  },
+  "Mushroom and Pepper Frittata": {
+    "image": "frittata.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 62%"
+  },
+  "Traditional Breakfast Quesadilla": {
+    "image": "quesadilla.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "48% 50%"
+  },
+  "Algerian Carrots": {
+    "image": "lunch-carrot-salad.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%"
+  },
+  "Amazonian Beans & Corn": {
+    "image": "lunch-corn-salsa.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%"
+  },
+  "Beef Bulgogi": {
+    "image": "lunch-beef-strips.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 60%"
+  },
+  "Beef Vegetable Stew": {
+    "image": "dinner-rotating-beef-stew.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 50%"
+  },
+  "Black Bean Chili": {
+    "image": "lunch-vegetarian-chili.jpg",
+    "imageScale": 2.4,
+    "imagePosition": "0% 0%"
+  },
+  "Broccoli Rabe with Roasted Garlic and Chilies": {
+    "image": "lunch-rotating-spinach.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "45% 40%"
+  },
+  "Chinese Pork Soup": {
+    "image": "lunch-rotating-hot-sour-soup.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Crispy Fried Onions": {
+    "image": "lunch-fried-onions.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "50% 50%"
+  },
+  "Curried Apple, Potato and Zucchini Soup": {
+    "image": "lunch-rotating-mulligatawny.jpg",
+    "imageScale": 2.5,
+    "imagePosition": "43% 100%"
+  },
+  "Curried Sweet Potato Soup": {
+    "image": "lunch-rotating-mulligatawny.jpg",
+    "imageScale": 2.5,
+    "imagePosition": "43% 100%"
+  },
+  "Dry Rubbed Turkey Breast ": {
+    "image": "dinner-rotating-roast-turkey.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "50% 50%"
+  },
+  "Fish Curry": {
+    "image": "lunch-rotating-fish-curry.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Goan Inspired Vegetable Curry": {
+    "image": "lunch-rotating-panang-curry.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Vegan Thai Red Vegetable Curry w/ Coconut Rice": {
+    "image": "lunch-rotating-panang-curry.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Herb Grilled Chicken": {
+    "image": "lunch-chipotle-chicken.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "55% 68%"
+  },
+  "Southwestern Grilled Chicken Breast": {
+    "image": "lunch-chipotle-chicken.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "55% 68%"
+  },
+  "Tex Mex Chicken Breast": {
+    "image": "lunch-chipotle-chicken.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "55% 68%"
+  },
+  "Lebanese Inspired Grilled Chicken": {
+    "image": "lunch-rotating-lemon-chicken.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Lemon Oregano Chicken": {
+    "image": "lunch-rotating-lemon-chicken.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Piri Piri Roasted Chicken": {
+    "image": "lunch-rotating-lemon-chicken.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Italian Vegetable Stew": {
+    "image": "lunch-rotating-ratatouille.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Jerk Tofu Taco": {
+    "image": "lunch-rotating-tofu-taco.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "50% 50%"
+  },
+  "Mustard Mayo": {
+    "image": "lunch-mayonnaise.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 45%"
+  },
+  "Pancakes with Maple Syrup": {
+    "image": "pancakes.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "45% 52%"
+  },
+  "Rice and Beans": {
+    "image": "lunch-rotating-rice-beans.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%"
+  },
+  "Roast Pork": {
+    "image": "lunch-rotating-pork-roast.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Roasted Curried Vegetables": {
+    "image": "lunch-rotating-roast-roots.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%"
+  },
+  "Roasted Carrots, Parsnips and Apples": {
+    "image": "lunch-rotating-roast-roots.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "50% 50%"
+  },
+  "Roasted Potato Soup": {
+    "image": "lunch-rotating-potato-leek-soup.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Salsa Rojo": {
+    "image": "lunch-salsa.jpg",
+    "imageScale": 1.1,
+    "imagePosition": "50% 50%"
+  },
+  "Sauteed Carrots with Cumin and Mint": {
+    "image": "dinner-glazed-carrots.jpg",
+    "imageScale": 1.15,
+    "imagePosition": "50% 50%"
+  },
+  "Sautéed Green Beans with Grape Tomatoes": {
+    "image": "lunch-rotating-green-beans.jpg",
+    "imageScale": 1.6,
+    "imagePosition": "48% 55%"
+  },
+  "Spanish Rice": {
+    "image": "lunch-rotating-mexican-rice.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Tomato Pesto Rice": {
+    "image": "lunch-rotating-mexican-rice.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Spicy Broccoli": {
+    "image": "dinner-rotating-roasted-broccoli.jpg",
+    "imageScale": 2,
+    "imagePosition": "50% 45%"
+  },
+  "Broccoli with Basil and Chives": {
+    "image": "dinner-rotating-roasted-broccoli.jpg",
+    "imageScale": 2,
+    "imagePosition": "50% 45%"
+  },
+  "Sesame Broccoli": {
+    "image": "dinner-rotating-roasted-broccoli.jpg",
+    "imageScale": 2,
+    "imagePosition": "50% 45%"
+  },
+  "Spicy Inspired Lebanese Potatoes": {
+    "image": "lunch-rotating-roast-potatoes.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Greek Style Potatoes": {
+    "image": "lunch-rotating-roast-potatoes.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Oven Roasted Potatoes": {
+    "image": "lunch-rotating-roast-potatoes.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Thyme Roasted Potatoes": {
+    "image": "lunch-rotating-roast-potatoes.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Steamed Cauliflower": {
+    "image": "lunch-raw-cauliflower.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "55% 50%"
+  },
+  "Cauliflower": {
+    "image": "lunch-raw-cauliflower.jpg",
+    "imageScale": 1.4,
+    "imagePosition": "55% 50%"
+  },
+  "Vegetable Cottage Pie": {
+    "image": "lunch-rotating-vegan-shepherd-pie.jpg",
+    "imageScale": 2.2,
+    "imagePosition": "53% 60%"
+  },
+  "Arrabbiata Pasta Sauce": {
+    "image": "dinner-marinara-sauce.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "50% 62%"
+  },
+  "Braised Bok Choy": {
+    "image": "lunch-bok-choy.jpg",
+    "imageScale": 1.2,
+    "imagePosition": "50% 50%"
+  },
+  "Garlic Roasted Cauliflower": {
+    "image": "lunch-roasted-cauliflower.jpg",
+    "imageScale": 1.3,
+    "imagePosition": "50% 50%"
+  },
+  "Niu Hua Laiki (Coconut Rice)": {
+    "image": "white-rice.jpg",
+    "imageScale": 1.12,
+    "imagePosition": "50% 48%"
+  },
+  "Perogies": {
+    "image": "lunch-rotating-pierogi.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Roasted Tomatoes": {
+    "image": "dinner-rotating-roast-tomatoes.jpg",
+    "imageScale": 1.7,
+    "imagePosition": "50% 50%"
+  },
+  "Sauteed Peppers": {
+    "image": "lunch-rotating-peppers-onions.jpg",
+    "imageScale": 2.4,
+    "imagePosition": "52% 35%"
+  },
+  "Spicy Chickpeas": {
+    "image": "lunch-crispy-chickpeas.jpg",
+    "imageScale": 1.8,
+    "imagePosition": "50% 63%"
+  },
+  "Spring Vegetable Coconut Green Curry": {
+    "image": "lunch-rotating-green-curry.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Tofu & Broccoli": {
+    "image": "lunch-rotating-tofu-rice-bowl.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
+  },
+  "Tomato Lentils": {
+    "image": "lunch-rotating-lentil-stew.jpg",
+    "imageScale": 1.5,
+    "imagePosition": "50% 70%"
+  },
+  "Vegetable Spring Rolls": {
+    "image": "lunch-rotating-spring-rolls.jpg",
+    "imageScale": 1.35,
+    "imagePosition": "50% 50%"
   }
 };

@@ -11,8 +11,14 @@
   const portionDialog = document.querySelector('#portion-dialog');
   const nutritionDialog = document.querySelector('#nutrition-dialog');
   let lastNutritionButton;
-  const portionInput = document.querySelector('#portion-input');
+  const portionUnit = document.querySelector('#portion-unit');
+  const unitPicker = portionDialog.querySelector('.portion-unit-picker');
+  const unitToggle = document.querySelector('#portion-unit-toggle');
+  const unitOptions = document.querySelector('#portion-unit-options');
+  const unitButtons = [...unitOptions.querySelectorAll('[data-unit]')];
   const quantityInput = document.querySelector('#quantity-input');
+  const quantityDecrease = portionDialog.querySelector('.quantity-decrease');
+  let originalServingDraft;
   const mealToggle = document.querySelector('.meal-picker-toggle');
   const mealMenu = document.querySelector('#meal-picker-menu');
   const mealOptions = [...mealMenu.querySelectorAll('[data-meal]')];
@@ -200,9 +206,8 @@
     const [year, month, day] = selectedDate.split('-').map(Number);
     const dateLabel = dateFormat.format(new Date(year, month - 1, day, 12));
     menuDate.textContent = dateLabel;
-    document.querySelector('.menu-cycle-note').textContent = resolved.cycleWeek
-      ? `${resolved.projected && menu ? 'Expected menu · ' : ''}Week ${resolved.cycleWeek} of 4` : '';
-    sectionTitle.textContent = selectedDate === app.dataset.today ? 'From Today’s Menu' : 'From the Menu';
+    sectionTitle.textContent = resolved.projected && menu ? 'Expected Menu'
+      : selectedDate === app.dataset.today ? 'From Today’s Menu' : 'From the Menu';
     foods = [];
     for (const [stationId, entries] of Object.entries(menu?.stations || {})) {
       entries.forEach((entry) => {
@@ -289,6 +294,29 @@
     if (lastNutritionButton?.isConnected) lastNutritionButton.focus({ preventScroll: true });
   });
 
+  function foodServingLabel(food) {
+    const namedMeat = /\b(chicken|turkey|duck|beef|veal|pork|ham|bacon|salami|pepperoni|prosciutto|pancetta|bologna|lamb|mutton|fish|seafood|salmon|tuna|cod|pollock|haddock|trout|halibut|tilapia|shrimp|prawns?|crab|lobster|clams?|mussels?|scallops?|oysters?)\b/i;
+    if (!food.meats.length || food.diets.includes('vegan') || namedMeat.test(food.name)) return food.serving;
+    const proteins = [
+      ['chicken', 'Chicken', /\bchicken\b/i],
+      ['turkey', 'Turkey', /\bturkey\b/i],
+      ['duck', 'Duck', /\bduck\b/i],
+      ['beef', 'Beef', /\b(beef|veal)\b/i],
+      ['pork', 'Pork', /\b(pork|ham|bacon|salami|pepperoni|chorizo|prosciutto|pancetta|bologna)\b/i],
+      ['lamb', 'Lamb', /\b(lamb|mutton)\b/i],
+      ['fish', 'Fish', /\b(fish|salmon|tuna|cod|pollock|haddock|trout|halibut|tilapia|surimi|imitation crab)\b/i],
+      ['shellfish', 'Shellfish', /\b(shrimp|prawns?|crab|lobster|clams?|mussels?|scallops?|oysters?)\b/i],
+    ];
+    for (const ingredient of (food.nutrition?.ingredients || '').split(',')) {
+      // A fish sauce, chicken stock, or flavouring does not identify the filling.
+      if (/\b(stock|broth|base|sauce|flavou?r|seasoning|concentrate|bouillon|extract|fat|lard|gelatin)\b/i.test(ingredient)) continue;
+      const protein = proteins.find(([type, , pattern]) => food.meats.includes(type) && pattern.test(ingredient)
+        && !(type === 'shellfish' && /imitation crab/i.test(ingredient)));
+      if (protein) return `${protein[1]}, ${food.serving}`;
+    }
+    return food.serving;
+  }
+
   function createFoodRow(food) {
     const row = document.createElement('li');
     row.className = 'menu-food';
@@ -300,14 +328,14 @@
         </span>
         <span class="food-details">
           <span class="food-name">${escapeHtml(food.name)}</span>
-          <span class="food-serving">${escapeHtml(food.serving)}</span>
+          <span class="food-serving">${escapeHtml(foodServingLabel(food))}</span>
         </span>
       </button>
       <div class="food-controls">
-        <button class="food-quantity" type="button" data-action="edit" aria-label="Edit ${escapeHtml(food.name)} quantity, ${food.quantity} ${food.quantity === 1 ? 'serving' : 'servings'}" aria-haspopup="dialog" aria-controls="portion-dialog">
+        <button class="food-quantity" type="button" data-action="edit" aria-label="Edit ${escapeHtml(food.name)} quantity, ${foodAmountLabel(food, food.quantity)}" aria-haspopup="dialog" aria-controls="portion-dialog">
           <span class="food-quantity-value">${food.quantity}</span>${icon('edit')}
         </button>
-        <button class="food-add${food.added ? ' has-added' : ''}" type="button" data-action="add" aria-label="Add ${escapeHtml(food.name)}${food.added ? ` again, ${food.added} servings added this visit` : ''}">${icon(food.added ? 'check' : 'plus')}</button>
+        <button class="food-add${food.added ? ' has-added' : ''}" type="button" data-action="add" aria-label="Add ${escapeHtml(food.name)}${food.added ? ` again, ${foodAmountLabel(food, food.added)} added this visit` : ''}">${icon(food.added ? 'check' : 'plus')}</button>
       </div>`;
     return row;
   }
@@ -616,8 +644,12 @@
       editingFood = food;
       lastEditButton = button;
       portionDialog.querySelector('.portion-food-name').textContent = food.name;
-      portionInput.value = food.serving;
+      setServingUnit(food.measureUnit || 'each');
+      closeUnitDropdown();
+      originalServingDraft = { serving: food.serving, unit: portionUnit.value };
       quantityInput.value = food.quantity;
+      quantityInput.setCustomValidity('');
+      syncQuantityControls();
       portionDialog.showModal();
       quantityInput.focus();
       quantityInput.select();
@@ -625,32 +657,135 @@
       food.added += food.quantity;
       button.classList.add('has-added');
       button.innerHTML = icon('check');
-      button.setAttribute('aria-label', `Add ${food.name} again, ${food.added} servings added this visit`);
+      button.setAttribute('aria-label', `Add ${food.name} again, ${foodAmountLabel(food, food.added)} added this visit`);
       clearTimeout(noticeTimeout);
-      notice.textContent = `${food.quantity} ${food.quantity === 1 ? 'serving' : 'servings'} of ${food.name} added.`;
+      notice.textContent = `${foodAmountLabel(food, food.quantity)} of ${food.name} added.`;
       noticeTimeout = setTimeout(() => { notice.textContent = ''; }, 3500);
     }
   });
 
+  function syncQuantityControls() {
+    quantityDecrease.disabled = !quantityInput.value || Number(quantityInput.value) <= 1;
+  }
+
+  function setServingUnit(unit) {
+    portionUnit.value = unit;
+    document.querySelector('#portion-unit-value').textContent = unit;
+    unitButtons.forEach((button) => button.setAttribute('aria-selected', String(button.dataset.unit === unit)));
+  }
+
+  function closeUnitDropdown(restoreFocus = false) {
+    unitOptions.hidden = true;
+    unitToggle.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) unitToggle.focus({ preventScroll: true });
+  }
+
+  function openUnitDropdown() {
+    quantityInput.blur();
+    unitOptions.hidden = false;
+    unitToggle.setAttribute('aria-expanded', 'true');
+    const selected = unitButtons.find((button) => button.dataset.unit === portionUnit.value) || unitButtons[0];
+    selected.focus({ preventScroll: true });
+    selected.scrollIntoView({ block: 'nearest' });
+  }
+
+  unitToggle.addEventListener('click', () => unitOptions.hidden ? openUnitDropdown() : closeUnitDropdown(true));
+  unitToggle.addEventListener('keydown', (event) => {
+    if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
+    event.preventDefault();
+    openUnitDropdown();
+  });
+  unitOptions.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-unit]');
+    if (!button) return;
+    setServingUnit(button.dataset.unit);
+    closeUnitDropdown(true);
+  });
+  unitOptions.addEventListener('keydown', (event) => {
+    const index = unitButtons.indexOf(document.activeElement);
+    let next;
+    if (event.key === 'ArrowDown') next = (index + 1) % unitButtons.length;
+    if (event.key === 'ArrowUp') next = (index - 1 + unitButtons.length) % unitButtons.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = unitButtons.length - 1;
+    if (next !== undefined) {
+      event.preventDefault();
+      unitButtons[next].focus({ preventScroll: true });
+      unitButtons[next].scrollIntoView({ block: 'nearest' });
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      event.stopPropagation();
+      closeUnitDropdown(true);
+    } else if (event.key === 'Tab') closeUnitDropdown(true);
+  });
+  portionDialog.addEventListener('click', (event) => {
+    if (!unitPicker.contains(event.target)) closeUnitDropdown();
+  });
+  portionDialog.addEventListener('cancel', (event) => {
+    if (unitOptions.hidden) return;
+    event.preventDefault();
+    closeUnitDropdown(true);
+  });
+
+  function foodAmountLabel(food, amount) {
+    const unit = food.measureUnit;
+    if (!unit || unit === 'each' || unit === 'serving') return `${amount} ${amount === 1 ? 'serving' : 'servings'}`;
+    const plural = ['piece', 'slice', 'cup'].includes(unit) && amount !== 1 ? `${unit}s` : unit;
+    return `${amount} ${plural}`;
+  }
+
+  for (const [selector, change] of [['.quantity-decrease', -1], ['.quantity-increase', 1]]) {
+    portionDialog.querySelector(selector).addEventListener('click', () => {
+      const current = Number(quantityInput.value);
+      const next = Number.isSafeInteger(current) && current >= 1 ? Math.max(1, current + change) : 1;
+      quantityInput.value = Number.isSafeInteger(next) ? next : current;
+      quantityInput.setCustomValidity('');
+      syncQuantityControls();
+    });
+  }
+  quantityInput.addEventListener('input', () => {
+    quantityInput.setCustomValidity('');
+    syncQuantityControls();
+  });
+  quantityInput.addEventListener('change', () => {
+    if (quantityInput.value && Number(quantityInput.value) < 1) quantityInput.value = 1;
+    syncQuantityControls();
+  });
+
   portionDialog.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
-    const serving = portionInput.value.trim();
-    if (!serving) {
-      portionInput.setCustomValidity('Enter a serving size.');
-      portionInput.reportValidity();
+    const quantity = Number(quantityInput.value);
+    if (!Number.isSafeInteger(quantity) || quantity < 1) {
+      quantityInput.setCustomValidity('Enter a whole quantity of at least 1.');
+      quantityInput.reportValidity();
       return;
     }
+    const unit = portionUnit.value;
+    const serving = unit === originalServingDraft.unit ? originalServingDraft.serving
+      : unit === 'each' ? editingFood.nutrition?.portion || 'each' : unit;
+    if (unit !== (editingFood.measureUnit || 'each')) {
+      editingFood.addedByUnit ||= {};
+      editingFood.addedByUnit[editingFood.measureUnit || 'each'] = editingFood.added;
+      editingFood.added = editingFood.addedByUnit[unit] || 0;
+    }
     editingFood.serving = serving;
-    editingFood.quantity = Number(quantityInput.value);
+    editingFood.quantity = quantity;
+    editingFood.measureUnit = unit;
     const row = list.querySelector(`[data-food-id="${editingFood.id}"]`);
     row.querySelector('.food-quantity-value').textContent = editingFood.quantity;
-    row.querySelector('.food-serving').textContent = serving;
-    row.querySelector('.food-quantity').setAttribute('aria-label', `Edit ${editingFood.name} quantity, ${editingFood.quantity} ${editingFood.quantity === 1 ? 'serving' : 'servings'}`);
+    row.querySelector('.food-serving').textContent = foodServingLabel(editingFood);
+    row.querySelector('.food-quantity').setAttribute('aria-label', `Edit ${editingFood.name} quantity, ${foodAmountLabel(editingFood, quantity)}`);
+    const addButton = row.querySelector('.food-add');
+    addButton.classList.toggle('has-added', editingFood.added > 0);
+    addButton.innerHTML = icon(editingFood.added ? 'check' : 'plus');
+    addButton.setAttribute('aria-label', `Add ${editingFood.name}${editingFood.added ? ` again, ${foodAmountLabel(editingFood, editingFood.added)} added this visit` : ''}`);
     portionDialog.close();
   });
-  portionInput.addEventListener('input', () => portionInput.setCustomValidity(''));
   portionDialog.querySelector('.portion-cancel').addEventListener('click', () => portionDialog.close());
-  portionDialog.addEventListener('close', () => lastEditButton?.focus({ preventScroll: true }));
+  portionDialog.addEventListener('close', () => {
+    closeUnitDropdown();
+    lastEditButton?.focus({ preventScroll: true });
+  });
 
   document.addEventListener('nutrition:datechange', (event) => {
     selectedDate = event.detail.date;

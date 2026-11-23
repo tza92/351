@@ -82,7 +82,8 @@
     "imagePosition": "50% 48%",
     "menuItems": [
       "Jasmine Rice",
-      "Fluffy Rice"
+      "Fluffy Rice",
+      "Niu Hua Laiki (Coconut Rice)"
     ]
   },
   "plain-granola": {
@@ -309,7 +310,8 @@
   "bacon": {
     "menuItems": [
       "Bacon",
-      "Applewood Smoked Bacon"
+      "Applewood Smoked Bacon",
+      "Candied Applewood Bacon"
     ],
     "source": "https://www.pexels.com/photo/close-up-photo-of-cooked-bacon-4110370/",
     "download": "https://images.pexels.com/photos/4110370/pexels-photo-4110370.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -407,7 +409,8 @@
   },
   "frittata": {
     "menuItems": [
-      "Breakfaste Frittata with Mozzarella"
+      "Breakfaste Frittata with Mozzarella",
+      "Mushroom and Pepper Frittata"
     ],
     "source": "https://www.pexels.com/photo/a-close-up-shot-of-a-frittata-in-a-skillet-5639255/",
     "download": "https://images.pexels.com/photos/5639255/pexels-photo-5639255.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -420,7 +423,8 @@
       "Mexican Breakfast Quesadilla",
       "Grilled Vegetable and Bean Quesadillas",
       "Spicy Black Bean Quesadilla",
-      "Grilled Vegetable and Cheese Quesadilla"
+      "Grilled Vegetable and Cheese Quesadilla",
+      "Traditional Breakfast Quesadilla"
     ],
     "source": "https://www.pexels.com/photo/close-up-photo-of-delicious-quesadilla-on-a-plate-5848713/",
     "download": "https://images.pexels.com/photos/5848713/pexels-photo-5848713.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -453,7 +457,8 @@
   },
   "pancakes": {
     "menuItems": [
-      "Pancakes"
+      "Pancakes",
+      "Pancakes with Maple Syrup"
     ],
     "source": "https://www.pexels.com/photo/a-stack-of-pancakes-7144306/",
     "download": "https://images.pexels.com/photos/7144306/pexels-photo-7144306.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -1007,7 +1012,8 @@
     "menuItems": [
       "Light Type Mayonnaise",
       "Shawarma Garlic Sauce",
-      "Dip, Garlic, Creamy Sauce, 44 ml, CDN"
+      "Dip, Garlic, Creamy Sauce, 44 ml, CDN",
+      "Mustard Mayo"
     ],
     "photographer": "jules",
     "license": "CC BY 2.0",
@@ -1332,7 +1338,8 @@
     "source": "https://commons.wikimedia.org/wiki/File:R%C3%B6stzwiebeln.jpg",
     "download": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/07/R%C3%B6stzwiebeln.jpg/960px-R%C3%B6stzwiebeln.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
     "menuItems": [
-      "Crispy Onion Strings"
+      "Crispy Onion Strings",
+      "Crispy Fried Onions"
     ],
     "photographer": "Daniel Naber",
     "license": "CC BY-SA 3.0",
@@ -1597,7 +1604,8 @@
       "Mongolian Beef Stir-Fry",
       "Mongolian Inspired Beef",
       "Beef Stir-Fry",
-      "Hoisin Beef Stir-Fry"
+      "Hoisin Beef Stir-Fry",
+      "Beef Bulgogi"
     ],
     "source": "https://www.pexels.com/photo/sizzling-beef-stir-fry-with-vegetables-in-pan-34429558/",
     "download": "https://images.pexels.com/photos/34429558/pexels-photo-34429558.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -1623,7 +1631,10 @@
   "lunch-chipotle-chicken": {
     "menuItems": [
       "Marinated Chipotle Chicken Breast",
-      "Nacho Bar-Fajita Chicken"
+      "Nacho Bar-Fajita Chicken",
+      "Herb Grilled Chicken",
+      "Southwestern Grilled Chicken Breast",
+      "Tex Mex Chicken Breast"
     ],
     "source": "https://www.pexels.com/photo/a-pan-with-chicken-breast-8250430/",
     "download": "https://images.pexels.com/photos/8250430/pexels-photo-8250430.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -1781,7 +1792,8 @@
       "Roasted Corn Salad",
       "Mexican Corn Salad",
       "Sweet Garden Corn Salad",
-      "Quinoa, Corn and Black Bean Side Salad"
+      "Quinoa, Corn and Black Bean Side Salad",
+      "Amazonian Beans & Corn"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/2019/08/corn-salsa-social.jpg",
     "imageScale": 1.2,
@@ -1793,7 +1805,8 @@
     "menuItems": [
       "Mild Chunky Salsa",
       "Salsa Sauce",
-      "Salsa Roja"
+      "Salsa Roja",
+      "Salsa Rojo"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/2020/09/homemade-salsa-social.jpg",
     "imageScale": 1.1,
@@ -1855,7 +1868,8 @@
     "source": "https://www.loveandlemons.com/vegetarian-chili-recipe/",
     "menuItems": [
       "Three Bean and Vegetable Chili",
-      "Black Bean and Sweet Potato Chili"
+      "Black Bean and Sweet Potato Chili",
+      "Black Bean Chili"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/10/vegetarian-chili.jpg",
     "imageScale": 2.4,
@@ -1900,7 +1914,8 @@
     "source": "https://www.loveandlemons.com/roasted-chickpeas/",
     "menuItems": [
       "Crispy Chickpeas",
-      "Paprika Roasted Chickpeas"
+      "Paprika Roasted Chickpeas",
+      "Spicy Chickpeas"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/02/IMG_16074.jpg",
     "imageScale": 1.8,
@@ -1968,7 +1983,8 @@
     "menuItems": [
       "Moroccan Carrot Salad",
       "Pickled Carrots",
-      "Curried Carrot Salad"
+      "Curried Carrot Salad",
+      "Algerian Carrots"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/03/carrot-salad-1.jpg",
     "imageScale": 1.2,
@@ -2015,7 +2031,8 @@
     "menuItems": [
       "Sesame Bok Choy",
       "Chili Garlic Bok Choy",
-      "Sauteed Bok Choy"
+      "Sauteed Bok Choy",
+      "Braised Bok Choy"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2022/05/bok-choy-1.jpg",
     "imageScale": 1.2,
@@ -2088,7 +2105,8 @@
     "menuItems": [
       "Turmeric Roasted Cauliflower",
       "Roasted Cauliflower with Citrus Tahini and Caramelized Onions",
-      "Roasted Cauliflower & Raisin Salad"
+      "Roasted Cauliflower & Raisin Salad",
+      "Garlic Roasted Cauliflower"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/2026/08/roasted-cauliflower-1.jpg",
     "imageScale": 1.3,
@@ -2254,7 +2272,9 @@
   },
   "lunch-raw-cauliflower": {
     "menuItems": [
-      "Fresh Chopped Cauliflower"
+      "Fresh Chopped Cauliflower",
+      "Steamed Cauliflower",
+      "Cauliflower"
     ],
     "source": "https://www.pexels.com/photo/fresh-cauliflower-on-rustic-wooden-surface-36472812/",
     "download": "https://images.pexels.com/photos/36472812/pexels-photo-36472812.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=600",
@@ -2300,7 +2320,8 @@
     "menuItems": [
       "Herbed Tomato Sauce",
       "Pomodoro Sauce",
-      "Marinara Sauce"
+      "Marinara Sauce",
+      "Arrabbiata Pasta Sauce"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/12/marinara-sauce-recipe.jpg",
     "imageScale": 1.8,
@@ -2353,7 +2374,8 @@
       "Orange Glazed Carrots",
       "Glazed Baby Carrots",
       "Carrots with Garlic and Rosemary",
-      "Cumin & Honey Roasted Carrots"
+      "Cumin & Honey Roasted Carrots",
+      "Sauteed Carrots with Cumin and Mint"
     ],
     "download": "https://www.recipetineats.com/tachyon/2018/11/Brown-Sugar-Roast-Carrots_3.jpg",
     "imageScale": 1.15,
@@ -2635,7 +2657,11 @@
       "Rosemary Roasted Potatoes",
       "Sesame and Soy Roasted Potatoes",
       "Sumac Roasted Potatoes",
-      "Roasted Peruvian Potatoes"
+      "Roasted Peruvian Potatoes",
+      "Spicy Inspired Lebanese Potatoes",
+      "Greek Style Potatoes",
+      "Oven Roasted Potatoes",
+      "Thyme Roasted Potatoes"
     ],
     "download": "https://www.recipetineats.com/tachyon/2019/10/Duck-Fat-Potatoes_2.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -2745,7 +2771,9 @@
     "menuItems": [
       "Mexican Rice Pilaf",
       "Cajun Rice",
-      "Creole Rice"
+      "Creole Rice",
+      "Spanish Rice",
+      "Tomato Pesto Rice"
     ],
     "download": "https://www.recipetineats.com/tachyon/2017/10/Mexican-Red-Rice_-2.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -2768,7 +2796,8 @@
     "source": "https://www.recipetineats.com/jamaican-rice-and-peas/",
     "menuItems": [
       "Jamaican Rice and Beans",
-      "Black Bean Rice"
+      "Black Bean Rice",
+      "Rice and Beans"
     ],
     "download": "https://www.recipetineats.com/tachyon/2023/01/Jamaican-Rice-and-Peas-Beans_8.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -2804,7 +2833,8 @@
       "Sauteed Beans & Tomato",
       "Steamed Green Beans",
       "Green Beans in Oyster Sauce",
-      "Sweet and Spicy Bean Stir-Fry"
+      "Sweet and Spicy Bean Stir-Fry",
+      "Sautéed Green Beans with Grape Tomatoes"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/2022/11/sauteed-green-beans-1.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -2846,7 +2876,9 @@
       "Tandoori Root Vegetables",
       "Roasted Parsnips",
       "Shaved Root Vegetable and Lemon",
-      "Roasted Root Vegetables"
+      "Roasted Root Vegetables",
+      "Roasted Curried Vegetables",
+      "Roasted Carrots, Parsnips and Apples"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2022/11/roasted-root-vegetables-1.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -2928,7 +2960,8 @@
       "Sauteed Kale",
       "Braised Escarole",
       "Braised Greens",
-      "Kale and Cabbage Chili Stir-Fry"
+      "Kale and Cabbage Chili Stir-Fry",
+      "Broccoli Rabe with Roasted Garlic and Chilies"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/01/sauteed-spinach-recipe.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -2995,7 +3028,8 @@
   "lunch-rotating-pierogi": {
     "source": "https://www.spendwithpennies.com/homemade-pierogi/",
     "menuItems": [
-      "Sautéed Perogies and Caramelized Onions"
+      "Sautéed Perogies and Caramelized Onions",
+      "Perogies"
     ],
     "download": "https://www.spendwithpennies.com/wp-content/uploads/2024/05/1200-Homemade-Pierogi-2-SpendWithPennies.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3010,7 +3044,8 @@
     "source": "https://www.recipetineats.com/ratatouille/",
     "menuItems": [
       "Ratatouille",
-      "Baked Zucchini and Tomatoes"
+      "Baked Zucchini and Tomatoes",
+      "Italian Vegetable Stew"
     ],
     "download": "https://www.recipetineats.com/tachyon/2021/04/Ratatouille_0.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3066,7 +3101,8 @@
       "Sauteed Peppers and Red Onions",
       "Sautéed Sugar Snap Peas with Red Peppers",
       "Grilled Peppers and Onions",
-      "Sauteed Red and Green Peppers"
+      "Sauteed Red and Green Peppers",
+      "Sauteed Peppers"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/06/fajitas.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3329,7 +3365,8 @@
     "menuItems": [
       "Spicy Red Fish Curry",
       "Spicy Red Thai Fish Curry",
-      "Goan Fish Curry"
+      "Goan Fish Curry",
+      "Fish Curry"
     ],
     "download": "https://www.recipetineats.com/tachyon/2020/10/Goan-Fish-Curry_6.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3447,7 +3484,8 @@
       "Middle Eastern Lentil Chili",
       "Turkey Lentil Soup",
       "Lentil and Vegetable Curry",
-      "Ethiopian Tomato Lentil Stew"
+      "Ethiopian Tomato Lentil Stew",
+      "Tomato Lentils"
     ],
     "download": "https://www.recipetineats.com/tachyon/2017/03/Lentil-Soup-6.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3537,7 +3575,9 @@
     "menuItems": [
       "Panang Curry (Vegetable)",
       "Thai Red Curry Sauce",
-      "Thai Pumpkin Curry Sauce"
+      "Thai Pumpkin Curry Sauce",
+      "Goan Inspired Vegetable Curry",
+      "Vegan Thai Red Vegetable Curry w/ Coconut Rice"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/2024/12/red-curry-recipe-social.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3559,7 +3599,8 @@
   "lunch-rotating-vegan-shepherd-pie": {
     "source": "https://www.noracooks.com/vegan-shepherds-pie/",
     "menuItems": [
-      "Shepherd's Pie with TVP"
+      "Shepherd's Pie with TVP",
+      "Vegetable Cottage Pie"
     ],
     "download": "https://www.noracooks.com/wp-content/uploads/2019/02/IMG_3356-500x500.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -3639,7 +3680,8 @@
   "lunch-rotating-spring-rolls": {
     "source": "https://www.recipetineats.com/spring-rolls/",
     "menuItems": [
-      "Mini Vegetable Spring Rolls with Thai Sauce"
+      "Mini Vegetable Spring Rolls with Thai Sauce",
+      "Vegetable Spring Rolls"
     ],
     "download": "https://www.recipetineats.com/tachyon/2017/09/Spring-Rolls-6.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -4024,7 +4066,8 @@
   "lunch-rotating-hot-sour-soup": {
     "source": "https://www.recipetineats.com/hot-and-sour-soup/",
     "menuItems": [
-      "Hot and Sour Chinese Pork Soup"
+      "Hot and Sour Chinese Pork Soup",
+      "Chinese Pork Soup"
     ],
     "download": "https://www.recipetineats.com/tachyon/2019/02/Hot-and-Sour-Soup_1_6.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -5208,7 +5251,8 @@
     "menuItems": [
       "Adobo Rubbed Pork Tenderloin",
       "Lemon Pepper Pork Roast",
-      "Italian Inspired Porchetta"
+      "Italian Inspired Porchetta",
+      "Roast Pork"
     ],
     "download": "https://www.recipetineats.com/tachyon/2018/07/Brown-Sugar-Caramelised-Pork-Roast_1.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -5229,7 +5273,10 @@
       "Lemon and Oregano Roast Chicken",
       "Lemon Chicken",
       "Poached Lemongrass Chicken",
-      "Vietnamese Inspired Lemongrass Chicken"
+      "Vietnamese Inspired Lemongrass Chicken",
+      "Lebanese Inspired Grilled Chicken",
+      "Lemon Oregano Chicken",
+      "Piri Piri Roasted Chicken"
     ],
     "download": "https://www.recipetineats.com/tachyon/2018/09/Greek-Feast_3.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -5335,7 +5382,8 @@
   "lunch-rotating-potato-leek-soup": {
     "source": "https://www.recipetineats.com/leek-and-potato-soup/",
     "menuItems": [
-      "Roasted Potato and Leek Soup"
+      "Roasted Potato and Leek Soup",
+      "Roasted Potato Soup"
     ],
     "download": "https://www.recipetineats.com/tachyon/2015/10/Potato-Leek-Soup_5.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -5582,7 +5630,8 @@
       "Thai Curry Vegetables",
       "Thai Curry",
       "African Inspired Sweet Potato Stew",
-      "Curried Roasted Vegetable Stew"
+      "Curried Roasted Vegetable Stew",
+      "Spring Vegetable Coconut Green Curry"
     ],
     "download": "https://images.immediate.co.uk/production/volatile/sites/30/2020/08/vegetarian-thai-curry-12b120a.jpg?resize=440%2C230",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -5785,7 +5834,8 @@
   "lunch-rotating-tofu-taco": {
     "source": "https://www.noracooks.com/vegan-tacos/",
     "menuItems": [
-      "Spiced Potato and Tofu Breakfast Tacos"
+      "Spiced Potato and Tofu Breakfast Tacos",
+      "Jerk Tofu Taco"
     ],
     "download": "https://www.noracooks.com/wp-content/uploads/2024/02/tofu-tacos-1-2-500x500.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -5840,7 +5890,8 @@
   "lunch-rotating-tofu-rice-bowl": {
     "source": "https://www.noracooks.com/teriyaki-tofu/",
     "menuItems": [
-      "Tofu Teriyaki Rice Bowl"
+      "Tofu Teriyaki Rice Bowl",
+      "Tofu & Broccoli"
     ],
     "download": "https://www.noracooks.com/wp-content/uploads/2023/07/teriyaki-tofu-1-2-500x500.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -6016,7 +6067,9 @@
   "lunch-rotating-mulligatawny": {
     "source": "https://www.bbcgoodfood.com/recipes/mulligatawny-soup",
     "menuItems": [
-      "Mulligatawny Soup"
+      "Mulligatawny Soup",
+      "Curried Apple, Potato and Zucchini Soup",
+      "Curried Sweet Potato Soup"
     ],
     "download": "https://images.immediate.co.uk/production/volatile/sites/30/2021/02/Mulligatawny-soup-dd4e571.jpg?resize=900%2C471",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -6551,7 +6604,10 @@
     "source": "https://www.loveandlemons.com/roasted-broccoli/",
     "menuItems": [
       "Roasted Broccoli",
-      "Charred Broccoli & Chilis"
+      "Charred Broccoli & Chilis",
+      "Spicy Broccoli",
+      "Broccoli with Basil and Chives",
+      "Sesame Broccoli"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2020/01/broccoli-recipes.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -6635,7 +6691,8 @@
   "dinner-rotating-beef-stew": {
     "source": "https://www.recipetineats.com/beef-stew/",
     "menuItems": [
-      "Stifado"
+      "Stifado",
+      "Beef Vegetable Stew"
     ],
     "download": "https://www.recipetineats.com/tachyon/2018/04/Beef-Stew_0.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -6710,7 +6767,8 @@
   "dinner-rotating-roast-tomatoes": {
     "source": "https://www.loveandlemons.com/roasted-tomatoes/",
     "menuItems": [
-      "Oven Blistered Tomatoes"
+      "Oven Blistered Tomatoes",
+      "Roasted Tomatoes"
     ],
     "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2019/08/roasted-tomatoes.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -7274,7 +7332,8 @@
   "dinner-rotating-roast-turkey": {
     "source": "https://www.recipetineats.com/garlic-herb-butter-roasted-turkey-breast/",
     "menuItems": [
-      "Moroccan Roast Turkey"
+      "Moroccan Roast Turkey",
+      "Dry Rubbed Turkey Breast "
     ],
     "download": "https://www.recipetineats.com/tachyon/2017/11/Herb-Garlic-Butter-Roast-Turkey-Breast-4.jpg",
     "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
@@ -7607,6 +7666,441 @@
       "Lime Cilantro Shrimp Burrito": {
         "imageScale": 2.7,
         "imagePosition": "84% 45%"
+      }
+    }
+  },
+  "menu-extra-egg-muffin": {
+    "source": "https://www.loveandlemons.com/breakfast-sandwich/",
+    "menuItems": [
+      "Egg and Cheddar English Muffin",
+      "Scrambled Egg Patty"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2022/09/breakfast-sandwich-1.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Egg and Cheddar English Muffin": {
+        "imageScale": 1.9,
+        "imagePosition": "50% 52%"
+      },
+      "Scrambled Egg Patty": {
+        "imageScale": 1.9,
+        "imagePosition": "50% 52%"
+      }
+    }
+  },
+  "menu-extra-green-bean-stew": {
+    "source": "https://www.themediterraneandish.com/greek-green-beans-fasolakia/",
+    "menuItems": [
+      "Arabic Stew with Green Beans"
+    ],
+    "download": "https://www.themediterraneandish.com/wp-content/uploads/2025/08/TMD-Green-Beans-Fasolakia-Leads-02-Horizontal.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Arabic Stew with Green Beans": {
+        "imageScale": 1.5,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-beef-barley-soup": {
+    "source": "https://www.spendwithpennies.com/beef-barley-soup/",
+    "menuItems": [
+      "Beef Barley Soup"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2017/12/Beef-Barley-Soup-23-500x500.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Beef Barley Soup": {
+        "imageScale": 1.5,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-beef-vegetable-soup": {
+    "source": "https://www.recipetineats.com/vegetable-beef-soup/",
+    "menuItems": [
+      "Beef Vegetable Soup",
+      "Winter Vegetable and Beef Soup"
+    ],
+    "download": "https://www.recipetineats.com/tachyon/2019/05/Vegetable-Beef-Soup_3.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Beef Vegetable Soup": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      },
+      "Winter Vegetable and Beef Soup": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-beef-taco": {
+    "source": "https://www.recipetineats.com/ground-beef-tacos/",
+    "menuItems": [
+      "Beef Taco El Grande"
+    ],
+    "download": "https://www.recipetineats.com/tachyon/2018/11/Beef-Tacos_2.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Beef Taco El Grande": {
+        "imageScale": 1.5,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-rice-vegetable-soup": {
+    "source": "https://www.spendwithpennies.com/vegetable-rice-soup/",
+    "menuItems": [
+      "Brown Rice and Carrot Soup"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2016/01/21-Day-Fix-Vegetable-Rice-Soup-31.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Brown Rice and Carrot Soup": {
+        "imageScale": 1.6,
+        "imagePosition": "50% 55%"
+      }
+    }
+  },
+  "menu-extra-garlic-eggplant": {
+    "source": "https://omnivorescookbook.com/chinese-eggplant-with-garlic-sauce/",
+    "menuItems": [
+      "Chinese Spicy Garlic Eggplant"
+    ],
+    "download": "https://omnivorescookbook.com/wp-content/uploads/2015/04/1504_Chinese-Eggplant-With-Garlic-Sauce_003.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Chinese Spicy Garlic Eggplant": {
+        "imageScale": 1.7,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-clam-chowder": {
+    "source": "https://www.spendwithpennies.com/new-england-clam-chowder/",
+    "menuItems": [
+      "Clam Chowder"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2018/01/New-England-Clam-Chowder-3-500x500.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Clam Chowder": {
+        "imageScale": 1.5,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-corn-chowder": {
+    "source": "https://www.loveandlemons.com/corn-chowder/",
+    "menuItems": [
+      "Corn Chowder",
+      "Grilled Corn Soup"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2022/08/corn-chowder-recipe-1.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Corn Chowder": {
+        "imageScale": 2.2,
+        "imagePosition": "15% 15%"
+      },
+      "Grilled Corn Soup": {
+        "imageScale": 2.2,
+        "imagePosition": "15% 15%"
+      }
+    }
+  },
+  "menu-extra-corn-tortilla": {
+    "source": "https://www.loveandlemons.com/corn-tortillas/",
+    "menuItems": [
+      "Corn Tortilla Wrap, 6\" White"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2025/09/corn-tortillas-social.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Corn Tortilla Wrap, 6\" White": {
+        "imageScale": 1.3,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-sausage-peppers": {
+    "source": "https://www.spendwithpennies.com/sausage-and-peppers/",
+    "menuItems": [
+      "Italian Sausage with Peppers"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2024/12/Sausage-and-Peppers-SpendWithPennies-9-800x1200.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Italian Sausage with Peppers": {
+        "imageScale": 1.6,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-kimchi": {
+    "download": "https://www.feastingathome.com/wp-content/uploads/2019/01/how-to-make-kimchi-125-1.jpg",
+    "source": "https://www.feastingathome.com/how-to-make-kimchi/",
+    "menuItems": [
+      "Kimchi"
+    ],
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Kimchi": {
+        "imageScale": 2,
+        "imagePosition": "50% 45%"
+      }
+    }
+  },
+  "menu-extra-matar-pilaf": {
+    "source": "https://www.indianhealthyrecipes.com/peas-pulao-recipe-matar-pulao/",
+    "menuItems": [
+      "Matar Pilaf"
+    ],
+    "download": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/01/peas-pulao-matar-pulao-500x500.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Matar Pilaf": {
+        "imageScale": 1.6,
+        "imagePosition": "50% 60%"
+      }
+    }
+  },
+  "menu-extra-mexican-meatball-soup": {
+    "source": "https://www.isabeleats.com/albondigas-soup/",
+    "menuItems": [
+      "Mexican Inspired Meatball Soup"
+    ],
+    "download": "https://www.isabeleats.com/wp-content/uploads/2025/01/albondigas-soup-small-6-500x500.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Mexican Inspired Meatball Soup": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-pesto-chicken": {
+    "source": "https://www.spendwithpennies.com/pesto-chicken/",
+    "menuItems": [
+      "Pesto Chicken Breast"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2024/06/1200-Pesto-Chicken-Update-2-SpendWithPennies.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Pesto Chicken Breast": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-pulled-pork-grilled-cheese": {
+    "source": "https://www.closetcooking.com/bbq-pulled-pork-grilled-cheese/",
+    "menuItems": [
+      "Pulled Pork Grilled Cheese"
+    ],
+    "download": "https://www.closetcooking.com/wp-content/uploads/2013/04/BBQ-Pulled-Pork-Grilled-Cheese-500-6343-1.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Pulled Pork Grilled Cheese": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-roast-fennel": {
+    "source": "https://www.loveandlemons.com/roasted-fennel/",
+    "menuItems": [
+      "Roast Fennel"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2024/12/roasted-fennel-social.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Roast Fennel": {
+        "imageScale": 1.6,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-eggplant-slices": {
+    "source": "https://www.loveandlemons.com/grilled-eggplant/",
+    "menuItems": [
+      "Roasted Eggplant Slices"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2020/08/grilled-eggplant-recipes.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Roasted Eggplant Slices": {
+        "imageScale": 1.9,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-sauteed-squash": {
+    "source": "https://www.loveandlemons.com/sauteed-zucchini/",
+    "menuItems": [
+      "Sauteed Zucchini and Yellow Squash"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/2026/05/sauteed-zucchini-social.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Sauteed Zucchini and Yellow Squash": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-corn-flatbread": {
+    "source": "https://www.loveandlemons.com/corn-pizza/",
+    "menuItems": [
+      "Cheesy Street Corn Flat Bread"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2023/06/corn-pizza-1.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Cheesy Street Corn Flat Bread": {
+        "imageScale": 1.6,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-korean-potatoes": {
+    "source": "https://www.koreanbapsang.com/gamja-jorim-braised-potatoes/",
+    "menuItems": [
+      "Braised Korean Inspired Potatoes"
+    ],
+    "download": "https://www.koreanbapsang.com/wp-content/uploads/2009/11/DSC3017.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Braised Korean Inspired Potatoes": {
+        "imageScale": 1.6,
+        "imagePosition": "50% 55%"
+      }
+    }
+  },
+  "menu-extra-tofu-bibimbap": {
+    "source": "https://thefoodietakesflight.com/vegan-korean-bibimbap-mixed-rice-bowl-with-gochujang-sauce/",
+    "download": "https://thefoodietakesflight.com/wp-content/uploads/2020/05/vegan-bibimbap.jpg",
+    "menuItems": [
+      "Korean Inspired Bibimbap Bowl with Seasoned Tofu"
+    ],
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Korean Inspired Bibimbap Bowl with Seasoned Tofu": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-pickled-radish": {
+    "source": "https://www.loveandlemons.com/quick-pickled-radishes/",
+    "menuItems": [
+      "Pickled Radish"
+    ],
+    "download": "https://cdn.loveandlemons.com/wp-content/uploads/opengraph/2021/04/pickled-radish-1.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Pickled Radish": {
+        "imageScale": 3.2,
+        "imagePosition": "15% 61%"
+      }
+    }
+  },
+  "menu-extra-pineapple-slice": {
+    "source": "https://www.spendwithpennies.com/how-to-cut-a-pineapple/",
+    "menuItems": [
+      "Pineapple Slices"
+    ],
+    "download": "https://www.spendwithpennies.com/wp-content/uploads/2023/05/1200-How-to-Cut-a-Pineapple-2-SpendWithPennies-13.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Pineapple Slices": {
+        "imageScale": 3,
+        "imagePosition": "75% 2%"
+      }
+    }
+  },
+  "menu-extra-jackfruit-bowl": {
+    "source": "https://www.doctorsfornutrition.org/general-public/getting-started/recipes/bbq-jackfruit-bowl/",
+    "menuItems": [
+      "Pulled BBQ Jackfruit Bowl"
+    ],
+    "download": "https://www.doctorsfornutrition.org/wp-content/uploads/2022/06/BBQ-Jackfruit-Bowl-DFN-WEB-RES-9369-1024x683-1.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Pulled BBQ Jackfruit Bowl": {
+        "imageScale": 2.1,
+        "imagePosition": "65% 56%"
+      }
+    }
+  },
+  "menu-extra-root-stew": {
+    "source": "https://www.noracooks.com/vegan-stew/",
+    "menuItems": [
+      "Root Vegetable Stew"
+    ],
+    "download": "https://www.noracooks.com/wp-content/uploads/2020/10/square-5-500x500.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Root Vegetable Stew": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-sausage-pasta": {
+    "source": "https://www.saltandlavender.com/italian-sausage-tomato-pasta/",
+    "menuItems": [
+      "Rigatoni and White Beans with Italian Sausage Sauce"
+    ],
+    "download": "https://www.saltandlavender.com/wp-content/uploads/2024/01/italian-sausage-tomato-pasta-7-500x500.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Rigatoni and White Beans with Italian Sausage Sauce": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-sweet-chili": {
+    "source": "https://www.chilipeppermadness.com/recipes/thai-sweet-chili-sauce/",
+    "menuItems": [
+      "Thai Sweet Chili Sauce"
+    ],
+    "download": "https://www.chilipeppermadness.com/wp-content/uploads/2022/03/Thai-Sweet-Chili-Sauce-SQ.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Thai Sweet Chili Sauce": {
+        "imageScale": 1.5,
+        "imagePosition": "50% 50%"
+      }
+    }
+  },
+  "menu-extra-jollof-rice": {
+    "source": "https://www.africanbites.com/jellof-riceoven-baked/",
+    "menuItems": [
+      "Jollof Rice"
+    ],
+    "download": "https://www.africanbites.com/wp-content/uploads/2019/12/IMG_0557.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Jollof Rice": {
+        "imageScale": 1.8,
+        "imagePosition": "50% 55%"
+      }
+    }
+  },
+  "menu-extra-bacon-mac": {
+    "source": "https://www.thechunkychef.com/smoky-chipotle-bacon-mac-and-cheese/",
+    "menuItems": [
+      "Smoked Bacon Creamy Mac and Cheese"
+    ],
+    "download": "https://www.thechunkychef.com/wp-content/uploads/2018/10/Smoky-Chipotle-Bacon-Mac-and-Cheese-feat.jpg",
+    "note": "Representative real photograph of the dish or a close recipe variation; framed with CSS for the menu thumbnail.",
+    "crops": {
+      "Smoked Bacon Creamy Mac and Cheese": {
+        "imageScale": 1.4,
+        "imagePosition": "50% 50%"
       }
     }
   }
