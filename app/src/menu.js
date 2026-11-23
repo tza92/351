@@ -57,8 +57,13 @@
     Breakfast: breakfastStations,
     Lunch: mainMealStations,
     Dinner: mainMealStations,
+    All: [...new Map([...breakfastStations, ...mainMealStations].map((item) => [item.id, item])).values()],
   };
   let selectedMeal = 'Breakfast';
+
+  function visibleMeals() {
+    return selectedMeal === 'All' ? ['Breakfast', 'Lunch', 'Dinner'] : [selectedMeal];
+  }
 
   function closeMealMenu(restoreFocus = false) {
     mealMenu.hidden = true;
@@ -225,29 +230,30 @@
   }
 
   function updateFoods() {
-    const data = window.nutritionMenus[selectedMeal];
-    const resolved = window.resolveNutritionMenu(selectedMeal, selectedDate);
-    const menu = resolved.menu;
     const [year, month, day] = selectedDate.split('-').map(Number);
     const dateLabel = dateFormat.format(new Date(year, month - 1, day, 12));
     menuDate.textContent = dateLabel;
     sectionTitle.textContent = selectedDate === app.dataset.today ? 'From Today’s Menu' : 'From the Menu';
     foods = [];
-    for (const [stationId, entries] of Object.entries(menu?.stations || {})) {
-      entries.forEach((entry) => {
-        const key = `${selectedDate}:${selectedMeal}:${stationId}:${entry.food}:${entry.serving}`;
-        if (!foodState.has(key)) {
-          const details = data.catalog[entry.food];
-          const photo = window.nutritionFoodPhotos?.[details.sourceName] || {};
-          const sourceDate = menu.stationSourceDates?.[stationId] || menu.sourceDate || selectedDate;
-          const nutritionKey = JSON.stringify([sourceDate, selectedMeal, stationId, entry.food, entry.serving]);
-          const nutritionId = entry.nutritionId || window.nutritionFacts?.bindings[nutritionKey];
-          foodState.set(key, { ...details, ...photo, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, nutrition: window.nutritionFacts?.records[nutritionId], source: menu.stationSources?.[stationId] || menu.source, quantity: 1, added: 0 });
-        }
-        const food = foodState.get(key);
-        food.id = foods.length;
-        foods.push(food);
-      });
+    for (const meal of visibleMeals()) {
+      const data = window.nutritionMenus[meal];
+      const menu = window.resolveNutritionMenu(meal, selectedDate).menu;
+      for (const [stationId, entries] of Object.entries(menu?.stations || {})) {
+        entries.forEach((entry) => {
+          const key = `${selectedDate}:${meal}:${stationId}:${entry.food}:${entry.serving}`;
+          if (!foodState.has(key)) {
+            const details = data.catalog[entry.food];
+            const photo = window.nutritionFoodPhotos?.[details.sourceName] || {};
+            const sourceDate = menu.stationSourceDates?.[stationId] || menu.sourceDate || selectedDate;
+            const nutritionKey = JSON.stringify([sourceDate, meal, stationId, entry.food, entry.serving]);
+            const nutritionId = entry.nutritionId || window.nutritionFacts?.bindings[nutritionKey];
+            foodState.set(key, { ...details, ...photo, meal, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, nutrition: window.nutritionFacts?.records[nutritionId], source: menu.stationSources?.[stationId] || menu.source, quantity: 1, added: 0 });
+          }
+          const food = foodState.get(key);
+          food.id = foods.length;
+          foods.push(food);
+        });
+      }
     }
     const availableMeats = new Set(foods.flatMap((food) => food.meats).filter((meat) => menuFilters.diet !== 'vegan' && (menuFilters.diet !== 'halal' || meat !== 'pork')));
     menuFilters.meats = menuFilters.meats.filter((meat) => meat === 'any-meat' ? menuFilters.diet === 'any' && availableMeats.size > 0 : availableMeats.has(meat));
@@ -405,7 +411,7 @@
       stacks: ['Breads & wraps', 'Proteins', 'Cheeses', 'Vegetables', 'Spreads & sauces'],
       'hot-plate': ['Bases', 'Proteins', 'Vegetables', 'Sauces & dips', 'Toppings'],
       'fresh-bowl': ['Bases', 'Proteins', 'Vegetables & sides', 'Sauces & dips', 'Toppings'],
-      'leaf-market': selectedMeal === 'Breakfast'
+      'leaf-market': food.meal === 'Breakfast'
         ? ['Yogurt & granola', 'Toppings']
         : ['Greens & vegetables', 'Proteins & legumes', 'Toppings', 'Dressings'],
     };
@@ -413,11 +419,12 @@
   }
 
   function ingredientBuilder(stationId, stationFoods) {
-    if (stationId === 'leaf-market' && selectedMeal === 'Breakfast') {
+    const meal = stationFoods[0]?.meal;
+    if (stationId === 'leaf-market' && meal === 'Breakfast') {
       return { name: 'Yogurt', bases: stationFoods.filter((food) => /yogurt/i.test(food.name)) };
     }
     if (stationId === 'create') {
-      if (selectedMeal === 'Breakfast') {
+      if (meal === 'Breakfast') {
         const base = stationFoods.find((food) => food.sourceName === 'Omelette Station');
         return { name: base?.name || 'Omelette', base };
       }
@@ -567,9 +574,10 @@
     const matches = (food) => food.name.toLocaleLowerCase().includes(query);
     let count = 0;
     const groups = [];
-    stationsByMeal[selectedMeal].forEach((item) => {
+    const sections = visibleMeals().flatMap((meal) => stationsByMeal[meal].map((item) => ({ ...item, meal })));
+    sections.forEach((item) => {
       if (station !== 'all' && station !== item.id) return;
-      const stationFoods = foods.filter((food) => food.station === item.id);
+      const stationFoods = foods.filter((food) => food.station === item.id && food.meal === item.meal);
       if (!stationFoods.length) return;
       const choices = stationFoods.filter(isIngredient);
       let builder = choices.length ? ingredientBuilder(item.id, stationFoods) : null;
@@ -583,23 +591,25 @@
       const group = document.createElement('section');
       group.className = 'menu-food-group';
       const heading = document.createElement('h3');
-      heading.id = `foods-${item.id}`;
+      const sectionId = `foods-${item.meal.toLowerCase()}-${item.id}`;
+      heading.id = sectionId;
       heading.className = 'menu-station-heading';
-      heading.hidden = station !== 'all';
-      const expanded = station !== 'all' || Boolean(query) || filterCount() > 0 || !collapsedStations.has(`${selectedMeal}:${item.id}`);
+      heading.hidden = station !== 'all' && selectedMeal !== 'All';
+      const expanded = station !== 'all' || Boolean(query) || filterCount() > 0 || !collapsedStations.has(`${item.meal}:${item.id}`);
       const toggle = document.createElement('button');
       toggle.className = 'menu-station-toggle';
       toggle.type = 'button';
       toggle.dataset.action = 'toggle-station';
       toggle.dataset.stationId = item.id;
+      toggle.dataset.meal = item.meal;
       toggle.setAttribute('aria-expanded', String(expanded));
-      toggle.setAttribute('aria-controls', `foods-${item.id}-content`);
-      toggle.innerHTML = `<span>${escapeHtml(item.name)}</span>${icon('expand-more')}`;
+      toggle.setAttribute('aria-controls', `${sectionId}-content`);
+      toggle.innerHTML = `<span>${selectedMeal === 'All' ? `${item.meal} · ` : ''}${escapeHtml(item.name)}</span>${icon('expand-more')}`;
       heading.append(toggle);
       group.setAttribute('aria-labelledby', heading.id);
       group.append(heading);
       const content = document.createElement('div');
-      content.id = `foods-${item.id}-content`;
+      content.id = `${sectionId}-content`;
       content.className = 'menu-station-content';
       content.hidden = !expanded;
       if (dishes.length) content.append(createFoodList(dishes));
@@ -608,7 +618,7 @@
         section.className = 'menu-ingredients';
         if (builder.base) section.dataset.builderFoodId = builder.base.id;
         const title = document.createElement('h4');
-        title.id = `foods-${item.id}-ingredients`;
+        title.id = `${sectionId}-ingredients`;
         title.className = 'menu-ingredients-heading';
         title.textContent = `${builder.name} - pick your ingredients`;
         section.setAttribute('aria-labelledby', title.id);
@@ -624,7 +634,7 @@
     if (!count) {
       const hasStationFoods = foods.some((food) => station === 'all' || food.station === station);
       empty.textContent = !foods.length
-        ? `No ${selectedMeal.toLowerCase()} menu listed for ${menuDate.textContent}.`
+        ? `No ${selectedMeal === 'All' ? '' : `${selectedMeal.toLowerCase()} `}menu listed for ${menuDate.textContent}.`
         : filterCount() > 0
         ? 'No items match these filters. Try changing your search or clearing a filter.'
         : hasStationFoods
@@ -709,7 +719,7 @@
     const action = button.dataset.action;
     if (action === 'toggle-station') {
       const expanded = button.getAttribute('aria-expanded') !== 'true';
-      const key = `${selectedMeal}:${button.dataset.stationId}`;
+      const key = `${button.dataset.meal}:${button.dataset.stationId}`;
       if (expanded) collapsedStations.delete(key);
       else collapsedStations.add(key);
       button.setAttribute('aria-expanded', String(expanded));
