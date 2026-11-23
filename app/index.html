@@ -339,7 +339,6 @@
         </fieldset>
         <fieldset class="menu-meat-options">
           <legend>Meat &amp; seafood</legend>
-          <p class="menu-filter-hint">Choose one or more types.</p>
           <div class="menu-filter-options">
             <label class="menu-filter-chip"><input type="checkbox" name="menu-meat" value="any-meat"><span>Any meat</span></label>
             <label class="menu-filter-chip"><input type="checkbox" name="menu-meat" value="chicken"><span>Chicken</span></label>
@@ -351,8 +350,16 @@
             <label class="menu-filter-chip"><input type="checkbox" name="menu-meat" value="shellfish"><span>Shellfish</span></label>
           </div>
         </fieldset>
+        <fieldset>
+          <legend>Items</legend>
+          <div class="menu-filter-options">
+            <label class="menu-filter-chip"><input type="checkbox" name="menu-items" value="all" checked><span>All</span></label>
+            <label class="menu-filter-chip"><input type="checkbox" name="menu-items" value="favourited"><span>Favourited</span></label>
+            <label class="menu-filter-chip"><input type="checkbox" name="menu-items" value="added"><span>Added</span></label>
+          </div>
+        </fieldset>
         <div class="menu-filter-actions">
-          <button class="menu-filter-clear" type="button">Clear all</button>
+          <button class="menu-filter-clear" type="button">Reset all</button>
           <button class="menu-filter-apply" type="submit">Apply filters</button>
         </div>
       </form>
@@ -360,48 +367,59 @@
     <dialog id="nutrition-dialog" class="nutrition-dialog" aria-labelledby="nutrition-title">
       <div class="nutrition-heading">
         <h2 id="nutrition-title" tabindex="-1" autofocus></h2>
+        <button class="nutrition-favourite" type="button" aria-label="Favourite item" aria-pressed="false" title="Favourite item"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-6-4-6 4V3Z"/></svg></button>
         <button class="nutrition-close" type="button" aria-label="Close nutrition facts"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
       </div>
       <div class="nutrition-content"></div>
     </dialog>
     <dialog id="portion-dialog" class="portion-dialog" aria-labelledby="portion-title">
       <form method="dialog">
-        <h2 id="portion-title">Edit quantity</h2>
-        <p class="portion-food-name"></p>
-        <label for="quantity-input">Quantity</label>
-        <div class="quantity-stepper">
-          <button class="quantity-decrease" type="button" aria-label="Decrease quantity">−</button>
-          <input id="quantity-input" type="number" min="1" step="1" inputmode="numeric" required>
-          <button class="quantity-increase" type="button" aria-label="Increase quantity">+</button>
+        <div class="portion-heading">
+          <h2 id="portion-title">Edit quantity</h2>
+          <button class="portion-close" type="button" aria-label="Close edit quantity"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
         </div>
-        <label id="portion-unit-label" for="portion-unit-toggle">Serving size</label>
-        <div class="portion-unit-picker">
-          <input id="portion-unit" type="hidden" value="each">
-          <button id="portion-unit-toggle" class="portion-unit-toggle" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="portion-unit-options" aria-labelledby="portion-unit-label portion-unit-value">
-            <span id="portion-unit-value">each</span>
-            <svg class="icon" aria-hidden="true"><use href="#expand-more"/></svg>
-          </button>
-          <div id="portion-unit-options" class="portion-unit-options" role="listbox" aria-labelledby="portion-unit-label" hidden>
-            <button class="portion-unit-option" type="button" role="option" data-unit="each" aria-selected="true" tabindex="-1">each</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="serving" aria-selected="false" tabindex="-1">serving</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="piece" aria-selected="false" tabindex="-1">piece</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="slice" aria-selected="false" tabindex="-1">slice</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="g" aria-selected="false" tabindex="-1">g</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="kg" aria-selected="false" tabindex="-1">kg</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="mL" aria-selected="false" tabindex="-1">mL</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="L" aria-selected="false" tabindex="-1">L</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="oz" aria-selected="false" tabindex="-1">oz</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="lb" aria-selected="false" tabindex="-1">lb</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="tsp" aria-selected="false" tabindex="-1">tsp</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="tbsp" aria-selected="false" tabindex="-1">tbsp</button>
-            <button class="portion-unit-option" type="button" role="option" data-unit="cup" aria-selected="false" tabindex="-1">cup</button>
+        <p class="portion-food-name"></p>
+        <div class="portion-field">
+          <label for="quantity-input">Quantity</label>
+          <div class="quantity-stepper">
+            <button class="quantity-decrease" type="button" aria-label="Decrease quantity">&#8722;</button>
+            <input id="quantity-input" type="number" min="1" step="1" inputmode="numeric" required>
+            <button class="quantity-increase" type="button" aria-label="Increase quantity">+</button>
           </div>
+        </div>
+        <div class="portion-field">
+          <label id="portion-unit-label" for="portion-unit-toggle">Serving size</label>
+          <input id="portion-unit" type="hidden" value="each">
+          <button id="portion-unit-toggle" class="portion-unit-toggle" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="portion-unit-dialog" aria-labelledby="portion-unit-label portion-unit-value">
+            <span id="portion-unit-value">each</span>
+          </button>
         </div>
         <div class="portion-actions">
           <button class="portion-cancel" type="button">Cancel</button>
           <button class="portion-save" type="submit">Save</button>
         </div>
       </form>
+    </dialog>
+    <dialog id="portion-unit-dialog" class="portion-unit-dialog" aria-labelledby="portion-unit-title">
+      <div class="portion-unit-heading">
+        <h2 id="portion-unit-title">Serving size</h2>
+        <button class="portion-unit-close" type="button">Done</button>
+      </div>
+      <div id="portion-unit-options" class="portion-unit-options" role="listbox" aria-labelledby="portion-unit-title">
+        <button class="portion-unit-option" type="button" role="option" data-unit="each" aria-selected="true" tabindex="-1">each</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="serving" aria-selected="false" tabindex="-1">serving</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="piece" aria-selected="false" tabindex="-1">piece</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="slice" aria-selected="false" tabindex="-1">slice</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="g" aria-selected="false" tabindex="-1">g</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="kg" aria-selected="false" tabindex="-1">kg</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="mL" aria-selected="false" tabindex="-1">mL</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="L" aria-selected="false" tabindex="-1">L</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="oz" aria-selected="false" tabindex="-1">oz</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="lb" aria-selected="false" tabindex="-1">lb</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="tsp" aria-selected="false" tabindex="-1">tsp</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="tbsp" aria-selected="false" tabindex="-1">tbsp</button>
+        <button class="portion-unit-option" type="button" role="option" data-unit="cup" aria-selected="false" tabindex="-1">cup</button>
+      </div>
     </dialog>
   </body>
 </html>

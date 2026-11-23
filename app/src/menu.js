@@ -11,8 +11,15 @@
   const portionDialog = document.querySelector('#portion-dialog');
   const nutritionDialog = document.querySelector('#nutrition-dialog');
   let lastNutritionButton;
+  let nutritionFood;
+  const favouriteButton = nutritionDialog.querySelector('.nutrition-favourite');
+  const favourites = new Set();
+  try {
+    const saved = JSON.parse(localStorage.getItem('nutrition-favourites') || '[]');
+    if (Array.isArray(saved)) saved.filter((name) => typeof name === 'string').forEach((name) => favourites.add(name));
+  } catch {}
   const portionUnit = document.querySelector('#portion-unit');
-  const unitPicker = portionDialog.querySelector('.portion-unit-picker');
+  const unitDialog = document.querySelector('#portion-unit-dialog');
   const unitToggle = document.querySelector('#portion-unit-toggle');
   const unitOptions = document.querySelector('#portion-unit-options');
   const unitButtons = [...unitOptions.querySelectorAll('[data-unit]')];
@@ -25,7 +32,7 @@
   const stationPicker = document.querySelector('.menu-stations');
   const filterDialog = document.querySelector('#menu-filter-dialog');
   const filterForm = filterDialog.querySelector('form');
-  let menuFilters = { diet: 'any', meats: [] };
+  let menuFilters = { diet: 'any', meats: [], items: [] };
   const breakfastStations = [
     { id: 'rise-and-dine', name: 'Rise and Dine' },
     { id: 'create', name: 'Create' },
@@ -119,6 +126,7 @@
   let station = 'all';
   let editingFood = null;
   let noticeTimeout;
+  let noticeClearTimeout;
   let lastEditButton;
   let currentPage;
   function syncFramePage() {
@@ -128,11 +136,13 @@
   }
   window.addEventListener('load', syncFramePage);
   let pageAnimations = [];
+  let foodAnimation;
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
   function cancelPageAnimations() {
     pageAnimations.forEach((animation) => animation.cancel());
     pageAnimations = [];
+    foodAnimation?.cancel();
   }
 
   reducedMotion.addEventListener('change', (event) => {
@@ -141,10 +151,25 @@
 
   function syncBackToTop() {
     const visible = currentPage === 'menu' && menuContent.scrollTop > 160;
-    if (!visible && document.activeElement === backToTop && currentPage === 'menu') {
+    const covered = app.classList.contains('has-menu-notice');
+    if ((!visible || covered) && document.activeElement === backToTop && currentPage === 'menu') {
       document.querySelector('#menu-title').focus({ preventScroll: true });
     }
     backToTop.hidden = !visible;
+    backToTop.inert = covered;
+  }
+
+  function setMenuNotice(message = '') {
+    clearTimeout(noticeTimeout);
+    clearTimeout(noticeClearTimeout);
+    if (message) notice.textContent = message;
+    app.classList.toggle('has-menu-notice', Boolean(message));
+    syncBackToTop();
+    if (message) {
+      noticeTimeout = setTimeout(() => setMenuNotice(), 1500);
+    } else {
+      noticeClearTimeout = setTimeout(() => { notice.textContent = ''; }, reducedMotion.matches ? 0 : 150);
+    }
   }
 
   menuContent.addEventListener('scroll', syncBackToTop, { passive: true });
@@ -171,7 +196,7 @@
       if (active) button.setAttribute('aria-current', 'page');
       else button.removeAttribute('aria-current');
     });
-    notice.textContent = '';
+    setMenuNotice();
     if (focus && menu) document.querySelector('#menu-title').focus({ preventScroll: true });
     if (animate) {
       const incoming = menu ? [menuContent] : [homeContent, homeHeader];
@@ -206,8 +231,7 @@
     const [year, month, day] = selectedDate.split('-').map(Number);
     const dateLabel = dateFormat.format(new Date(year, month - 1, day, 12));
     menuDate.textContent = dateLabel;
-    sectionTitle.textContent = resolved.projected && menu ? 'Expected Menu'
-      : selectedDate === app.dataset.today ? 'From Today’s Menu' : 'From the Menu';
+    sectionTitle.textContent = selectedDate === app.dataset.today ? 'From Today’s Menu' : 'From the Menu';
     foods = [];
     for (const [stationId, entries] of Object.entries(menu?.stations || {})) {
       entries.forEach((entry) => {
@@ -228,8 +252,7 @@
     const availableMeats = new Set(foods.flatMap((food) => food.meats).filter((meat) => menuFilters.diet !== 'vegan' && (menuFilters.diet !== 'halal' || meat !== 'pork')));
     menuFilters.meats = menuFilters.meats.filter((meat) => meat === 'any-meat' ? menuFilters.diet === 'any' && availableMeats.size > 0 : availableMeats.has(meat));
     syncFilterButton();
-    clearTimeout(noticeTimeout);
-    notice.textContent = '';
+    setMenuNotice();
     menuContent.scrollTop = 0;
     syncBackToTop();
   }
@@ -240,6 +263,8 @@
 
   function openNutrition(food, button) {
     const facts = food.nutrition;
+    nutritionFood = food;
+    syncFavouriteButton();
     lastNutritionButton = button;
     nutritionDialog.querySelector('#nutrition-title').textContent = food.name;
     const content = nutritionDialog.querySelector('.nutrition-content');
@@ -263,13 +288,29 @@
         </section>
         ${placeholder ? '<p class="nutrition-note">This is a generic menu entry. Its published zero values may be placeholders.</p>' : ''}
         <section class="nutrition-ingredients"><h3>Ingredients</h3><p>${escapeHtml(facts.ingredients || 'Unavailable')}</p></section>
-        ${facts.allergens.length ? `<section class="nutrition-allergens"><h3>Contains</h3><p>${escapeHtml(facts.allergens.join(', '))}</p></section>` : ''}
-        <p class="nutrition-source">Published by <a href="${escapeHtml(food.source)}" target="_blank" rel="noopener noreferrer">SFU Dining Commons<span class="sr-only"> (opens in a new tab)</span></a>.</p>`;
+        ${facts.allergens.length ? `<section class="nutrition-allergens"><h3>Contains</h3><p>${escapeHtml(facts.allergens.join(', '))}</p></section>` : ''}`;
     }
     nutritionDialog.showModal();
     nutritionDialog.scrollTop = 0;
     nutritionDialog.querySelector('#nutrition-title').focus({ preventScroll: true });
   }
+
+  function syncFavouriteButton() {
+    const active = favourites.has(nutritionFood.sourceName || nutritionFood.name);
+    favouriteButton.setAttribute('aria-pressed', String(active));
+    const label = `${active ? 'Unfavourite' : 'Favourite'} ${nutritionFood.name}`;
+    favouriteButton.setAttribute('aria-label', label);
+    favouriteButton.title = label;
+  }
+
+  favouriteButton.addEventListener('click', () => {
+    const key = nutritionFood.sourceName || nutritionFood.name;
+    if (favourites.has(key)) favourites.delete(key);
+    else favourites.add(key);
+    try { localStorage.setItem('nutrition-favourites', JSON.stringify([...favourites])); } catch {}
+    syncFavouriteButton();
+    if (menuFilters.items.includes('favourited')) filterFoods();
+  });
 
   nutritionDialog.querySelector('.nutrition-close').addEventListener('click', () => nutritionDialog.close());
   nutritionDialog.addEventListener('keydown', (event) => {
@@ -292,6 +333,7 @@
   });
   nutritionDialog.addEventListener('close', () => {
     if (lastNutritionButton?.isConnected) lastNutritionButton.focus({ preventScroll: true });
+    else search.focus({ preventScroll: true });
   });
 
   function foodServingLabel(food) {
@@ -317,6 +359,15 @@
     return food.serving;
   }
 
+  function syncFoodAddButton(button, food) {
+    const added = food.added > 0;
+    button.classList.toggle('has-added', added);
+    button.setAttribute('aria-pressed', String(added));
+    button.setAttribute('aria-label', added
+      ? `Remove ${food.name}, ${foodAmountLabel(food, food.added)} added this visit`
+      : `Add ${food.name}`);
+  }
+
   function createFoodRow(food) {
     const row = document.createElement('li');
     row.className = 'menu-food';
@@ -335,8 +386,9 @@
         <button class="food-quantity" type="button" data-action="edit" aria-label="Edit ${escapeHtml(food.name)} quantity, ${foodAmountLabel(food, food.quantity)}" aria-haspopup="dialog" aria-controls="portion-dialog">
           <span class="food-quantity-value">${food.quantity}</span>${icon('edit')}
         </button>
-        <button class="food-add${food.added ? ' has-added' : ''}" type="button" data-action="add" aria-label="Add ${escapeHtml(food.name)}${food.added ? ` again, ${foodAmountLabel(food, food.added)} added this visit` : ''}">${icon(food.added ? 'check' : 'plus')}</button>
+        <button class="food-add" type="button" data-action="add">${icon('plus')}${icon('check')}</button>
       </div>`;
+    syncFoodAddButton(row.querySelector('.food-add'), food);
     return row;
   }
 
@@ -411,7 +463,7 @@
   }
 
   function filterCount() {
-    return Number(menuFilters.diet !== 'any') + menuFilters.meats.length;
+    return Number(menuFilters.diet !== 'any') + menuFilters.meats.length + menuFilters.items.length;
   }
 
   function syncFilterButton() {
@@ -443,6 +495,9 @@
 
   function openMenuFilters() {
     filterForm.elements['menu-diet'].value = menuFilters.diet;
+    filterForm.querySelectorAll('[name="menu-items"]').forEach((input) => {
+      input.checked = input.value === 'all' ? !menuFilters.items.length : menuFilters.items.includes(input.value);
+    });
     filterForm.querySelectorAll('[name="menu-meat"]').forEach((input) => { input.checked = menuFilters.meats.includes(input.value); });
     syncMeatOptions();
     filterDialog.showModal();
@@ -452,6 +507,15 @@
 
   filterForm.addEventListener('change', (event) => {
     const input = event.target;
+    if (input.name === 'menu-items') {
+      const options = [...filterForm.querySelectorAll('[name="menu-items"]')];
+      if (input.checked) {
+        options.forEach((other) => {
+          if (other !== input && (input.value === 'all' || other.value === 'all')) other.checked = false;
+        });
+      }
+      if (!options.some((option) => option.checked)) options.find((option) => option.value === 'all').checked = true;
+    }
     if (input.name === 'menu-meat' && input.checked) {
       filterForm.querySelectorAll('[name="menu-meat"]').forEach((other) => {
         if (other !== input && (input.value === 'any-meat' || other.value === 'any-meat')) other.checked = false;
@@ -463,6 +527,10 @@
   filterDialog.querySelector('.menu-filter-clear').addEventListener('click', () => {
     filterForm.reset();
     syncMeatOptions();
+    menuFilters = { diet: 'any', meats: [], items: [] };
+    menuContent.scrollTop = 0;
+    filterFoods();
+    syncFilterButton();
   });
   filterDialog.addEventListener('close', () => {
     syncFilterButton();
@@ -472,6 +540,7 @@
     event.preventDefault();
     menuFilters = {
       diet: filterForm.elements['menu-diet'].value,
+      items: [...filterForm.querySelectorAll('[name="menu-items"]:checked')].map((input) => input.value).filter((value) => value !== 'all'),
       meats: [...filterForm.querySelectorAll('[name="menu-meat"]:checked')].map((input) => input.value),
     };
     menuContent.scrollTop = 0;
@@ -485,11 +554,15 @@
   }
 
   function matchesFoodFilters(food) {
-    return matchesDietaryFilter(food) && (!menuFilters.meats.length
+    const matchesItems = !menuFilters.items.length
+      || (menuFilters.items.includes('favourited') && favourites.has(food.sourceName || food.name))
+      || (menuFilters.items.includes('added') && food.added > 0);
+    return matchesItems && matchesDietaryFilter(food) && (!menuFilters.meats.length
       || (menuFilters.meats.includes('any-meat') ? food.meats.length > 0 : menuFilters.meats.some((meat) => food.meats.includes(meat))));
   }
 
   function filterFoods() {
+    foodAnimation?.cancel();
     const query = search.value.trim().toLocaleLowerCase();
     const matches = (food) => food.name.toLocaleLowerCase().includes(query);
     let count = 0;
@@ -615,12 +688,19 @@
 
   stationPicker.addEventListener('click', (event) => {
     const button = event.target.closest('.station-chip');
-    if (!button) return;
+    if (!button || station === button.dataset.station) return;
     station = button.dataset.station;
     stationPicker.querySelectorAll('.station-chip').forEach((chip) => {
       chip.setAttribute('aria-pressed', String(chip === button));
     });
     filterFoods();
+    if (!reducedMotion.matches) {
+      const results = empty.hidden ? list : empty;
+      foodAnimation = results.animate([
+        { opacity: 0 },
+        { opacity: 1 },
+      ], { duration: 180, easing: 'ease-out' });
+    }
   });
 
   list.addEventListener('click', (event) => {
@@ -645,7 +725,7 @@
       lastEditButton = button;
       portionDialog.querySelector('.portion-food-name').textContent = food.name;
       setServingUnit(food.measureUnit || 'each');
-      closeUnitDropdown();
+      closeUnitPicker();
       originalServingDraft = { serving: food.serving, unit: portionUnit.value };
       quantityInput.value = food.quantity;
       quantityInput.setCustomValidity('');
@@ -654,13 +734,15 @@
       quantityInput.focus();
       quantityInput.select();
     } else if (action === 'add') {
-      food.added += food.quantity;
-      button.classList.add('has-added');
-      button.innerHTML = icon('check');
-      button.setAttribute('aria-label', `Add ${food.name} again, ${foodAmountLabel(food, food.added)} added this visit`);
-      clearTimeout(noticeTimeout);
-      notice.textContent = `${foodAmountLabel(food, food.quantity)} of ${food.name} added.`;
-      noticeTimeout = setTimeout(() => { notice.textContent = ''; }, 3500);
+      const removing = food.added > 0;
+      const amount = removing ? food.added : food.quantity;
+      food.added = removing ? 0 : food.quantity;
+      syncFoodAddButton(button, food);
+      setMenuNotice(`${foodAmountLabel(food, amount)} of ${food.name} ${removing ? 'removed' : 'added'}.`);
+      if (menuFilters.items.includes('added') && removing) {
+        filterFoods();
+        (list.querySelector('.food-add') || search).focus({ preventScroll: true });
+      }
     }
   });
 
@@ -671,35 +753,40 @@
   function setServingUnit(unit) {
     portionUnit.value = unit;
     document.querySelector('#portion-unit-value').textContent = unit;
-    unitButtons.forEach((button) => button.setAttribute('aria-selected', String(button.dataset.unit === unit)));
+    unitButtons.forEach((button) => {
+      const selected = button.dataset.unit === unit;
+      button.setAttribute('aria-selected', String(selected));
+      button.tabIndex = selected ? 0 : -1;
+    });
   }
 
-  function closeUnitDropdown(restoreFocus = false) {
-    unitOptions.hidden = true;
+  function closeUnitPicker(restoreFocus = false) {
+    if (unitDialog.open) unitDialog.close();
     unitToggle.setAttribute('aria-expanded', 'false');
     if (restoreFocus) unitToggle.focus({ preventScroll: true });
   }
 
-  function openUnitDropdown() {
+  function openUnitPicker() {
     quantityInput.blur();
-    unitOptions.hidden = false;
+    if (unitDialog.open) return;
+    unitDialog.showModal();
     unitToggle.setAttribute('aria-expanded', 'true');
     const selected = unitButtons.find((button) => button.dataset.unit === portionUnit.value) || unitButtons[0];
     selected.focus({ preventScroll: true });
-    selected.scrollIntoView({ block: 'nearest' });
+    selected.scrollIntoView({ block: 'center' });
   }
 
-  unitToggle.addEventListener('click', () => unitOptions.hidden ? openUnitDropdown() : closeUnitDropdown(true));
+  unitToggle.addEventListener('click', openUnitPicker);
   unitToggle.addEventListener('keydown', (event) => {
     if (event.key !== 'ArrowDown' && event.key !== 'ArrowUp') return;
     event.preventDefault();
-    openUnitDropdown();
+    openUnitPicker();
   });
   unitOptions.addEventListener('click', (event) => {
     const button = event.target.closest('[data-unit]');
     if (!button) return;
     setServingUnit(button.dataset.unit);
-    closeUnitDropdown(true);
+    closeUnitPicker(true);
   });
   unitOptions.addEventListener('keydown', (event) => {
     const index = unitButtons.indexOf(document.activeElement);
@@ -715,16 +802,19 @@
     } else if (event.key === 'Escape') {
       event.preventDefault();
       event.stopPropagation();
-      closeUnitDropdown(true);
-    } else if (event.key === 'Tab') closeUnitDropdown(true);
+      closeUnitPicker(true);
+    }
   });
-  portionDialog.addEventListener('click', (event) => {
-    if (!unitPicker.contains(event.target)) closeUnitDropdown();
+  unitDialog.querySelector('.portion-unit-close').addEventListener('click', () => closeUnitPicker(true));
+  unitDialog.addEventListener('close', () => {
+    unitToggle.setAttribute('aria-expanded', 'false');
+    if (portionDialog.open) unitToggle.focus({ preventScroll: true });
   });
-  portionDialog.addEventListener('cancel', (event) => {
-    if (unitOptions.hidden) return;
-    event.preventDefault();
-    closeUnitDropdown(true);
+  unitDialog.addEventListener('click', (event) => {
+    if (event.target !== unitDialog) return;
+    const bounds = unitDialog.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right
+      || event.clientY < bounds.top || event.clientY > bounds.bottom) closeUnitPicker(true);
   });
 
   function foodAmountLabel(food, amount) {
@@ -776,15 +866,16 @@
     row.querySelector('.food-serving').textContent = foodServingLabel(editingFood);
     row.querySelector('.food-quantity').setAttribute('aria-label', `Edit ${editingFood.name} quantity, ${foodAmountLabel(editingFood, quantity)}`);
     const addButton = row.querySelector('.food-add');
-    addButton.classList.toggle('has-added', editingFood.added > 0);
-    addButton.innerHTML = icon(editingFood.added ? 'check' : 'plus');
-    addButton.setAttribute('aria-label', `Add ${editingFood.name}${editingFood.added ? ` again, ${foodAmountLabel(editingFood, editingFood.added)} added this visit` : ''}`);
+    syncFoodAddButton(addButton, editingFood);
+    if (menuFilters.items.includes('added') && editingFood.added === 0) filterFoods();
     portionDialog.close();
   });
   portionDialog.querySelector('.portion-cancel').addEventListener('click', () => portionDialog.close());
+  portionDialog.querySelector('.portion-close').addEventListener('click', () => portionDialog.close());
   portionDialog.addEventListener('close', () => {
-    closeUnitDropdown();
-    lastEditButton?.focus({ preventScroll: true });
+    closeUnitPicker();
+    if (lastEditButton?.isConnected) lastEditButton.focus({ preventScroll: true });
+    else search.focus({ preventScroll: true });
   });
 
   document.addEventListener('nutrition:datechange', (event) => {

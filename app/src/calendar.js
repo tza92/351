@@ -105,11 +105,11 @@
         const date = addDays(first, rowIndex * 7 + column);
         const cell = document.createElement('div');
         cell.className = 'calendar-cell';
-        const isComplete = !menuCalendar && completed.has(key(date));
+        const isComplete = completed.has(key(date));
         cell.classList.toggle('is-complete', isComplete);
         cell.classList.toggle('is-future', !menuCalendar && date > today);
         const filter = isComplete ? completedFilter : incompleteFilter;
-        cell.classList.toggle('is-filtered', !menuCalendar && (isComplete || date < today) && filter.getAttribute('aria-pressed') === 'false');
+        cell.classList.toggle('is-filtered', (isComplete || date < today) && filter.getAttribute('aria-pressed') === 'false');
         cell.setAttribute('role', 'gridcell');
         cell.setAttribute('aria-selected', String(key(date) === key(selected)));
         const button = document.createElement('button');
@@ -118,7 +118,7 @@
         button.textContent = date.getDate();
         button.dataset.date = key(date);
         button.tabIndex = key(date) === focusKey ? 0 : -1;
-        const state = menuCalendar ? '' : isComplete ? ', completed' : date > today ? ', upcoming' : date < today ? ', not completed' : '';
+        const state = isComplete ? ', completed' : date > today ? ', upcoming' : date < today ? ', not completed' : '';
         button.setAttribute('aria-label', `${fullDate.format(date)}${state}`);
         if (key(date) === key(today)) button.setAttribute('aria-current', 'date');
         button.classList.toggle('is-selected', key(date) === key(selected));
