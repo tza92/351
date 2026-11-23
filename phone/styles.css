@@ -82,22 +82,26 @@ body {
 }
 
 .safe-area-top {
+  --system-bar-surface: #27282b;
   z-index: 1;
   background: #27282b;
   box-shadow: 0 1px 0 #27282b;
 }
 
 .screen.is-menu .safe-area-top {
+  --system-bar-surface: #16171a;
   background: #16171a;
   box-shadow: 0 1px 0 #16171a;
 }
 
-.screen.is-menu.sidebar-open .safe-area-top {
-  background: linear-gradient(to right, #16171a calc(100% - min(334px, calc(100% - 32px))), #27282b 0);
+.screen.sidebar-open .safe-area-top,
+.screen.sidebar-open .safe-area-bottom {
+  background: linear-gradient(to left, var(--drawer-surface, #27282b) var(--drawer-width, 0px), var(--system-bar-surface) 0);
   box-shadow: none;
 }
 
 .safe-area-bottom {
+  --system-bar-surface: #27282b;
   z-index: 1;
   /* Overlap the iframe edge so preview scaling cannot expose a hairline. */
   margin-top: -2px;
@@ -121,14 +125,24 @@ body {
 
 .screen.sidebar-open .safe-area-top::after,
 .screen.sidebar-open .safe-area-bottom::after {
+  background: var(--drawer-backdrop, #0008);
   opacity: 1;
-  clip-path: inset(0 min(334px, calc(100% - 32px)) 0 0);
+  clip-path: inset(0 var(--drawer-width, 0px) 0 0);
 }
 
 .screen.modal-open .safe-area-top::after,
 .screen.modal-open .safe-area-bottom::after {
+  background: var(--modal-backdrop, #0008);
   opacity: 1;
   clip-path: inset(0);
+}
+
+.screen[data-sheet-surface] .safe-area-bottom {
+  background: var(--sheet-surface);
+}
+
+.screen[data-sheet-surface] .safe-area-bottom::after {
+  opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {

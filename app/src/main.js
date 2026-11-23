@@ -2,8 +2,12 @@ const optionsButton = document.querySelector('.filter-button');
 function syncModalFrame() {
   if (window.parent === window) return;
   const origin = location.protocol === 'file:' ? '*' : location.origin;
-  const open = Boolean(document.querySelector('dialog[open]:not(#app-sidebar)'));
-  window.parent.postMessage({ type: 'app-modal-state', open }, origin);
+  const modal = [...document.querySelectorAll('dialog[open]:not(#app-sidebar)')].at(-1);
+  const styles = modal ? getComputedStyle(modal) : null;
+  const bottomSurface = styles?.position === 'fixed' && parseFloat(styles.bottom) === 0
+    ? styles.backgroundColor : null;
+  const backdrop = modal ? getComputedStyle(modal, '::backdrop').backgroundColor : null;
+  window.parent.postMessage({ type: 'app-modal-state', open: Boolean(modal), bottomSurface, backdrop }, origin);
 }
 
 new MutationObserver(syncModalFrame).observe(document.body, {
@@ -12,6 +16,7 @@ new MutationObserver(syncModalFrame).observe(document.body, {
   attributeFilter: ['open'],
 });
 window.addEventListener('load', syncModalFrame);
+window.addEventListener('resize', syncModalFrame);
 
 let activeOptionsButton = optionsButton;
 const sidebar = document.querySelector('#app-sidebar');
@@ -24,8 +29,16 @@ let closingSidebar = false;
 function syncSidebarFrame(open) {
   if (window.parent === window) return;
   const origin = location.protocol === 'file:' ? '*' : location.origin;
-  window.parent.postMessage({ type: 'app-sidebar-state', open }, origin);
+  const styles = open ? getComputedStyle(sidebar) : null;
+  const width = styles ? parseFloat(styles.width) : null;
+  const surface = styles?.backgroundColor || null;
+  const backdrop = open ? getComputedStyle(sidebar, '::backdrop').backgroundColor : null;
+  window.parent.postMessage({ type: 'app-sidebar-state', open, width, surface, backdrop }, origin);
 }
+
+window.addEventListener('resize', () => {
+  if (sidebar.open) syncSidebarFrame(!closingSidebar);
+});
 
 async function closeSidebar() {
   if (!sidebar.open || closingSidebar) return;
