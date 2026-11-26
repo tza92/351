@@ -383,18 +383,52 @@
     </dialog>
     <dialog id="add-tray" class="add-tray" aria-labelledby="add-tray-title">
       <div class="add-tray-heading">
+        <button class="add-tray-back" type="button" aria-label="Back to add options" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button>
         <h2 id="add-tray-title" tabindex="-1" autofocus>Add to Today</h2>
         <button class="add-tray-date" type="button" aria-label="Choose date to add to" aria-haspopup="dialog" aria-expanded="false" aria-controls="calendar-modal">
           <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/></svg>
         </button>
         <button class="add-tray-close" type="button" aria-label="Close add tray"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+        <button class="add-tray-save" type="button" aria-label="Save meal to Track" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg></button>
       </div>
-      <div class="add-tray-options">
-        <button class="add-tray-option" type="button" data-add-type="meal"><svg class="icon" aria-hidden="true"><use href="#plate"/></svg><span>Meal</span></button>
+      <div id="add-tray-types" class="add-tray-options">
+        <button class="add-tray-option" type="button" data-add-type="meal" aria-controls="add-tray-meals" aria-expanded="false"><svg class="icon" aria-hidden="true"><use href="#plate"/></svg><span>Meal</span></button>
         <button class="add-tray-option" type="button" data-add-type="snack"><svg class="icon" aria-hidden="true"><use href="#cookie"/></svg><span>Snack</span></button>
         <button class="add-tray-option" type="button" data-add-type="drink"><svg class="icon" aria-hidden="true"><use href="#drink"/></svg><span>Drink</span></button>
         <button class="add-tray-option add-tray-scan" type="button" data-add-type="log"><span>View Log</span></button>
         <button class="add-tray-option add-tray-scan" type="button" data-add-type="scan"><svg class="icon" aria-hidden="true"><use href="#qr"/></svg><span>Entry Scan</span></button>
+      </div>
+      <div id="add-tray-meals" class="add-tray-options" hidden>
+        <button class="add-tray-option" type="button" data-add-meal="Breakfast"><svg class="icon" aria-hidden="true"><use href="#plate"/></svg><span>Breakfast</span></button>
+        <button class="add-tray-option" type="button" data-add-meal="Lunch"><svg class="icon" aria-hidden="true"><use href="#plate"/></svg><span>Lunch</span></button>
+        <button class="add-tray-option" type="button" data-add-meal="Dinner"><svg class="icon" aria-hidden="true"><use href="#plate"/></svg><span>Dinner</span></button>
+        <button class="add-tray-option add-tray-scan" type="button" data-add-meal="Other"><span>Other</span></button>
+      </div>
+      <div id="add-tray-review" hidden>
+        <div class="add-tray-items"></div>
+        <button class="add-tray-option add-tray-scan add-tray-more" type="button"><svg class="icon" aria-hidden="true"><use href="#plus"/></svg><span>Add more</span></button>
+      </div>
+    </dialog>
+    <p class="add-save-notice" role="status" aria-live="polite"></p>
+    <dialog id="add-meal-dialog" class="add-meal-dialog" aria-labelledby="add-meal-title">
+      <header class="add-meal-heading">
+        <div class="meal-picker add-meal-location-picker">
+          <h2 id="add-meal-title"><button class="meal-picker-toggle add-meal-location" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="add-meal-location-menu"><span class="add-meal-location-label">Dining Commons</span><svg class="icon title-chevron" aria-hidden="true"><use href="#expand-more"/></svg></button></h2>
+          <div id="add-meal-location-menu" class="meal-picker-menu" role="menu" aria-label="Dining location" hidden>
+            <button type="button" data-location="Dining Commons" role="menuitemradio" aria-checked="true" tabindex="-1"><span>Dining Commons</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+            <button type="button" data-location="Starbucks" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Starbucks</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+            <button type="button" data-location="Renaissance Coffee" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Renaissance Coffee</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+            <button type="button" data-location="Mackenzie Cafe" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Mackenzie Cafe</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+            <button type="button" data-location="Tim Hortons" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Tim Hortons</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+            <button type="button" data-location="Discovery Cafe" role="menuitemradio" aria-checked="false" tabindex="-1"><span>Discovery Cafe</span><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+          </div>
+        </div>
+        <button class="add-meal-close track-notes-close" type="button" aria-label="Close meal menu"><svg class="icon" viewBox="0 -960 960 960" aria-hidden="true"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
+      </header>
+      <div class="add-meal-actions" role="group" aria-label="Quick add options">
+        <button class="add-meal-action" type="button" data-meal-action="picture"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5h-5L8 8H4v12h17V8h-3M19 2v6m-3-3h6"/><circle cx="12" cy="14" r="3"/></g></svg><span>Picture scan</span></button>
+        <button class="add-meal-action" type="button" data-meal-action="barcode"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 7V4h3m10 0h3v3M4 17v3h3m10 0h3v-3M7 8v8m3-8v8m4-8v8m3-8v8"/></svg><span>Barcode scan</span></button>
+        <button class="add-meal-action" type="button" data-meal-action="previous"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6h6M4 10a8 8 0 1 1 1 7M12 8v5l3 2"/></g></svg><span>Previous add</span></button>
       </div>
     </dialog>
     <dialog id="calendar-modal" class="calendar-modal" aria-label="Choose date">

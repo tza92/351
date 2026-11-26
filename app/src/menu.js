@@ -4,6 +4,7 @@
   const homeContent = document.querySelector('.dashboard');
   const menuContent = document.querySelector('.menu-content');
   const trackContent = document.querySelector('.track-content');
+  const mealSheet = document.querySelector('#add-meal-dialog');
   const search = document.querySelector('#menu-search');
   const list = document.querySelector('.menu-foods');
   const empty = document.querySelector('.menu-empty');
@@ -156,10 +157,10 @@
   });
 
   function syncBackToTop() {
-    const visible = currentPage === 'menu' && menuContent.scrollTop > 160;
+    const visible = (currentPage === 'menu' || mealSheet.open) && menuContent.scrollTop > 160;
     const covered = app.classList.contains('has-menu-notice');
     if ((!visible || covered) && document.activeElement === backToTop && currentPage === 'menu') {
-      document.querySelector('#menu-title').focus({ preventScroll: true });
+      (mealSheet.open ? mealSheet.querySelector('.add-meal-location') : document.querySelector('#menu-title')).focus({ preventScroll: true });
     }
     backToTop.hidden = !visible;
     backToTop.inert = covered;
@@ -170,6 +171,7 @@
     clearTimeout(noticeClearTimeout);
     if (message) notice.textContent = message;
     app.classList.toggle('has-menu-notice', Boolean(message));
+    mealSheet.classList.toggle('has-menu-notice', Boolean(message));
     syncBackToTop();
     if (message) {
       noticeTimeout = setTimeout(() => setMenuNotice(), 1500);
@@ -180,7 +182,7 @@
 
   menuContent.addEventListener('scroll', syncBackToTop, { passive: true });
   backToTop.addEventListener('click', () => {
-    document.querySelector('#menu-title').focus({ preventScroll: true });
+    (mealSheet.open ? mealSheet.querySelector('.add-meal-location') : document.querySelector('#menu-title')).focus({ preventScroll: true });
     menuContent.scrollTo({ top: 0, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
     syncBackToTop();
   });
@@ -232,6 +234,158 @@
   const pageFromHash = () => ['menu', 'track'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
   window.addEventListener('hashchange', () => showPage(pageFromHash(), true));
 
+  // Move the live menu into the sheet so its controls and IDs stay shared.
+  const sheetElements = [menuContent, backToTop, notice].map((element) => {
+    const placeholder = document.createComment('Menu screen position');
+    element.before(placeholder);
+    return { element, placeholder };
+  });
+  let mealSheetTrigger;
+  let closingMealSheet = false;
+  let pageTitleBeforeSheet;
+  const locationPicker = mealSheet.querySelector('.add-meal-location');
+  const locationTitle = mealSheet.querySelector('.add-meal-location-label');
+  const locationMenu = mealSheet.querySelector('#add-meal-location-menu');
+  const locationOptions = [...locationMenu.querySelectorAll('[data-location]')];
+  let selectedLocation = 'Dining Commons';
+
+  function closeLocationMenu(restoreFocus = false) {
+    locationMenu.hidden = true;
+    locationPicker.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) locationPicker.focus({ preventScroll: true });
+  }
+  function openLocationMenu() {
+    closeMealMenu();
+    locationMenu.hidden = false;
+    locationPicker.setAttribute('aria-expanded', 'true');
+    locationOptions.find((option) => option.dataset.location === selectedLocation).focus();
+  }
+  locationPicker.addEventListener('click', () => {
+    if (locationMenu.hidden) openLocationMenu();
+    else closeLocationMenu();
+  });
+  locationPicker.addEventListener('keydown', (event) => {
+    if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return;
+    event.preventDefault();
+    openLocationMenu();
+  });
+  locationOptions.forEach((option) => option.addEventListener('click', () => {
+    selectedLocation = option.dataset.location;
+    updateSheetLocation();
+    closeLocationMenu(true);
+  }));
+  locationMenu.addEventListener('keydown', (event) => {
+    const index = locationOptions.indexOf(document.activeElement);
+    let next;
+    if (event.key === 'ArrowDown') next = (index + 1) % locationOptions.length;
+    if (event.key === 'ArrowUp') next = (index - 1 + locationOptions.length) % locationOptions.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = locationOptions.length - 1;
+    if (next !== undefined) {
+      event.preventDefault();
+      locationOptions[next].focus();
+    }
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !locationMenu.hidden) {
+      event.preventDefault();
+      closeLocationMenu(true);
+    }
+  });
+  ['click', 'focusin'].forEach((type) => document.addEventListener(type, (event) => {
+    if (!event.target.closest('.add-meal-location-picker')) closeLocationMenu();
+  }));
+  const locationEmpty = document.createElement('p');
+  locationEmpty.className = 'add-meal-location-empty';
+  locationEmpty.hidden = true;
+  locationEmpty.setAttribute('role', 'status');
+  const menuSection = menuContent.querySelector('section');
+  const sheetActions = mealSheet.querySelector('.add-meal-actions');
+  const mealPicker = mealToggle.closest('.meal-picker');
+  const mealPickerPosition = document.createComment('Menu meal picker position');
+  mealPicker.before(mealPickerPosition);
+  sheetActions.querySelectorAll('[data-meal-action="previous"], [data-meal-action="picture"], [data-meal-action="barcode"]').forEach((button) => {
+    button.addEventListener('click', () => setMenuNotice(`${button.textContent.trim()} is coming soon.`));
+  });
+
+  function updateSheetLocation() {
+    const location = selectedLocation;
+    const commons = location === 'Dining Commons';
+    locationTitle.textContent = location;
+    locationOptions.forEach((option) => option.setAttribute('aria-checked', String(option.dataset.location === location)));
+    menuSection.hidden = !commons;
+    locationEmpty.hidden = commons;
+    locationEmpty.textContent = commons ? '' : `No menu items available for ${location} yet.`;
+    search.placeholder = commons ? 'Search dining menu or food' : `Search ${location}`;
+    search.setAttribute('aria-label', `Search ${location}`);
+    menuContent.scrollTop = 0;
+    document.title = `${location} · Nutrition`;
+    syncBackToTop();
+  }
+
+  document.addEventListener('nutrition:openmeal', (event) => {
+    const option = mealOptions.find((item) => item.dataset.meal === event.detail.meal);
+    if (!option || mealSheet.open || closingMealSheet) return;
+    mealSheetTrigger = event.detail.trigger;
+    pageTitleBeforeSheet = document.title;
+    sheetElements.forEach(({ element }) => mealSheet.append(element));
+    menuContent.querySelector('.menu-header').append(sheetActions);
+    menuSection.prepend(mealPicker);
+    menuContent.hidden = false;
+    search.value = '';
+    mealSheet.showModal();
+    option.click();
+    selectedLocation = 'Dining Commons';
+    menuContent.append(locationEmpty);
+    updateSheetLocation();
+    menuContent.scrollTop = 0;
+    syncBackToTop();
+    mealSheetTrigger.setAttribute('aria-expanded', 'true');
+    locationPicker.focus({ preventScroll: true });
+  });
+
+  async function closeMealSheet() {
+    if (!mealSheet.open || closingMealSheet) return;
+    closingMealSheet = true;
+    closeLocationMenu();
+    closeMealMenu();
+    setMenuNotice();
+    mealSheet.classList.add('is-closing');
+    if (!reducedMotion.matches) {
+      await Promise.all(mealSheet.getAnimations().map((animation) => animation.finished.catch(() => {})));
+    }
+    mealSheet.close();
+  }
+  mealSheet.querySelector('.add-meal-close').addEventListener('click', closeMealSheet);
+  mealSheet.addEventListener('cancel', (event) => {
+    event.preventDefault();
+    closeMealSheet();
+  });
+  mealSheet.addEventListener('close', () => {
+    closeLocationMenu();
+    locationEmpty.remove();
+    mealPickerPosition.after(mealPicker);
+    mealSheet.querySelector('.add-meal-heading').after(sheetActions);
+    menuSection.hidden = false;
+    search.placeholder = 'Search dining menu';
+    search.setAttribute('aria-label', 'Search dining menu');
+    sheetElements.forEach(({ element, placeholder }) => placeholder.after(element));
+    menuContent.hidden = currentPage !== 'menu';
+    mealSheet.classList.remove('is-closing');
+    closingMealSheet = false;
+    updateFoods();
+    filterFoods();
+    document.title = currentPage === 'menu' ? `${selectedMeal} Menu · Nutrition`
+      : currentPage === 'track' ? 'Track · Nutrition' : pageTitleBeforeSheet;
+    syncBackToTop();
+    mealSheetTrigger?.setAttribute('aria-expanded', 'false');
+    if (mealSheetTrigger?.closest('dialog')?.open) mealSheetTrigger.focus({ preventScroll: true });
+    document.dispatchEvent(new CustomEvent('nutrition:mealpickerclose'));
+  });
+  window.addEventListener('hashchange', () => {
+    if (mealSheet.open) mealSheet.close();
+  });
+
   function icon(name) {
     return `<svg class="icon" aria-hidden="true"><use href="#${name}"/></svg>`;
   }
@@ -257,7 +411,7 @@
             foodState.set(key, { ...details, ...photo, meal, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, nutrition: window.nutritionFacts?.records[nutritionId], source: menu.stationSources?.[stationId] || menu.source, quantity: 1, added: 0 });
           }
           const food = foodState.get(key);
-          if (window.nutritionTrack) food.added = window.nutritionTrack.getQuantity(selectedDate, foodLogKey(food));
+          if (window.nutritionTrack) food.added = mealSheet.open ? 0 : window.nutritionTrack.getQuantity(selectedDate, foodLogKey(food));
           food.id = foods.length;
           foods.push(food);
         });
@@ -753,6 +907,15 @@
       quantityInput.focus();
       quantityInput.select();
     } else if (action === 'add') {
+      if (mealSheet.open) {
+        if (closingMealSheet) return;
+        document.dispatchEvent(new CustomEvent('nutrition:mealpicked', { detail: {
+          date: selectedDate, key: foodLogKey(food), quantity: food.quantity,
+          food: { name: food.name, image: food.image, meal: food.meal, category: food.category, serving: food.serving, nutrition: food.nutrition },
+        } }));
+        closeMealSheet();
+        return;
+      }
       const removing = food.added > 0;
       const amount = removing ? food.added : food.quantity;
       food.added = removing ? 0 : food.quantity;

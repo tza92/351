@@ -512,11 +512,11 @@
     else render();
   });
   document.addEventListener('nutrition:logchange', (event) => {
-    const { date, key, food, quantity: amount } = event.detail;
+    const { date, key, food, quantity: amount, kind } = event.detail;
     const log = dayLog(date);
     log.entries = log.entries.filter((entry) => entry.key !== key);
     if (amount > 0) log.entries.push({ key, name: food.name, image: food.image, meal: food.meal,
-      kind: pendingLogKind || (/smoothie|beverage|drink/i.test(food.category || '') ? 'drink' : food.meal === 'Snack' ? 'snack' : food.meal === 'Drink' ? 'drink' : 'meal'),
+      kind: kind || pendingLogKind || (/smoothie|beverage|drink/i.test(food.category || '') ? 'drink' : food.meal === 'Snack' ? 'snack' : food.meal === 'Drink' ? 'drink' : 'meal'),
       serving: food.serving, quantity: amount,
       macros: ['Total Carbohydrates (g)', 'Total Fat (g)', 'Protein (g)'].map((name) => nutrient(food, name)),
       calories: Number(food.nutrition?.calories) || 0, fibre: nutrient(food, 'Dietary Fiber (g)'),
