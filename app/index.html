@@ -300,22 +300,22 @@
         </header>
         <div class="track-report">
         <div class="track-date-row">
-          <div class="track-date-picker"><h2 aria-live="polite"><button class="track-calendar-toggle" type="button" aria-label="Choose report date" aria-expanded="false" aria-haspopup="dialog" aria-controls="calendar-dropdown"><span id="track-report-date"></span><svg class="icon" aria-hidden="true"><use href="#calendar"/></svg></button></h2></div>
-          <div class="track-date-controls">
-            <button class="track-previous" type="button" aria-label="Previous day"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
-            <button class="track-next" type="button" aria-label="Next day"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
-          </div>
+          <button class="track-previous" type="button" aria-label="Previous day"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
+          <div class="track-date-picker"><h2 aria-live="polite"><button class="track-calendar-toggle" type="button" aria-expanded="false" aria-haspopup="dialog" aria-controls="calendar-dropdown"><span id="track-report-date"></span></button></h2></div>
+          <button class="track-next" type="button" aria-label="Next day"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
         </div>
         <section class="macro-card track-macro-card" aria-labelledby="track-macro-title">
           <div class="macro-controls track-summary-controls">
-            <button class="macro-previous track-summary-previous" type="button" aria-label="Previous nutrition summary" disabled><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
             <h2 id="track-macro-title">Your Macro Nutrients</h2>
+            <button class="macro-previous track-summary-previous" type="button" aria-label="Previous nutrition summary" disabled><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
             <button class="macro-next track-summary-next" type="button" aria-label="Next nutrition summary"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
           </div>
           <div class="track-summary-body">
+          <div class="track-summary-overview">
           <div class="macros track-macros"></div>
           <div class="track-summary-alt" hidden></div>
-          <div class="summary-pages track-summary-pages" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
+          </div>
+          <div class="summary-pages track-summary-pages" aria-hidden="true"><span class="is-active"></span><span></span><span></span><i class="track-summary-indicator"></i></div>
           <div id="track-nutrient-details" class="track-nutrient-details" hidden></div>
           <button class="more-button track-more" type="button" aria-expanded="false" aria-controls="track-nutrient-details"><span>More</span><svg class="icon" aria-hidden="true"><use href="#expand-more"/></svg></button>
           </div>

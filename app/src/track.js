@@ -45,6 +45,7 @@
   let summaryExpanded = false;
   let summaryAnimations = [];
   let summarySlideAnimations = [];
+  let summaryIndicatorAnimation;
   let editing;
   let editTrigger;
   let pendingLogKind = null;
@@ -185,7 +186,35 @@
     });
   }
 
-  function render() {
+  function syncSummaryIndicator(animate) {
+    const pages = document.querySelector('.track-summary-pages');
+    const indicator = document.querySelector('.track-summary-indicator');
+    const bounds = indicator.getBoundingClientRect();
+    const parent = pages.getBoundingClientRect();
+    const start = bounds.left - parent.left - parent.width / 2;
+    const target = (summaryPage - 1) * 16 - 7.5;
+    const left = (value) => `calc(50% + ${value}px)`;
+    summaryIndicatorAnimation?.cancel();
+    indicator.style.left = left(target);
+    indicator.style.width = '15px';
+    if (!animate || pages.hidden || !bounds.width || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    // The leading edge reaches the next dot before the trailing edge catches up.
+    const bridgeLeft = Math.min(start, target);
+    const bridgeRight = Math.max(start + bounds.width, target + 15);
+    const animation = indicator.animate([
+      { left: left(start), width: `${bounds.width}px`, offset: 0 },
+      { left: left(bridgeLeft), width: `${bridgeRight - bridgeLeft}px`, offset: .5 },
+      { left: left(target), width: '15px', offset: 1 },
+    ], { duration: 360, easing: 'cubic-bezier(.4, 0, .2, 1)', fill: 'both' });
+    summaryIndicatorAnimation = animation;
+    animation.onfinish = () => {
+      if (summaryIndicatorAnimation !== animation) return;
+      animation.cancel();
+      summaryIndicatorAnimation = null;
+    };
+  }
+
+  function render(animateIndicator = false) {
     summarySlideAnimations.forEach((animation) => animation.cancel());
     summarySlideAnimations = [];
     summaryAnimations.forEach((animation) => animation.cancel());
@@ -214,7 +243,10 @@
       return `<div class="macro"><div class="macro-ring" style="--progress: ${Math.min(100, total.macros[index] / goal * 100)}%" role="img" aria-label="${label}: ${value} of ${goal} grams"><span>${value}g<small>of ${goal}g</small></span></div><span>${label}</span></div>`;
     }).join('');
     document.querySelector('#track-macro-title').textContent = ['Your Macro Nutrients', 'Your Vitamins', 'Your Minerals'][summaryPage];
-    document.querySelector('.track-macros').hidden = summaryPage !== 0;
+    const macros = document.querySelector('.track-macros');
+    macros.style.visibility = summaryPage === 0 ? 'visible' : 'hidden';
+    macros.setAttribute('aria-hidden', String(summaryPage !== 0));
+    macros.inert = summaryPage !== 0;
     const alternate = document.querySelector('.track-summary-alt');
     alternate.hidden = summaryPage === 0;
     const definitions = summaryPage === 1 ? highlightedNutrients : highlightedMinerals;
@@ -232,6 +264,7 @@
     document.querySelector('.track-summary-previous').disabled = summaryPage === 0;
     document.querySelector('.track-summary-next').disabled = summaryPage === 2;
     document.querySelectorAll('.track-summary-pages span').forEach((dot, index) => dot.classList.toggle('is-active', index === summaryPage));
+    syncSummaryIndicator(animateIndicator);
     const meals = entries.filter((entry) => entryKind(entry) === 'meal');
     renderEntries(document.querySelector('.track-meal-list'), meals, 'meal');
     renderEntries(document.querySelector('.track-snack-list'), entries.filter((entry) => entryKind(entry) === 'snack'), 'snack');
@@ -286,37 +319,45 @@
   }
   content.querySelectorAll('[data-period]').forEach((button) => button.addEventListener('click', () => selectPeriod(button.dataset.period)));
 
-  // Let the browser handle vertical scrolling; capture only horizontal gestures.
+  // Match the calendar's direction lock so a small wobble cannot steal a swipe.
   let periodSwipe;
   let suppressPeriodClick = false;
   content.addEventListener('pointerdown', (event) => {
     suppressPeriodClick = false;
     if (!event.isPrimary) { periodSwipe = null; return; }
     if (event.button !== 0 || event.target.closest('input, textarea, select, [contenteditable="true"], .calendar-dropdown')) return;
-    periodSwipe = { id: event.pointerId, x: event.clientX, y: event.clientY, dragging: false };
+    periodSwipe = {
+      id: event.pointerId, x: event.clientX, y: event.clientY,
+      scrollTop: content.scrollTop, axis: null,
+      summary: Boolean(event.target.closest('.track-macro-card')),
+    };
   });
   content.addEventListener('pointermove', (event) => {
     if (!periodSwipe || event.pointerId !== periodSwipe.id) return;
-    const dx = Math.abs(event.clientX - periodSwipe.x);
-    const dy = Math.abs(event.clientY - periodSwipe.y);
-    if (!periodSwipe.dragging) {
-      if (Math.max(dx, dy) < 10) return;
-      if (dx < dy * 1.4) { periodSwipe = null; return; }
-      periodSwipe.dragging = true;
+    const dx = event.clientX - periodSwipe.x;
+    const dy = event.clientY - periodSwipe.y;
+    if (!periodSwipe.axis) {
+      const horizontal = Math.abs(dx);
+      const vertical = Math.abs(dy);
+      if (horizontal >= 12 && horizontal > vertical) periodSwipe.axis = 'horizontal';
+      else if (vertical >= 20 && vertical > horizontal * 1.5) periodSwipe.axis = 'vertical';
+      else return;
       content.setPointerCapture(event.pointerId);
     }
-    event.preventDefault();
+    if (event.cancelable) event.preventDefault();
+    if (periodSwipe.axis === 'vertical') content.scrollTop = periodSwipe.scrollTop - dy;
   });
   function finishPeriodSwipe(event) {
     if (!periodSwipe || event.pointerId !== periodSwipe.id) return;
     const swipe = periodSwipe;
     periodSwipe = null;
-    suppressPeriodClick = swipe.dragging;
-    if (content.hasPointerCapture(event.pointerId)) content.releasePointerCapture(event.pointerId);
     const dx = event.clientX - swipe.x;
     const dy = event.clientY - swipe.y;
-    if (event.type === 'pointerup' && swipe.dragging && Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.4) {
-      selectPeriod(dx < 0 ? 'week' : 'day');
+    suppressPeriodClick = Boolean(swipe.axis) || Math.max(Math.abs(dx), Math.abs(dy)) >= 8;
+    if (content.hasPointerCapture(event.pointerId)) content.releasePointerCapture(event.pointerId);
+    if (event.type === 'pointerup' && swipe.axis === 'horizontal' && Math.abs(dx) >= 28) {
+      if (swipe.summary) selectSummary(dx < 0 ? 'next' : 'previous');
+      else selectPeriod(dx < 0 ? 'week' : 'day');
     }
   }
   content.addEventListener('pointerup', finishPeriodSwipe);
@@ -334,8 +375,7 @@
     const step = direction === 'previous' ? -1 : 1;
     const next = Math.max(0, Math.min(2, summaryPage + step));
     if (next === summaryPage) return;
-    const card = document.querySelector('.track-macro-card');
-    const body = document.querySelector('.track-summary-body');
+    const body = document.querySelector('.track-summary-overview');
     const title = document.querySelector('#track-macro-title');
     const outgoingOpacity = getComputedStyle(body).opacity;
     summarySlideAnimations.forEach((animation) => animation.cancel());
@@ -353,18 +393,12 @@
     summarySlideAnimations = outgoing;
     outgoing[0].onfinish = () => {
       if (!summarySlideAnimations.includes(outgoing[0])) return;
-      const previousHeight = card.getBoundingClientRect().height;
-      render();
-      const nextHeight = card.getBoundingClientRect().height;
-      const resize = card.animate([
-        { height: `${previousHeight}px`, overflow: 'hidden' },
-        { height: `${nextHeight}px`, overflow: 'hidden' },
-      ], { duration: 240, easing: 'cubic-bezier(.4, 0, .2, 1)', fill: 'both' });
+      render(true);
       const incoming = [body, title].map((element) => element.animate([
         { opacity: 0, transform: `translateX(${step * 8}px)` },
         { opacity: 1, transform: 'translateX(0)' },
       ], { duration: 240, easing: 'cubic-bezier(.2, 0, 0, 1)', fill: 'both' }));
-      summarySlideAnimations = [resize, ...incoming];
+      summarySlideAnimations = incoming;
       summarySlideAnimations.forEach((animation) => {
         animation.onfinish = () => {
           if (!summarySlideAnimations.includes(animation)) return;
