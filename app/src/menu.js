@@ -3,6 +3,7 @@
   const homeHeader = document.querySelector('.today-header');
   const homeContent = document.querySelector('.dashboard');
   const menuContent = document.querySelector('.menu-content');
+  const trackContent = document.querySelector('.track-content');
   const search = document.querySelector('#menu-search');
   const list = document.querySelector('.menu-foods');
   const empty = document.querySelector('.menu-empty');
@@ -190,11 +191,19 @@
     cancelPageAnimations();
     closeMealMenu();
     const menu = page === 'menu';
-    homeHeader.hidden = menu;
-    homeContent.hidden = menu;
+    const track = page === 'track';
+    homeHeader.hidden = menu || track;
+    homeContent.hidden = menu || track;
     menuContent.hidden = !menu;
+    trackContent.hidden = !track;
     app.classList.toggle('is-menu', menu);
+    app.classList.toggle('is-track', track);
+    if (menu && window.nutritionTrack) {
+      updateFoods();
+      filterFoods();
+    }
     document.title = menu ? `${selectedMeal} Menu · Nutrition` : 'Today · Nutrition';
+    if (track) document.title = 'Track · Nutrition';
     document.querySelectorAll('[data-page]').forEach((button) => {
       const active = button.dataset.page === page;
       button.classList.toggle('is-active', active);
@@ -203,8 +212,9 @@
     });
     setMenuNotice();
     if (focus && menu) document.querySelector('#menu-title').focus({ preventScroll: true });
+    if (focus && track) document.querySelector('#track-title').focus({ preventScroll: true });
     if (animate) {
-      const incoming = menu ? [menuContent] : [homeContent, homeHeader];
+      const incoming = menu ? [menuContent] : track ? [trackContent] : [homeContent, homeHeader];
       pageAnimations = incoming.map((element) => element.animate([
         { opacity: 0 },
         { opacity: 1 },
@@ -219,7 +229,8 @@
     button.addEventListener('click', () => { location.hash = button.dataset.page; });
   });
   document.querySelector('.intake .text-link').addEventListener('click', () => { location.hash = 'menu'; });
-  window.addEventListener('hashchange', () => showPage(location.hash === '#menu' ? 'menu' : 'home', true));
+  const pageFromHash = () => ['menu', 'track'].includes(location.hash.slice(1)) ? location.hash.slice(1) : 'home';
+  window.addEventListener('hashchange', () => showPage(pageFromHash(), true));
 
   function icon(name) {
     return `<svg class="icon" aria-hidden="true"><use href="#${name}"/></svg>`;
@@ -246,6 +257,7 @@
             foodState.set(key, { ...details, ...photo, meal, category: entry.category || details.category, diets: entry.diets || [], meats: entry.meats || [], station: stationId, serving: entry.serving, nutrition: window.nutritionFacts?.records[nutritionId], source: menu.stationSources?.[stationId] || menu.source, quantity: 1, added: 0 });
           }
           const food = foodState.get(key);
+          if (window.nutritionTrack) food.added = window.nutritionTrack.getQuantity(selectedDate, foodLogKey(food));
           food.id = foods.length;
           foods.push(food);
         });
@@ -363,6 +375,7 @@
 
   function syncFoodAddButton(button, food) {
     const added = food.added > 0;
+    button.closest('.food-controls').querySelector('.food-quantity').classList.toggle('has-added', added);
     button.classList.toggle('has-added', added);
     button.setAttribute('aria-pressed', String(added));
     button.setAttribute('aria-label', added
@@ -743,6 +756,11 @@
       const removing = food.added > 0;
       const amount = removing ? food.added : food.quantity;
       food.added = removing ? 0 : food.quantity;
+      document.dispatchEvent(new CustomEvent('nutrition:logchange', { detail: {
+        date: selectedDate, key: foodLogKey(food),
+        food: { name: food.name, image: food.image, meal: food.meal, category: food.category, serving: food.serving, nutrition: food.nutrition },
+        quantity: food.added,
+      } }));
       syncFoodAddButton(button, food);
       setMenuNotice(`${foodAmountLabel(food, amount)} of ${food.name} ${removing ? 'removed' : 'added'}.`);
       if (menuFilters.items.includes('added') && removing) {
@@ -823,6 +841,10 @@
       || event.clientY < bounds.top || event.clientY > bounds.bottom) closeUnitPicker(true);
   });
 
+  function foodLogKey(food) {
+    return [food.meal, food.station, food.sourceName || food.name, food.serving, food.measureUnit || 'each'].join(':');
+  }
+
   function foodAmountLabel(food, amount) {
     const unit = food.measureUnit;
     if (!unit || unit === 'each' || unit === 'serving') return `${amount} ${amount === 1 ? 'serving' : 'servings'}`;
@@ -890,7 +912,7 @@
     filterFoods();
   });
 
-  showPage(location.hash === '#menu' ? 'menu' : 'home');
+  showPage(pageFromHash());
   renderStations();
   updateFoods();
   filterFoods();

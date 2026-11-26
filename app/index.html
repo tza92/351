@@ -16,6 +16,8 @@
     <script src="src/data/food-photos.js" defer></script>
     <script src="src/menu.js" defer></script>
     <script src="src/add-tray.js" defer></script>
+    <script src="src/apple-keyboard.js" defer></script>
+    <script src="src/track.js" defer></script>
   </head>
   <body>
     <!-- Google Material Symbols Outlined (Apache 2.0). -->
@@ -34,6 +36,7 @@
       <symbol id="chef" viewBox="0 -960 960 960"><path d="M360-400h80v-200h-80v200Zm-160-60q-46-23-73-66.5T100-621q0-75 51.5-127T278-800q12 0 24.5 2t24.5 5q25-41 65-64t88-23q48 0 88 23t65 64q12-3 24-5t25-2q75 0 126.5 52T860-621q0 51-27 94.5T760-460v220H200v-220Zm320 60h80v-200h-80v200Zm-240 80h400v-189l44-22q26-13 41-36.5t15-52.5q0-42-28.5-71T682-720q-11 0-20 2t-19 5l-47 13-31-52q-14-23-36.5-35.5T480-800q-26 0-48.5 12.5T395-752l-31 52-48-13q-10-2-19.5-4.5T277-720q-41 0-69 29t-28 71q0 29 15 52.5t41 36.5l44 22v189Zm-80 80h80v80h400v-80h80v160H200v-160Zm280-80Z"/></symbol>
       <symbol id="qr" viewBox="0 -960 960 960"><path d="M120-520v-320h320v320H120Zm80-80h160v-160H200v160Zm-80 480v-320h320v320H120Zm80-80h160v-160H200v160Zm320-320v-320h320v320H520Zm80-80h160v-160H600v160Zm160 480v-80h80v80h-80ZM520-360v-80h80v80h-80Zm80 80v-80h80v80h-80Zm-80 80v-80h80v80h-80Zm80 80v-80h80v80h-80Zm80-80v-80h80v80h-80Zm0-160v-80h80v80h-80Zm80 80v-80h80v80h-80Z"/></symbol>
       <symbol id="chevron" viewBox="-12 -960 960 960"><path d="M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z"/></symbol>
+      <symbol id="calendar" viewBox="0 -960 960 960"><path d="M200-80q-33 0-56.5-23.5T120-160v-560q0-33 23.5-56.5T200-800h40v-80h80v80h320v-80h80v80h40q33 0 56.5 23.5T840-720v560q0 33-23.5 56.5T760-80H200Zm0-80h560v-400H200v400Zm0-480h560v-80H200v80Zm80 240v-80h80v80h-80Zm160 0v-80h80v80h-80Zm160 0v-80h80v80h-80ZM280-240v-80h80v80h-80Zm160 0v-80h80v80h-80Z"/></symbol>
       <symbol id="expand-more" viewBox="0 -960 960 960"><path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z"/></symbol>
       <symbol id="check" viewBox="0 -960 960 960"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></symbol>
       <symbol id="edit" viewBox="0 -960 960 960"><path d="M200-200h57l391-391-57-57-391 391v57Zm-80 80v-170l528-527q12-11 26.5-17t30.5-6q16 0 31 6t26 18l55 56q12 11 17.5 26t5.5 30q0 16-5.5 30.5T817-647L290-120H120Zm640-584-56-56 56 56Zm-141 85-28-29 57 57-29-28Z"/></symbol>
@@ -283,6 +286,56 @@
           <p class="menu-empty" hidden></p>
         </section>
       </main>
+      <main class="track-content" aria-labelledby="track-title" hidden>
+        <header class="track-header">
+          <h1 id="track-title" class="sr-only" tabindex="-1">Track</h1>
+          <div class="track-period" role="group" aria-label="Report period">
+            <button type="button" data-period="day" aria-pressed="true"><span>Day</span></button>
+            <button type="button" data-period="week" aria-pressed="false"><span>Week</span></button>
+            <span class="track-period-indicator" aria-hidden="true"></span>
+          </div>
+            <button class="filter-button" type="button" aria-label="App options" aria-haspopup="dialog" aria-expanded="false" aria-controls="app-sidebar">
+              <svg class="menu-lines" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.5H21" vector-effect="non-scaling-stroke"/><path d="M9 16.5H21" stroke-width="2.1" vector-effect="non-scaling-stroke"/></svg>
+            </button>
+        </header>
+        <div class="track-report">
+        <div class="track-date-row">
+          <div class="track-date-picker"><h2 aria-live="polite"><button class="track-calendar-toggle" type="button" aria-label="Choose report date" aria-expanded="false" aria-haspopup="dialog" aria-controls="calendar-dropdown"><span id="track-report-date"></span><svg class="icon" aria-hidden="true"><use href="#calendar"/></svg></button></h2></div>
+          <div class="track-date-controls">
+            <button class="track-previous" type="button" aria-label="Previous day"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
+            <button class="track-next" type="button" aria-label="Next day"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
+          </div>
+        </div>
+        <section class="macro-card track-macro-card" aria-labelledby="track-macro-title">
+          <div class="macro-controls track-summary-controls">
+            <button class="macro-previous track-summary-previous" type="button" aria-label="Previous nutrition summary" disabled><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
+            <h2 id="track-macro-title">Your Macro Nutrients</h2>
+            <button class="macro-next track-summary-next" type="button" aria-label="Next nutrition summary"><svg class="icon" aria-hidden="true"><use href="#chevron"/></svg></button>
+          </div>
+          <div class="track-summary-body">
+          <div class="macros track-macros"></div>
+          <div class="track-summary-alt" hidden></div>
+          <div class="summary-pages track-summary-pages" aria-hidden="true"><span class="is-active"></span><span></span><span></span></div>
+          <div id="track-nutrient-details" class="track-nutrient-details" hidden></div>
+          <button class="more-button track-more" type="button" aria-expanded="false" aria-controls="track-nutrient-details"><span>More</span><svg class="icon" aria-hidden="true"><use href="#expand-more"/></svg></button>
+          </div>
+        </section>
+        <section class="track-meals" aria-labelledby="track-meals-title">
+          <div class="section-heading"><h2 id="track-meals-title">Meals</h2><button class="text-link track-add" type="button"><span>Add</span><svg class="icon" aria-hidden="true"><use href="#plus"/></svg></button></div>
+          <div class="track-meal-list"></div>
+        </section>
+        <section class="track-snacks" aria-labelledby="track-snacks-title"><h2 id="track-snacks-title">Snacks</h2><div class="track-snack-list"></div></section>
+        <section class="track-drinks" aria-labelledby="track-drinks-title"><h2 id="track-drinks-title">Drinks</h2><div class="track-drink-list"></div></section>
+        <section class="track-notes" aria-labelledby="track-notes-title">
+          <h2 id="track-notes-title">Notes</h2>
+          <button class="track-empty-card track-notes-open" type="button" aria-label="Write notes" aria-haspopup="dialog" aria-expanded="false" aria-controls="track-notes-dialog">
+            <span class="track-note-preview">Add a note</span>
+            <svg class="icon" aria-hidden="true"><use href="#plus"/></svg>
+          </button>
+        </section>
+        </div>
+        <div class="track-week-placeholder" hidden><p>Week view is not ready yet.</p></div>
+      </main>
       <button class="menu-back-to-top" type="button" aria-label="Back to top" title="Back to top" hidden>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5m-6 6 6-6 6 6"/></svg>
       </button>
@@ -300,7 +353,7 @@
           <svg class="icon" aria-hidden="true"><use href="#plus"/></svg>
           <span>Add</span>
         </button>
-        <button class="nav-item" type="button">
+        <button class="nav-item" type="button" data-page="track">
           <svg class="icon" aria-hidden="true"><use href="#track"/></svg>
           <span>Track</span>
         </button>
@@ -310,6 +363,24 @@
         </button>
       </nav>
     </div>
+    <dialog id="track-notes-dialog" class="track-notes-dialog" aria-labelledby="track-note-editor-title">
+      <header class="track-notes-heading">
+        <button class="track-notes-close" type="button" aria-label="Close notes"><svg class="icon" viewBox="0 -960 960 960" aria-hidden="true"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></button>
+        <h2 id="track-note-editor-title" class="sr-only">Notes</h2>
+        <button class="track-notes-save" type="button" aria-label="Save note"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></button>
+      </header>
+      <label class="sr-only" for="track-note">Notes for this day</label>
+      <textarea id="track-note" placeholder="Write about your day..." autofocus></textarea>
+      <p class="track-note-status sr-only" role="status"></p>
+      <apple-keyboard for="track-note"></apple-keyboard>
+    </dialog>
+    <dialog id="track-edit-dialog" class="track-edit-dialog" aria-labelledby="track-edit-title">
+      <form>
+        <div class="section-heading"><h2 id="track-edit-title">Edit food</h2><button class="track-edit-close" type="button" aria-label="Close edit food">&#215;</button></div>
+        <label for="track-edit-quantity">Servings</label><input id="track-edit-quantity" type="number" min="0.25" max="99" step="0.25" required>
+        <div class="track-edit-actions"><button class="track-remove" type="button">Remove</button><button class="track-save" type="submit">Save changes</button></div>
+      </form>
+    </dialog>
     <dialog id="add-tray" class="add-tray" aria-labelledby="add-tray-title">
       <div class="add-tray-heading">
         <h2 id="add-tray-title" tabindex="-1" autofocus>Add to Today</h2>

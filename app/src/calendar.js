@@ -4,8 +4,9 @@
   const homeCalendarHost = dropdown.parentElement;
   const menuTrigger = document.querySelector('.menu-calendar-toggle');
   const trayTrigger = document.querySelector('.add-tray-date');
+  const trackTrigger = document.querySelector('.track-calendar-toggle');
   const calendarModal = document.querySelector('#calendar-modal');
-  const triggers = [trigger, menuTrigger, trayTrigger];
+  const triggers = [trigger, menuTrigger, trayTrigger, trackTrigger];
   let activeTrigger = trigger;
   const grid = document.querySelector('.calendar-days');
   const monthHeading = document.querySelector('#calendar-month');
@@ -60,6 +61,7 @@
     trigger.setAttribute('aria-label', `Choose date, ${fullDate.format(selected)} selected`);
     menuTrigger.setAttribute('aria-label', `Choose menu date, ${fullDate.format(selected)} selected`);
     trayTrigger.setAttribute('aria-label', `Choose date to add to, ${fullDate.format(selected)} selected`);
+    trackTrigger.setAttribute('aria-label', `Choose report date, ${fullDate.format(selected)} selected`);
   }
 
   function renderWeek() {
@@ -159,6 +161,13 @@
     document.dispatchEvent(new CustomEvent('nutrition:datechange', { detail: { date: key(selected) } }));
   }
 
+  document.addEventListener('nutrition:selectdate', (event) => {
+    const value = event.detail?.date;
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return;
+    const [year, month, day] = value.split('-').map(Number);
+    selectDate(new Date(year, month - 1, day, 12), false);
+  });
+
   function openCalendar(button) {
     if (!dropdown.hidden && activeTrigger === button) return closeCalendar(true);
     closeCalendar();
@@ -168,7 +177,8 @@
     dropdown.setAttribute('role', button === trayTrigger ? 'group' : 'dialog');
     dropdown.setAttribute('aria-label', button === menuTrigger ? 'Choose menu date' : 'Choose date');
     const host = button === trayTrigger ? calendarModal
-      : button === menuTrigger ? document.querySelector('.menu-date-picker') : homeCalendarHost;
+      : button === menuTrigger ? document.querySelector('.menu-date-picker')
+      : button === trackTrigger ? document.querySelector('.track-date-picker') : homeCalendarHost;
     host.append(dropdown);
     const calendarDate = button === menuTrigger && selected > menuWeekEnd ? menuWeekEnd : selected;
     month = new Date(calendarDate.getFullYear(), calendarDate.getMonth(), 1, 12);
@@ -179,7 +189,8 @@
     document.querySelector('.today-header').classList.toggle('calendar-open', button === trigger);
     grid.querySelector('[tabindex="0"]').focus({ preventScroll: true });
   }
-  [trigger, menuTrigger].forEach((button) => button.addEventListener('click', () => openCalendar(button)));
+  [trigger, menuTrigger, trackTrigger].forEach((button) => button.addEventListener('click', () => openCalendar(button)));
+  document.addEventListener('nutrition:periodchange', () => closeCalendar());
   document.addEventListener('nutrition:opencalendar', () => openCalendar(trayTrigger));
   window.addEventListener('hashchange', () => closeCalendar());
   let dismissWithoutTray = false;

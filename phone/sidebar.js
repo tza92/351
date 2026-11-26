@@ -6,8 +6,9 @@ window.addEventListener('message', (event) => {
   if (event.source !== appFrame.contentWindow) return;
   if (location.protocol !== 'file:' && event.origin !== location.origin) return;
   if (event.data?.type === 'app-page-state') {
-    if (event.data.page === 'home' || event.data.page === 'menu') {
-      previewScreen.classList.toggle('is-menu', event.data.page === 'menu');
+    if (['home', 'menu', 'track'].includes(event.data.page)) {
+      previewScreen.classList.toggle('is-menu', event.data.page !== 'home');
+      previewScreen.classList.toggle('is-track', event.data.page === 'track');
     }
     return;
   }
