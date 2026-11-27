@@ -1149,14 +1149,35 @@ button:disabled {
   margin-left: auto;
 }
 
+.add-tray.is-review .add-tray-save {
+  margin-left: 0;
+}
+
 #add-tray-review:not([hidden]) { display: flex; flex-direction: column; min-height: 204px; }
 .add-tray-items { display: grid; gap: 12px; margin-bottom: 20px; }
+.add-tray-other h3 { margin-bottom: 12px; color: var(--muted); font-size: 16px; font-weight: 600; line-height: 22px; }
+.add-tray-other-items { display: grid; gap: 12px; }
+.add-tray.is-quick-add {
+  height: clamp(min(56dvh, 520px), var(--quick-add-height, min(56dvh, 520px)), min(86dvh, 800px));
+  overflow: hidden;
+  user-select: none;
+}
+.add-tray.is-quick-add[open] { display: flex; flex-direction: column; }
+.add-tray.is-quick-add .add-tray-heading { flex-shrink: 0; }
+.add-tray.is-quick-add #add-tray-review { flex: 1; min-height: 0; container-type: inline-size; }
+.add-tray.is-quick-add .add-tray-items { flex-shrink: 1; min-height: 0; max-height: 28dvh; overflow-y: auto; overscroll-behavior: contain; }
+.add-tray.is-quick-add .add-tray-other { display: flex; flex: 1; flex-direction: column; min-height: 0; }
+.add-tray.is-quick-add .add-tray-other h3 { flex-shrink: 0; }
+.add-tray.is-quick-add .add-tray-other-items { flex: 1; min-height: 0; margin-inline-end: -15px; align-content: start; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; }
+/* Keep cards full width and center the thin scrollbar in the tray's 20px edge padding. */
+.add-tray.is-quick-add .add-tray-other-items > .add-tray-item { inline-size: 100cqi; }
 .add-tray-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 20px; background: var(--panel); }
 .add-tray-item img { flex-shrink: 0; width: 56px; height: 56px; border-radius: 12px; object-fit: cover; }
 .add-tray-item > div { flex: 1; min-width: 0; }
 .add-tray-item strong { font-size: 16px; line-height: 22px; }
 .add-tray-item p { margin-top: 4px; color: var(--muted); font-size: 14px; line-height: 20px; }
-.add-tray-remove { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--icon-surface); font-size: 24px; cursor: pointer; }
+.add-tray-remove { display: grid; flex-shrink: 0; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--icon-surface); cursor: pointer; }
+.add-tray-remove svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
 .add-tray-more { width: 100%; margin-top: auto; }
 .add-save-notice { position: fixed; z-index: 20; right: 16px; bottom: max(96px, env(safe-area-inset-bottom)); left: 16px; width: fit-content; max-width: calc(100% - 32px); margin: 0 auto; padding: 12px 20px; border-radius: 16px; background: var(--ink); color: var(--canvas); box-shadow: 0 4px 20px #0004; opacity: 0; visibility: hidden; pointer-events: none; }
 .add-save-notice.is-visible { opacity: 1; visibility: visible; }

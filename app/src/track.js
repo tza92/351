@@ -68,6 +68,7 @@
 
   window.nutritionTrack = {
     getQuantity: (date, key) => dayLog(date).entries.find((entry) => entry.key === key)?.quantity || 0,
+    getEntries: (date) => structuredClone(dayLog(date).entries),
   };
 
   function reportDates() {

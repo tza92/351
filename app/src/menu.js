@@ -529,12 +529,21 @@
 
   function syncFoodAddButton(button, food) {
     const added = food.added > 0;
-    button.closest('.food-controls').querySelector('.food-quantity').classList.toggle('has-added', added);
+    const quantity = button.closest('.food-controls').querySelector('.food-quantity');
+    quantity.classList.toggle('has-added', added);
+    quantity.querySelector('.food-quantity-value').textContent = added ? food.added : food.quantity;
     button.classList.toggle('has-added', added);
     button.setAttribute('aria-pressed', String(added));
     button.setAttribute('aria-label', added
-      ? `Remove ${food.name}, ${foodAmountLabel(food, food.added)} added this visit`
+      ? `Remove ${food.name}, ${foodAmountLabel(food, food.added)} saved`
       : `Add ${food.name}`);
+    if (added) {
+      button.removeAttribute('aria-haspopup');
+      button.removeAttribute('aria-controls');
+    } else {
+      button.setAttribute('aria-haspopup', 'dialog');
+      button.setAttribute('aria-controls', mealSheet.open ? 'add-meal-dialog' : 'add-tray');
+    }
   }
 
   function createFoodRow(food) {
@@ -907,29 +916,21 @@
       quantityInput.focus();
       quantityInput.select();
     } else if (action === 'add') {
-      if (mealSheet.open) {
-        if (closingMealSheet) return;
-        document.dispatchEvent(new CustomEvent('nutrition:mealpicked', { detail: {
-          date: selectedDate, key: foodLogKey(food), quantity: food.quantity,
-          food: { name: food.name, image: food.image, meal: food.meal, category: food.category, serving: food.serving, nutrition: food.nutrition },
+      if (closingMealSheet) return;
+      if (!mealSheet.open && food.added > 0) {
+        document.dispatchEvent(new CustomEvent('nutrition:logchange', { detail: {
+          date: selectedDate, key: foodLogKey(food), quantity: 0,
+          food: { name: food.name, meal: food.meal },
         } }));
-        closeMealSheet();
+        setMenuNotice(`${food.name} removed.`);
+        if (!button.isConnected) (list.querySelector('.food-add') || search).focus({ preventScroll: true });
         return;
       }
-      const removing = food.added > 0;
-      const amount = removing ? food.added : food.quantity;
-      food.added = removing ? 0 : food.quantity;
-      document.dispatchEvent(new CustomEvent('nutrition:logchange', { detail: {
-        date: selectedDate, key: foodLogKey(food),
+      document.dispatchEvent(new CustomEvent('nutrition:mealpicked', { detail: {
+        date: selectedDate, key: foodLogKey(food), quantity: food.quantity,
         food: { name: food.name, image: food.image, meal: food.meal, category: food.category, serving: food.serving, nutrition: food.nutrition },
-        quantity: food.added,
       } }));
-      syncFoodAddButton(button, food);
-      setMenuNotice(`${foodAmountLabel(food, amount)} of ${food.name} ${removing ? 'removed' : 'added'}.`);
-      if (menuFilters.items.includes('added') && removing) {
-        filterFoods();
-        (list.querySelector('.food-add') || search).focus({ preventScroll: true });
-      }
+      if (mealSheet.open) closeMealSheet();
     }
   });
 
@@ -1069,8 +1070,25 @@
     else search.focus({ preventScroll: true });
   });
 
+  document.addEventListener('nutrition:logchange', (event) => {
+    const { date, key, quantity } = event.detail;
+    if (date !== selectedDate || mealSheet.open) return;
+    foods.forEach((food) => {
+      if (foodLogKey(food) !== key) return;
+      food.added = quantity;
+      const button = list.querySelector(`[data-food-id="${food.id}"] .food-add`);
+      if (button) syncFoodAddButton(button, food);
+    });
+    if (menuFilters.items.includes('added')) filterFoods();
+  });
+
   document.addEventListener('nutrition:datechange', (event) => {
     selectedDate = event.detail.date;
+    updateFoods();
+    filterFoods();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
     updateFoods();
     filterFoods();
   });
